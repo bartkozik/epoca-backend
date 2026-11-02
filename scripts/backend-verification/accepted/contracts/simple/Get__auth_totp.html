@@ -1,0 +1,51 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>Get</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/totp</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Login user</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>Get /auth/totp should <br/>be inaccessible for no logged users -> [401]<br/>returns Ok when service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.TimeBasedOneTimePasswordSecretGetService.TimeBasedOneTimePasswordSecretGetResultData</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "secret" : "v1B7eO",
+  "qr" : "FVHxJDXdqxC5xTUlHsoXZgTdfn1wJWKdGHcywwNvA6C0Y9lv5mdxJN2EQhdiu9wlTVItXoTmYE"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "secret" : "ze7gOMtBpiyq8SHC4Zba1CUbNbZosICh2qkHoeTbexm5W50XENwzBKacRKhP",
+  "qr" : "ZvFoM6velGOSFIpcpjyYHl3kqosrqxj0yfimouEayT8aSrvlVUjCwv5AJXcdxoCJrgBXe0hoPosl6F"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "secret": {
+      "type": "string"
+    },
+    "qr": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "secret",
+    "qr"
+  ]
+}</pre></td></tr></table>

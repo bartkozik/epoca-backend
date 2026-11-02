@@ -1,0 +1,64 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/refresh-token</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Login user by refresh token</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /auth/refresh-token should <br/>returns BadRequest when incoming request is not json -> [400]<br/>returns BadRequest when incoming request is empty json -> [400]<br/>returns Unauthorized when service returns UserOrRefreshTokenNotFound -> [401]<br/>returns Unauthorized when service returns InvalidRefreshToken -> [401]<br/>returns Ok when service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401</td></tr>
+<tr><td><b>HEADERS</b></td><td>device-id<b style='color: red'>*</b></td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginByRefreshTokenService.LoginByRefreshTokenRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "refreshTokenJwt" : "8m87ECF0QK9jOJeeVftF9mZ2rTZUbBwNU8pa0x2GQruLi12"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "refreshTokenJwt" : "qdDK0"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "string"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginResolveService.LoginResolution</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "accessToken" : "l5kKGH4Ti5hFckQSxpCD",
+  "refreshToken" : "q8xbVo8vfQE9yHxJEzv02iuKVD591r2UtphEqJv2u4Cr48H604AYuqGpoGW3BquIluCQ"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "accessToken" : "tNsPCMZFuZNpK0kl2vYuLyzcuz93AfK4q4cdXrbHk8qe6gdGMqMBGCQFGu9Lrz8LxKEVwGQeBWz54FgVERPxNC8RRNlZ",
+  "refreshToken" : "MIYSVl9YeeBr9ZzSc5UkoMtnCV0Uwi5nrOQguhXushl9Mxyeb96dAiS3emFAXsaIMURlxJKwdYg0o0gVNRygKDE0DAHx"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "accessToken": {
+      "type": "string"
+    },
+    "refreshToken": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "accessToken",
+    "refreshToken"
+  ]
+}</pre></td></tr></table>

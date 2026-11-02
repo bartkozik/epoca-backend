@@ -1,0 +1,128 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PATCH</td></tr>
+<tr><td><b>ROUTE</b></td><td>/users/{userId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Update user</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PATCH /users/{userId} should <br/>should be inaccessible for no logged users -> [401]<br/>returns Forbidden for logged user if service returns OperationNotPermitted -> [403]<br/>returns NotFound for logged user if service returns UserDoNotExist -> [404]<br/>returns OK for logged user if service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.services.UserUpdateService.UserUpdateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "firstName" : null,
+  "lastName" : null,
+  "avatar" : null,
+  "color" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "firstName" : "QgLOCYCLHuyNgolDqAmfWLgrNqwiWgJtOmFEcZWW",
+  "lastName" : "PXcLlCmLtIGAs",
+  "avatar" : "mLrLJEP9wLkOcmqSvB7fI4jRCwPPsBC1e5jcDynn7SgU3xs1ZY7sS4AF4xA42qhdtRpy",
+  "color" : "#3a7fa1"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    }
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.domain.User</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "c12a6e2d-223b-4081-992e-dad5f4c77652",
+  "firstName" : "opMRUGFvAUUKRAFOHGlcxfVZvJkCKmKYyEgANDyKcnGVjEKfRLfmYu",
+  "lastName" : "EbmFvQVpeXhLeEpMZVNZeFPADbY",
+  "avatar" : null,
+  "color" : null,
+  "isSuperAdmin" : false,
+  "createdAt" : "2026-08-28T19:55:37.785Z",
+  "modifiedAt" : "2026-08-21T20:13:24.974Z",
+  "archivedAt" : "2026-08-12T14:26:12.152Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "7b14c8cd-da5c-48e2-a5d4-7121c2120f53",
+  "firstName" : "bAzftGRvGPwcqzLasdQTwJDrsWFTKAqWCanyftpWjFNwpEaYofQMYcaXaPdWtrbabDckYHqRWpCxHnfmlIUpQpxkXcn",
+  "lastName" : "iphBnAnueHUVSPgSoMNYMOIjnlnb",
+  "avatar" : null,
+  "color" : null,
+  "isSuperAdmin" : false,
+  "createdAt" : "2026-08-13T16:32:39.037Z",
+  "modifiedAt" : "2026-07-18T17:54:48.505Z",
+  "archivedAt" : "2026-07-21T09:05:31.410Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "isSuperAdmin": {
+      "type": "boolean"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "color": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "firstName",
+    "lastName",
+    "isSuperAdmin",
+    "createdAt",
+    "modifiedAt"
+  ]
+}</pre></td></tr></table>

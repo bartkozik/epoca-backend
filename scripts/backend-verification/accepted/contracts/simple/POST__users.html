@@ -1,0 +1,182 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/users</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Create user and send him login token if no password is provided</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /users should <br/>should be inaccessible for no logged users -> [401]<br/>returns Conflict for nonlogged user if service returns EmailAlreadyExist -> [409]<br/>returns BadRequest for nonlogged user if service returns EmailAlreadyExist -> [400]<br/>returns OK for nonlogged user otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>409</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.services.UserCreateService.UserCreateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "firstName" : "nVvPjWEDaUGkhsYPMuwKJnS",
+  "lastName" : "BkLajfsbRWnyArtyUpEscyszsaTJ",
+  "avatar" : null,
+  "color" : null,
+  "email" : null,
+  "phoneNumber" : null,
+  "password" : null,
+  "superAdminKey" : null,
+  "doNotSendLoginToken" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "firstName" : "XzKjPNxYaSJLVnCqkgHOmrenSvwKmq",
+  "lastName" : "szayFDRVCUFsxbjJxJSQTjIPTYtHIdDjxEpDzkCROcdGqaCuSWcTbZANLRRSkEiDsrhWDnrTeejknM",
+  "avatar" : "Evpz10ndu9UAPP0mTAr1dMb4FBdJtn2S6SoFI0EvnqwBjsD",
+  "color" : "#aca885",
+  "email" : "OEDB1DGlCJ@vXcbr1xTkI.EXFKnlftM68j",
+  "phoneNumber" : "ZGUpsGK4PicTPBVpYKpVUEA1BAt3sR2OxfZjd2lDtPgmDoHjCt0l2ae5m",
+  "password" : "JrKPEZTHdzqrm",
+  "superAdminKey" : "ASLTeo2MuskaFrtd",
+  "doNotSendLoginToken" : true
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "avatar": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "doNotSendLoginToken": {
+      "type": "boolean"
+    },
+    "color": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "superAdminKey": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "firstName",
+    "lastName"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.services.UserCreateService.UserCreateResultData</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "user" : {
+    "id" : "03a051a0-42d0-4987-98f2-30b94ad2729a",
+    "firstName" : "lUHfWXuxMQWbhItAfKNlqhKzpfpcMpDamMvnBjQKtiIXojZCtuhwvrByJJFZXEzPgqD",
+    "lastName" : "tmHRjRzPFxqXzcGjufKQkd",
+    "avatar" : null,
+    "color" : null,
+    "isSuperAdmin" : false,
+    "createdAt" : "2026-08-22T07:39:51.951Z",
+    "modifiedAt" : "2026-08-12T14:26:12.126Z",
+    "archivedAt" : "2026-08-12T14:26:12.126Z"
+  },
+  "recoveryCodes" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "user" : {
+    "id" : "219010cc-5553-4494-9090-4a79bfab4386",
+    "firstName" : "TNcLwXJIuNWnrcTFHdClvVkqnVdnqFyNOYpfCLAPcJFMiEmqOfKVgibeWkgFArLPPGBkUpRH",
+    "lastName" : "kKhckpCtwXDafSKMcKPBoMqVDgGhLzqBHAMQbqvWuBLnv",
+    "avatar" : null,
+    "color" : null,
+    "isSuperAdmin" : false,
+    "createdAt" : "2026-08-12T14:26:12.125Z",
+    "modifiedAt" : "2026-09-01T20:10:06.101Z",
+    "archivedAt" : "2026-07-28T21:53:28.578Z"
+  },
+  "recoveryCodes" : [
+    "bKZz5lq4JB3vYeuZgtPKlBZ64CtuhJ7WFoN0MK4u8DZ3Rcan4SPd7d2Thy7xTuDkIAdEzLZGWv6DGecPUEEdFh",
+    "jRyDOseqDyDEswn4Qyfj74WNNm4LO"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "user": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "isSuperAdmin": {
+          "type": "boolean"
+        },
+        "archivedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "color": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "isSuperAdmin",
+        "createdAt",
+        "modifiedAt"
+      ]
+    },
+    "recoveryCodes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "user",
+    "recoveryCodes"
+  ]
+}</pre></td></tr></table>

@@ -1,0 +1,140 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/clients</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>List clients</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/clients should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return Ok with service data otherwise -> [200]<br/>return Ok with service data when all optional params provided -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>id [java.util.UUID] <br/>includeArchived [Boolean] <br/>includeArchivedConnections [Boolean] <br/>pageSize [Int] <br/>pageNumber [Int] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/clients</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/clients?id=8cad024e-3819-4ab0-90db-6c5af0b51ec7&includeArchived=true&includeArchivedConnections=true&pageSize=50&pageNumber=55</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.utils.db.PaginatedResult[pl.iterators.epoca.client.services.ClientDtoService.ClientDto]</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "count" : -403852477,
+  "results" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "count" : -1437568600,
+  "results" : [
+    {
+      "id" : "ffe2576e-855c-49d4-90a8-8eada9e9c78f",
+      "name" : "kcGAKTSPQUJEcvcQDBp",
+      "color" : "#ffffff",
+      "texture" : "k5Ak1HnaEUmiNNutl8hClwbhSZx9fmNuDb0trE7glNAFrM48Gcjn5x5Icwg1flvqdjZtd8",
+      "logo" : "CPlC6AtGTcjZEtU5yteGGXHiucEYeJ33TKF98Z",
+      "organizationId" : "3194bdb5-7af3-4cd3-ad5a-f202f7385191",
+      "type" : "External",
+      "projectCount" : 1238870484,
+      "createdAt" : "2026-08-28T09:05:28.513Z",
+      "createdBy" : "de0915fc-1637-44fa-af1f-14cf223d0433",
+      "modifiedAt" : "2026-08-12T14:26:11.695Z",
+      "modifiedBy" : "208eaac8-d842-43cc-ae1d-3c2aa2134ae6",
+      "archivedAt" : "2026-08-13T14:28:57.880Z"
+    }
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string"
+          },
+          "projectCount": {
+            "type": "integer"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "color": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "External",
+              "Internal"
+            ]
+          },
+          "logo": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "modifiedBy": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "texture": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "color",
+          "texture",
+          "logo",
+          "organizationId",
+          "type",
+          "projectCount",
+          "createdAt",
+          "createdBy",
+          "modifiedAt",
+          "modifiedBy"
+        ]
+      }
+    }
+  },
+  "required": [
+    "count",
+    "results"
+  ]
+}</pre></td></tr></table>

@@ -1,0 +1,170 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PATCH</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/clients/{clientId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Update client</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PATCH /organizations/{organizationSlug}/clients/{clientId} should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return UnprocessableEntity when service returns DuplicatedName <br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return Forbidden when service returns InsufficientRole -> [403]<br/>return NotFound when service returns ClientNotFound -> [404]<br/>return OK with service data otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.client.services.ClientUpdateService.ClientUpdateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "name" : null,
+  "color" : null,
+  "logo" : null,
+  "texture" : null,
+  "type" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "name" : "bfdNsmHSdvPACdfOFSnWRsPHMJaSmcTirLZjCXsCsyypNkXvGtlzkcUllmviKjaiIvQUq",
+  "color" : "#000000",
+  "logo" : "L4myvg7oJ8TpFlKctR3Tyk",
+  "texture" : "ZzkbDD0hS40H6uT0CtbaUte",
+  "type" : "External"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "External",
+        "Internal"
+      ]
+    },
+    "texture": {
+      "type": "string"
+    }
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.client.domain.Client</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "de866445-cd50-4162-b3ba-18e6b6469cf8",
+  "name" : "NOoeJrRDfxxmqNcMTxpuWKtcGEuZoPXSUFNdwvrdlWVrFxF",
+  "color" : "#000000",
+  "texture" : "zgcmTu6VTqUNjiQvHmVohuut2i18XRUcqWwV7KaIWpRWyQSiUSDX6U8g6Okcfajche14fRAqsXVMHgDWdYKsLafooiSl3SEbmh1",
+  "logo" : "VAuV8Uh2nwWwUXDXYoOwcnw6OVZJgTUJh8l12iLcJ71uu",
+  "organizationId" : "adda3616-983d-46ef-9db1-cb7cba261304",
+  "type" : "External",
+  "createdAt" : "2026-08-12T14:26:11.725Z",
+  "createdBy" : "7ae23cf4-1a86-4504-ba56-9a5580bf43b3",
+  "modifiedAt" : "2026-09-06T10:57:35.371Z",
+  "modifiedBy" : "54829e2a-e11c-4a38-b494-695c8c13c815",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "9ea19724-8f36-42ba-8c17-ffbfdcc7aac3",
+  "name" : "WtSFZwQyHmPAalIkt",
+  "color" : "#000000",
+  "texture" : "jmSLXhoUFAzk0jCd6KRSYPvHMbILr7zq8wOospF44npbwJr3sAdPA6Kz",
+  "logo" : "5zgFujxrFfO0AXDD6oJ3INK6jTlyeMnJ66dtYIkTRmwD5GHEWlgwEPj",
+  "organizationId" : "fc50c897-a2b3-4109-841e-0a9e420897e2",
+  "type" : "External",
+  "createdAt" : "2026-08-12T14:26:11.727Z",
+  "createdBy" : "c4854235-af83-452a-8df6-056863bcbbff",
+  "modifiedAt" : "2026-08-12T14:26:11.726Z",
+  "modifiedBy" : "702f3b89-7b32-4359-bfad-07ec717dfddb",
+  "archivedAt" : "2026-08-12T14:26:11.726Z",
+  "archivedBy" : "95d6195a-9b81-46e6-a6dd-555c58d31839"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "color": {
+      "type": "string"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "External",
+        "Internal"
+      ]
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "texture": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "color",
+    "texture",
+    "logo",
+    "organizationId",
+    "type",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

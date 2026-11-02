@@ -1,0 +1,57 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/version</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Returns version and other env variables</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /version should <br/>return Ok and version from config -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.healthcheck.routers.HealthCheckRouter.Config</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "name" : "NprzOtTLeHzycnQUqzClOIpr00fWC0MVFqzuqgjbvoTYwJOFWhCevvTFrsdbXar3",
+  "environment" : "tE084qwBJpQfTiZil4zIUZTM2C54HAF1ict3QqYjcrgrzQip6Vm3EEnQUMA9H2dhXbNJyXtWWijEam",
+  "version" : "ZCHF7slWRBwMV04m9JmaNMby76ucBfYXKqlK1f3LCVDFhjB6BEdXfytccwPxDz11LIt"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "name" : "hqO5KX1tCS1jmhNbBj9D1yLl1oSDZVbN2a6nP",
+  "environment" : "9RrdNqyl4x3rOvpx22bndTFtVbz",
+  "version" : "lwseo29zOH7rbK68xT5PDnAFXXeosvByKu1gGiABuAfYtaQctgmG1HZ5OigfQzrKY9KI3Y7gfuPmwdRxSpGOk80"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "environment",
+    "version"
+  ]
+}</pre></td></tr></table>

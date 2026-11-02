@@ -1,0 +1,95 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/users/{userId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Fetch user</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /users/{userId} should <br/>should be inaccessible for no logged users -> [401]<br/>returns Forbidden for logged user if service returns OperationNotPermitted -> [403]<br/>returns NotFound for logged user if service returns UserDoNotExist -> [404]<br/>returns OK for logged user if service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.domain.User</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "d49193ab-6e6c-4ac0-ac22-168eee58b966",
+  "firstName" : "lgjhIRlnjhXbfcmXYDwiNSSSPEXuBjALTAtJYZA",
+  "lastName" : "BOBZeynMxfV",
+  "avatar" : null,
+  "color" : null,
+  "isSuperAdmin" : false,
+  "createdAt" : "2026-07-30T21:00:59.986Z",
+  "modifiedAt" : "2026-08-28T03:18:35.396Z",
+  "archivedAt" : "2026-07-19T04:30:03.378Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "2209509e-9370-49df-9be8-67d03f5029ee",
+  "firstName" : "EBxmZlOSuSHstqeewvXqA",
+  "lastName" : "wiwsMiespaojJcUG",
+  "avatar" : null,
+  "color" : null,
+  "isSuperAdmin" : false,
+  "createdAt" : "2026-09-06T10:57:35.797Z",
+  "modifiedAt" : "2026-08-01T13:58:42.017Z",
+  "archivedAt" : "2026-08-12T14:26:12.150Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "isSuperAdmin": {
+      "type": "boolean"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "color": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "firstName",
+    "lastName",
+    "isSuperAdmin",
+    "createdAt",
+    "modifiedAt"
+  ]
+}</pre></td></tr></table>

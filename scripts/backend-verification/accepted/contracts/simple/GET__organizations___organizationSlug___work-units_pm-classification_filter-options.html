@@ -1,0 +1,126 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/work-units/pm-classification/filter-options</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Return current, authorized PM Project and PM Client report filter facets.</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/work-units/pm-classification/filter-options should <br/>be inaccessible without authentication -> [401]<br/>decode scalar dates and repeated source and PM filters and return exact JSON <br/>return the PM RFC 9457 forbidden response with problem media type -> [9457]<br/>hide organization absence and lost membership behind 404 -> [404]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>401<br/>404<br/>9457</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>dateFrom [java.time.LocalDate] <br/>dateTo [java.time.LocalDate] <br/>projectId [java.util.UUID] <br/>clientId [java.util.UUID] <br/>userId [java.util.UUID] <br/>pmProjectId [java.util.UUID] <br/>pmClientId [java.util.UUID] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/pm-classification/filter-options</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/pm-classification/filter-options?dateFrom=2026-08-01&dateTo=2026-08-12&projectId=11111111-1111-4111-8111-111111111111&clientId=22222222-2222-4222-8222-222222222222&userId=33333333-3333-4333-8333-333333333333&pmProjectId=44444444-4444-4444-8444-444444444444&pmClientId=55555555-5555-4555-8555-555555555555</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.WorkUnitPmFilterOptionsService.WorkUnitPmFilterOptions</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "pmProjects" : [
+  ],
+  "pmClients" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "pmProjects" : [
+    {
+      "id" : "859b51c1-97ad-4af5-98dc-7474a97d5a59",
+      "name" : "yLCkWhrMRCJbJzAinjzozzBUKhHCCjApJeCcBUANJHJEQmjntCSZBxnFiLoEKVupwHQLQXrlWbB",
+      "clientId" : "5f01c7d2-27cc-481e-b7d8-3cf92096ea95",
+      "clientName" : "oLphNoetEgkUxwCxdDcxNpMssNLURqwYHzdjhKjFNfOLehACZgKIPJHBAuEoKGoLirswiDaaj"
+    },
+    {
+      "id" : "54353c94-7b26-421c-b267-bc525753a6bf",
+      "name" : "WYHnQRHRhdboQVLLrWnaQdyvORt",
+      "clientId" : "04293ac5-4674-4c3f-ae4a-a3ae4ce65121",
+      "clientName" : "GtdIQUKIOmJyvqwCgcuEGSYTeQrmQsjtxYqjCBwEtljlbzYCTsTykEfWqTELab"
+    },
+    {
+      "id" : "9ebee0f9-5da6-439b-a0c4-e4fe2a6e18bf",
+      "name" : "VBFEWCeeCyLlkfAhtdylcjgNFIlrwnfRztzNa",
+      "clientId" : "93ab48cb-ee55-4d87-a448-ddab49ae9552",
+      "clientName" : "GvivxrPUtDnMfLJCopauboDlpWbmvMwapLAeeRkAVHywvYEVrKoyoUTwBPEdWoTJuBAZOqjk"
+    }
+  ],
+  "pmClients" : [
+    {
+      "id" : "e59321b1-3b72-4adc-b73f-5f8b06f07051",
+      "name" : "uuWTAPSrlFidISToEjfodNRlEaRlhCMixmzKEBizSTJGyUIEMxqGgoCSROClqnMBXGPvmBBPukT"
+    },
+    {
+      "id" : "42ad4d01-7659-4cc4-885a-903ef0daaf43",
+      "name" : "TSOFzvOsUbPgFXblH"
+    }
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "pmProjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "clientId": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "clientName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "clientId",
+          "clientName"
+        ]
+      }
+    },
+    "pmClients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      }
+    }
+  },
+  "required": [
+    "pmProjects",
+    "pmClients"
+  ]
+}</pre></td></tr></table>

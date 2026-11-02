@@ -1,0 +1,80 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/admin</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Generate jwt for specified user by admin</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /auth/admin should <br/>be inaccessible for no logged users -> [401]<br/>return Unauthorized when caller is not an admin -> [401]<br/>return NotFound when user does not exist -> [404]<br/>return generated jwt </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>401<br/>404</td></tr>
+<tr><td><b>HEADERS</b></td><td>device-id<b style='color: red'>*</b></td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.AdminImpersonateLoginService.AdminImpersonateLoginRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "userId" : "d714e2c9-62b3-4a2a-abec-cc687e0f22cc",
+  "validFor" : "PT277H46M39S"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "userId" : "4ef163e2-ec3a-44b9-84b4-297042d9ae98",
+  "validFor" : "PT0S"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "userId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "validFor": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "userId",
+    "validFor"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginResolveService.LoginResolution</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "accessToken" : "S8xJVLUM44tBGijjUYD7wMuiUF7",
+  "refreshToken" : "O0QcyfxLoCuew8kLDoSZ9eJldms34wjdHWBovpfa2CDCC2BQlffx"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "accessToken" : "wQi4appz3rwNyaa0hisWoCJEA00dg2MlCyujhTbfbZPV7XaKHBeAnR9mV4YBAcFrTfyh0d3Y3Sl0h3DFEibYhYrLflwV",
+  "refreshToken" : "vNOUmHdLSL7V4QcC4L8vVnn0xKJHrPvLssnacZBEeo8NOUy"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "accessToken": {
+      "type": "string"
+    },
+    "refreshToken": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "accessToken",
+    "refreshToken"
+  ]
+}</pre></td></tr></table>

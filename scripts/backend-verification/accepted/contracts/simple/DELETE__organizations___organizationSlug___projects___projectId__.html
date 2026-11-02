@@ -1,0 +1,112 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>DELETE</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects/{projectId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Delete project</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>DELETE /organizations/{organizationSlug}/projects/{projectId} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns ProjectNotFound -> [404]<br/>return NoContent otherwise -> [204]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>204<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.domain.Project</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "5895c312-e1bb-41b7-b3d2-14c023972912",
+  "name" : "WopKThXzwDWkYELNQDJCatvozWkPXLyUWLhMVplIGsxebHHttRiWcTgav",
+  "description" : null,
+  "organizationId" : "5f10f2ac-7615-4d12-82c6-42f485371b45",
+  "clientId" : "3e2fe4dd-d5de-4e41-b0e5-5ebcae2f03b1",
+  "createdAt" : "2026-08-12T14:26:11.854Z",
+  "createdBy" : "1c2e2974-2dcf-4487-a0a9-d1f1928cd15e",
+  "modifiedAt" : "2026-08-12T14:26:11.854Z",
+  "modifiedBy" : "1dbb30a7-778a-455e-987b-9f0aa87bea37",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "5ccfeb7d-54d1-4096-a547-1ac0dc272e27",
+  "name" : "CjrBvIzhhevUdIaIFratmEAwRwjDwDGfQvPEaTlPKDkiKhiKRuJdJiElQBDFWadfYaKRVROimkpIBZ",
+  "description" : "g9yWFTfiGdD7YWaIkcaqH3ArA4YBoi0UlXxQmZlscFKLTw7yvORmejPjMsFHvGKkKByO2zzzFSvqrQMAcOZfJaB60TKcNUQ3XTV",
+  "organizationId" : "0e0944f8-19bf-4de3-9b72-cc31c9273276",
+  "clientId" : "416b70f0-a73a-49cc-8403-fdb0fc723a00",
+  "createdAt" : "2026-08-12T14:26:11.857Z",
+  "createdBy" : "e0eb8b3b-ab82-4cd0-958b-f52ef86fa0f3",
+  "modifiedAt" : "2026-07-20T06:31:13.735Z",
+  "modifiedBy" : "1c5c38c4-6d47-490b-917d-c624200a585a",
+  "archivedAt" : "2026-07-18T17:54:48.210Z",
+  "archivedBy" : "38089471-db5c-47cf-b576-53415052cdbf"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "description": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "organizationId",
+    "clientId",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

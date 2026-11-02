@@ -1,0 +1,64 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/saml/login</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Login with one time token generated via SAML flow</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/saml/login should <br/>return NotFound if service return OrganizationNotFound -> [404]<br/>return NotFound if service return TokenNotFound -> [404]<br/>return Forbidden if service return SamlDisabled -> [403]<br/>return NotFound if service return SamlConfigNotFound -> [404]<br/>return NotFound if service return UserNotFound -> [404]<br/>return ExpectationFailed if service return TokenExpired <br/>return ExpectationFailed if service return MissingUserId <br/>return TooManyRequests if service return TokenAlreadyUsed <br/>return Ok with service data with jwt requestObject.value -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>403<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.saml.services.SamlLoginService.SamlLoginRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "token" : "e0c11e72-4c03-4a96-a5a0-0d4eb4dcadf0"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "token" : "5ab45e58-b72c-4fbb-a748-dc5ba2b8b6a7"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "string",
+  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginResolveService.LoginResolution</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "accessToken" : "mXZss6HW3PIvRwCgOeybwoOX9F5EVRyQo3j6IwuymDGQHzmun1FXWXZC1OpGYtYiFnFqIFPPNDDik0DRC1ekKT4a",
+  "refreshToken" : "16jl9cJYSwfI3TerJfR2dIkBMTKqDH1zX"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "accessToken" : "1dXDPlB4ZbWjEF6SLLEyEeoP7URJ6",
+  "refreshToken" : "zu8zMRvaYUqNUn3Jj8tIyaW27WnjcavuYTS5rZUKwxCSlSW9dGyYW36jQgcVBthvgLdTneSwPlL2HZSlh9SdkriJxpMtduQ"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "accessToken": {
+      "type": "string"
+    },
+    "refreshToken": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "accessToken",
+    "refreshToken"
+  ]
+}</pre></td></tr></table>

@@ -1,0 +1,154 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/users/identities</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Create user identity and send email/sms</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /users/identities should <br/>should be inaccessible for no logged users -> [401]<br/>returns BadRequest when service returns InvalidIdentityValue -> [400]<br/>returns Conflict when service returns IdentityValueAlreadyExist -> [409]<br/>returns Conflict when service returns NoMainIdentity -> [409]<br/>returns Ok otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>409</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.services.UserIdentityCreateService.UserIdentityCreateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "type" : "Phone",
+  "value" : "WCn70HmlfJElcyN9YvsIEgi3N9TJEtcBfyudYQ5b668xzfHYFsMOyJ",
+  "deviceId" : null,
+  "verifyToken" : null,
+  "main" : false
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "type" : "AdminImpersonate",
+  "value" : "rC9558DdsDFbfHPhsBKkGnjmkxFSyEQIC2dxEqKHniOgM7CSJQmIMOhLrtKqfEAS",
+  "deviceId" : "ovklCMvJWeq0DF7Qs",
+  "verifyToken" : "5le6KDCsADJDp",
+  "main" : false
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "main": {
+      "type": "boolean"
+    },
+    "verifyToken": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "MailAddress",
+        "AdminImpersonate",
+        "CryptoVerification",
+        "Phone",
+        "TimeBasedOneTimePassword",
+        "Saml"
+      ]
+    },
+    "deviceId": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "value",
+    "main"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.domain.UserIdentity</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "5afe15ed-d9ac-4da5-a3b2-28d15587ffb9",
+  "userId" : "e29f03e7-d04f-4bc6-a9ca-0cd4f896f39c",
+  "type" : "CryptoVerification",
+  "value" : "fxsrER",
+  "main" : false,
+  "confirmed" : false,
+  "confirmationCode" : null,
+  "deviceId" : null,
+  "createdAt" : "2026-09-06T10:57:35.784Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "14480e6a-3ec5-4909-8a3a-87d56420305d",
+  "userId" : "346538d5-ae62-4ea7-a0ff-6074a3749b4a",
+  "type" : "TimeBasedOneTimePassword",
+  "value" : "VB2A5P8xhynaoU8Yxx5UN7kmSTNHTN0cR1bY8GP8QmUxVgUToDf16O4RvUjSnOqAiOWdv6JnlUrdQ3lw0kR9cQxhhiIrkl",
+  "main" : true,
+  "confirmed" : true,
+  "confirmationCode" : "zORcxP1t5Q1Todzauj2zmpvUWQuxWElQCdlFGzC5Lv062vjUcOKomD2AROY8aJFlbGuiV",
+  "deviceId" : "oTcIgQdS6hd7TwPXvVJvL11sfF8xSxpelFp92bPbIJprGuEnllH7I6I5AKy",
+  "createdAt" : "2026-09-06T10:57:35.785Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "confirmationCode": {
+      "type": "string"
+    },
+    "confirmed": {
+      "type": "boolean"
+    },
+    "main": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deviceId": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "MailAddress",
+        "AdminImpersonate",
+        "CryptoVerification",
+        "Phone",
+        "TimeBasedOneTimePassword",
+        "Saml"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "userId",
+    "type",
+    "value",
+    "main",
+    "confirmed",
+    "createdAt"
+  ]
+}</pre></td></tr></table>

@@ -1,0 +1,146 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>DELETE</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/invitations/{id}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Delete invitation</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>DELETE /organizations/{organizationSlug}/invitations/{id} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns OperationNotPermitted -> [404]<br/>return NotFound when service returns InvitationNotFound -> [404]<br/>return NoContent otherwise -> [204]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>204<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.invitation.domain.Invitation</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "d57f7425-3ee8-4c38-b852-2c5937c19ad3",
+  "identityValue" : "aoeA9TMbRNStuSyR61MCtuicNHil33XWxltXEwBb2QD2jb3PN5uCs0FHQHLJnD55djjHaMv2kUD6HK",
+  "identityType" : "Phone",
+  "roles" : [
+  ],
+  "expireAt" : null,
+  "acceptAt" : null,
+  "rejectAt" : null,
+  "organizationId" : "9f45ac5f-7414-41e4-babe-a5558a9c8eb5",
+  "createdAt" : "2026-07-28T21:22:43.972Z",
+  "createdBy" : "bab1fa32-3156-44ce-82f5-a1e79114f216",
+  "modifiedAt" : "2026-07-18T17:54:48.105Z",
+  "modifiedBy" : "f12d4ad6-338d-4326-9e94-05454e892b16",
+  "archivedAt" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "3c4cbf05-7ea1-434e-9360-307a1a45c81a",
+  "identityValue" : "0AZelo5PNoUpZIUCqpgCx",
+  "identityType" : "AdminImpersonate",
+  "roles" : [
+    "Owner",
+    "External",
+    "External"
+  ],
+  "expireAt" : "2026-08-14T17:52:44.844Z",
+  "acceptAt" : "2026-08-13T09:13:45.259Z",
+  "rejectAt" : "2026-08-05T15:29:36.574Z",
+  "organizationId" : "773eec1d-5704-445d-b7b9-063dc93362ca",
+  "createdAt" : "2026-08-12T14:26:11.757Z",
+  "createdBy" : "930ef3be-4969-45bd-90b9-4d4cafd99717",
+  "modifiedAt" : "2026-09-06T10:57:35.403Z",
+  "modifiedBy" : "d8b4bded-b7aa-45ff-8e3b-13547f7c2855",
+  "archivedAt" : "2026-08-10T08:51:01.703Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "acceptAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "identityValue": {
+      "type": "string"
+    },
+    "expireAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Employee",
+          "External",
+          "Manager",
+          "Owner"
+        ]
+      }
+    },
+    "rejectAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "identityType": {
+      "type": "string",
+      "enum": [
+        "MailAddress",
+        "AdminImpersonate",
+        "CryptoVerification",
+        "Phone",
+        "TimeBasedOneTimePassword",
+        "Saml"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "identityValue",
+    "identityType",
+    "roles",
+    "organizationId",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

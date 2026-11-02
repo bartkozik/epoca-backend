@@ -1,0 +1,165 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>DELETE</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Clear a work unit PM classification using required expectedVersion optimistic concurrency. A no-op returns the inactive current DTO with 200. Errors use RFC 9457 result:work-unit-pm-classification:* problem types (403 forbidden, 404 work-unit-not-found, 409 stale-version).</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>DELETE /organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification should <br/>be inaccessible for a non-authenticated user -> [401]<br/>return 400 when expectedVersion is missing before invoking the service -> [400]<br/>return 200 and the exact inactive DTO when the service reports Ok, including a no-op -> [200]<br/>return 403 for Forbidden with an empty extension -> [403]<br/>return 404 for WorkUnitNotFound with an empty extension -> [404]<br/>return 409 for StaleVersion with the currentVersion extension -> [409]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404<br/>409</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>expectedVersion [Long] <b style='color: red'>*</b></td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification?expectedVersion=4</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification?expectedVersion=4</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.WorkUnitDtoService.WorkUnitPmClassificationDto</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "active" : false,
+  "version" : -9223372036854775808,
+  "projectClient" : null,
+  "taskId" : null,
+  "lastChangedBy" : null,
+  "lastChangedAt" : null,
+  "permissions" : {
+    "canClassify" : true,
+    "canDelete" : false,
+    "canViewHistory" : true,
+    "allowedPmProjectIds" : [
+    ]
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "active" : true,
+  "version" : 7108015721800142015,
+  "projectClient" : {
+    "projectId" : "11ff7d5a-b10d-4a64-8054-1ce37b58cdad",
+    "projectName" : "vuxPXigunodiVvECXYiaMwJUuxjisxRUpyKYdMHJZualBxndqnbnySFhZOFjIKOxKgAPUIJAxJoQGpg",
+    "clientId" : "d055a24d-f98d-4f93-9c22-274a5f5876d4",
+    "clientName" : "zXsexvoRyajjpbjoeWctnpjWlZVGnMTbfSWUDvdugBOQKHUunLKFbYbBkGJ"
+  },
+  "taskId" : "HpliMjyNkI5FJ7FI54AtKYRP7W344NV9i12vhvqVZMnNw",
+  "lastChangedBy" : {
+    "id" : "dc2aaf03-44b4-4a87-b02b-ae2edce09003",
+    "displayName" : "Wf8YqpIrUCQNSNNETmFicaEUaYJJ"
+  },
+  "lastChangedAt" : "2026-09-06T10:57:35.689Z",
+  "permissions" : {
+    "canClassify" : false,
+    "canDelete" : false,
+    "canViewHistory" : false,
+    "allowedPmProjectIds" : [
+      "45df583f-b495-4f81-94d0-faee4fe82d4f",
+      "cda656e5-0fd0-4c80-88d5-25cbebd6ee1b",
+      "748e2981-4ef0-4398-a432-7f2cf931c693"
+    ]
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "canClassify": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "canViewHistory": {
+          "type": "boolean"
+        },
+        "allowedPmProjectIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          }
+        }
+      },
+      "required": [
+        "canClassify",
+        "canDelete",
+        "canViewHistory",
+        "allowedPmProjectIds"
+      ]
+    },
+    "lastChangedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "number"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "projectClient": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "projectName": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "clientName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId",
+        "projectName",
+        "clientId",
+        "clientName"
+      ]
+    },
+    "lastChangedBy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "displayName"
+      ]
+    }
+  },
+  "required": [
+    "active",
+    "version",
+    "permissions"
+  ]
+}</pre></td></tr></table>

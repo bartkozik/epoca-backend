@@ -1,0 +1,177 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/clients</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Create new client</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/clients should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return UnprocessableEntity when service returns DuplicatedName <br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return Forbidden when service returns InsufficientRole -> [403]<br/>return Created with service data otherwise -> [201]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>201<br/>400<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.client.services.ClientCreateService.ClientCreateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "name" : "VfTlqBavyVkWuWLuBupIstJWZUzibybBbBepTQlFmkEfqVDjGghTVLBzKXNjkBdXkajxtSlqBYCjEkvkopxQSRMbOPcezLYK",
+  "color" : "#000000",
+  "logo" : "fF80",
+  "texture" : "Z3r6ZRyHqklyUoQY7",
+  "type" : "External"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "name" : "dfRrFFtjjvdoNfpricKadUZrpcSQWOZNisoGeSrKYWrDDapBJCwvwAdKnJjqjPqAlPrliCbTpYtLnmvACuXwHBLSHkvQNG",
+  "color" : "#5ca32d",
+  "logo" : "hZfIM9UxrsN6xvGNmPYQ0HBveOJWjKiXqmooJiIHUcdVqjx3Wk11YdcaNXJDx7ErBrny",
+  "texture" : "M8v7tu9K8VR",
+  "type" : "External"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "External",
+        "Internal"
+      ]
+    },
+    "texture": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "color",
+    "logo",
+    "texture",
+    "type"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.client.domain.Client</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "26cf5604-2a33-47b3-a084-541068a12d4e",
+  "name" : "tjQCWIfjwhuULR",
+  "color" : "#000000",
+  "texture" : "DOwVO3Mbv9QrtGfUqzvUUiGm9ux3pxcgecFVfM8Fbc9qRtNyVgmGkeNGlEQi4xGgtg7sFiniT6mzlfLCYRSTX",
+  "logo" : "saAF6a08KX",
+  "organizationId" : "92310840-f4e7-412c-a45e-90306e4d1200",
+  "type" : "External",
+  "createdAt" : "2026-07-18T17:54:48.057Z",
+  "createdBy" : "f41bbe64-3c07-436b-81ae-1d3a92b37e56",
+  "modifiedAt" : "2026-08-12T14:26:11.705Z",
+  "modifiedBy" : "dccec959-1093-437c-a2d4-e5675277e656",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "351f9cc3-5cbd-47c2-aba8-65df748230c2",
+  "name" : "nxEdBuGDWIlAIqeFdzQjUIdaZRnvHonggpxHKEyGfyngmLwPXXxnXYnpxMcAeoAUCfCKdkvpwrhvCEBxuZmjTV",
+  "color" : "#7ae9c3",
+  "texture" : "MyXhXqIbXxQ6NvFM9My71nNLKnmuJTHRhaUxZAQBQF7QAmGqBNt8XCSOKx0PZzo",
+  "logo" : "E0nclITwmDY1",
+  "organizationId" : "cb007511-6504-4255-838e-589c880ec22b",
+  "type" : "Internal",
+  "createdAt" : "2026-08-17T15:02:01.663Z",
+  "createdBy" : "5031aef5-6d2e-4304-989c-3ef0627531f3",
+  "modifiedAt" : "2026-08-12T14:26:11.708Z",
+  "modifiedBy" : "3f1af282-7d4c-4b50-aa19-5b0386b83a82",
+  "archivedAt" : "2026-08-12T14:26:11.709Z",
+  "archivedBy" : "633be87e-a9c0-4acb-804f-816783af9ead"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "color": {
+      "type": "string"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "External",
+        "Internal"
+      ]
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "texture": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "color",
+    "texture",
+    "logo",
+    "organizationId",
+    "type",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

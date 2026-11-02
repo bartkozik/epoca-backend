@@ -1,0 +1,95 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/saml/configs</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Returns SAML configuration for organization.</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/saml/configs should <br/>be inaccessible for no loggged users -> [401]<br/>return NotFound if service return OrganizationNotFound -> [404]<br/>return NotFound if service return SamlConfigNotFound -> [404]<br/>return NotFound if service return NoAccessToOrganization -> [404]<br/>return OK with service data otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.saml.domain.SamlConfig</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "organizationId" : "242627ad-a5e8-444a-89a6-365c49efcdef",
+  "idpCert" : "ZPjxV0ZssL71j9yTcekEeBIhHVtRcwsCZl2UgUR5F0ncfGBSf6clxOCShEUCEhzm1mhYhqGmIkjoFwTz20UIKvmX7Lk",
+  "idpEntityId" : "jSGsbW7MWY5ZznRG07XgvaxzlfRzbMnpGmiKEe2sZ5MYuTiv48GrDXZsowHSbhkF9xyQdpDMkhondb0Ta1yhZxinMIJ",
+  "idpSsoUrl" : "Xeog5E7gClKPFz5",
+  "langCode" : "kK1P86FxUYd8PokJCgE9ldEG8YjOhLwrxYk2NS58pT",
+  "validFor" : "PT200H21M57S",
+  "allowAccountInit" : false,
+  "isEnabled" : true,
+  "createdAt" : "2026-08-01T18:28:41.158Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "organizationId" : "21bb747f-9797-4364-b7bc-a3cad245b27c",
+  "idpCert" : "bX597EBGWozxTKwsSOnH04hRlUxw6JkKV31Xs",
+  "idpEntityId" : "e5n",
+  "idpSsoUrl" : "EJ48yPVV",
+  "langCode" : "ICQpBsEK8rJIjWzd6qZDOlZi7GwGufBfGuUSkpJu08sZNjL3jqcE4P7VeoftPNgKsltP3Rg99E",
+  "validFor" : "PT106H19M2S",
+  "allowAccountInit" : true,
+  "isEnabled" : true,
+  "createdAt" : "2026-09-06T07:58:36.440Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "langCode": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "idpSsoUrl": {
+      "type": "string"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "isEnabled": {
+      "type": "boolean"
+    },
+    "allowAccountInit": {
+      "type": "boolean"
+    },
+    "validFor": {
+      "type": "string"
+    },
+    "idpEntityId": {
+      "type": "string"
+    },
+    "idpCert": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organizationId",
+    "idpCert",
+    "idpEntityId",
+    "idpSsoUrl",
+    "langCode",
+    "validFor",
+    "allowAccountInit",
+    "isEnabled",
+    "createdAt"
+  ]
+}</pre></td></tr></table>

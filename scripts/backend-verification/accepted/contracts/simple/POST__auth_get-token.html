@@ -1,0 +1,52 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/get-token</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Send token to user by email</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /auth/get-token should <br/>returns BadRequest when incoming request is not json -> [400]<br/>returns BadRequest when incoming request is empty json -> [400]<br/>returns BadRequest when service returns InvalidRequest -> [400]<br/>returns NotFound when service returns UserNotFound -> [404]<br/>returns Ok when service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginTokenGetService.LoginTokenGetRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "email" : null,
+  "phoneNumber" : null,
+  "additionalUrlParams" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "email" : "ifoVwG5soKa@TlHTi2jBzW71.dgutuzY1wZ",
+  "phoneNumber" : "xZlhb3OMYsVed6cXN6ySU0uG0f",
+  "additionalUrlParams" : "t2CExA1wjXSTdhuMCGrRUY8pmmegD4jWKs9Ks6OYvo5Et3FLfDuY0wr1yGshs42GVYXJkK1sSV"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "additionalUrlParams": {
+      "type": "string"
+    }
+  }
+}</pre></td></tr></table>

@@ -1,0 +1,25 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>DELETE</td></tr>
+<tr><td><b>ROUTE</b></td><td>/users/identities/{identityId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Delete user identity</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>DELETE /users/identities/{identityId} should <br/>should be inaccessible for no logged users -> [401]<br/>returns NotFound when service returns IdentityNotFound -> [404]<br/>returns Conflict when service returns CanNotDeleteMain -> [409]<br/>returns NoContent when service returns Ok -> [204]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>204<br/>401<br/>404<br/>409</td></tr></table>

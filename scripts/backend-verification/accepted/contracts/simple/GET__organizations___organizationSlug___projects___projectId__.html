@@ -1,0 +1,214 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects/{projectId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Find project</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/projects/{projectId} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return NotFound when service returns ProjectNotFound -> [404]<br/>return NotFound when service returns NoAccessToProject -> [404]<br/>return Ok with service data otherwise -> [200]<br/>return Ok with service data when all optional params provided -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.services.ProjectDtoService.ProjectDto</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "02187bcd-318b-4e2e-9377-62fc3d6293e3",
+  "name" : "yZWsxicpxMCcg",
+  "description" : null,
+  "client" : null,
+  "projectUsers" : [
+  ],
+  "organizationId" : "9db31f4c-cbb8-4034-a499-99385fc9d2e4",
+  "createdAt" : "2026-08-12T14:26:11.861Z",
+  "createdBy" : "cfe85b74-5872-4cee-8f9e-1719da8d9145",
+  "modifiedAt" : "2026-09-06T10:57:35.509Z",
+  "modifiedBy" : "d921c25b-efdf-48db-9f4c-8028ed592ef3",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "1c60d35f-2fb4-413a-948e-dcd708be4838",
+  "name" : "aXWwMciHjcATxusRuwhoRBqhATSfkTzgiU",
+  "description" : "ahYV3ZwYc4cZPJnWRgpPpoiZ9v30SXOOk0fFhRibYGu0g0kxRC3h3pYie7t6loGODJWqnEjCzm88OdC",
+  "client" : {
+    "id" : "5f30eb0a-5a8e-4f47-bbfd-9d33aa258aff",
+    "name" : "qmfkoWOGAauYRbjiYNIBaNwntCQiVraeaFqzBDUsUPlXHS",
+    "color" : "#10ef39",
+    "type" : "External",
+    "texture" : "Tc5cDBXb51ubpMpjcqCkX9Io0OKmYidUUyZ5TfSCvGMSqoQQ62IUX3ebEAMHrddKlG0JY4S7pXqMwEKCgIEpb0KE7uom"
+  },
+  "projectUsers" : [
+    {
+      "id" : "c3b66ce0-643d-4c9a-b5a5-266ac7717262",
+      "role" : "Member",
+      "firstName" : "MhmUROdBtUDqXzbeNRRTDSEutHYWDIjEUIQXSiBxKaAhVrRYSCEWadEKOug",
+      "lastName" : "sixTboIDBFyRSnktXpVwFzGbnljHtPyaeBVUVsRclxdaILbuWxQdFeXbHUqaiVsdqbKibLnHZetkUrwXomBGrFHobuy",
+      "avatar" : "7WEKvx3JefgW6l5eXCH7AoM44xIiV634kQdiySPxwekwIMb",
+      "archivedAt" : "2026-07-18T17:54:48.219Z"
+    },
+    {
+      "id" : "0e5cf899-600a-481f-8558-b45fac2e2f7b",
+      "role" : "Member",
+      "firstName" : "ZFGepieSjMgBeKpGAMrRCZKoctVhowNXoddZTrFQckuvh",
+      "lastName" : "AnkiTUYSavFGJzknFsxjzXalHoPZIqsOhwPsBeX",
+      "avatar" : "NKkVtCOLbGRzwYsEzDQBosIczYySzH8JnaAbXxosy6l7kOJaG7nf8y2FJTKLt9hrKjQg",
+      "archivedAt" : "2026-09-06T10:57:35.514Z"
+    },
+    {
+      "id" : "730ca88b-64fc-49d9-8049-b9e7c73ff95a",
+      "role" : "Member",
+      "firstName" : "XtOGXKlKSdGcIuFoakDFdBYUUvSJBXcmUWOsiJVWtGFRppqoMGwyuEOhtkMyKxvqSa",
+      "lastName" : "ofZPeLUIDhKhrJxpoh",
+      "avatar" : "U0nM3u7Frg7r7xZ5vQbWZAZBjnPnWbPDVAZuWSuY0K4Hav0pPBDnKpd0",
+      "archivedAt" : "2026-08-30T10:31:55.242Z"
+    }
+  ],
+  "organizationId" : "9cf9f44d-361a-45ea-aad6-a67a1801cf1a",
+  "createdAt" : "2026-07-18T17:54:48.219Z",
+  "createdBy" : "1a4d4be5-0de2-4768-8a84-d445db37a91c",
+  "modifiedAt" : "2026-07-29T18:52:47.047Z",
+  "modifiedBy" : "c528de89-8c89-41ad-83cc-46eba22e6d30",
+  "archivedAt" : "2026-08-12T09:54:42.439Z",
+  "archivedBy" : "63e9edd5-6c4f-4850-9b11-772c8e122353"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "projectUsers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "avatar": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Member",
+              "Owner"
+            ]
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "firstName",
+          "lastName"
+        ]
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "External",
+            "Internal"
+          ]
+        },
+        "texture": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "color",
+        "type",
+        "texture"
+      ]
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "projectUsers",
+    "organizationId",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

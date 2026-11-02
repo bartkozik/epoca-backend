@@ -1,0 +1,82 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PATCH</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects/all/users/{userId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Deassign user from multiple projects as Member. Returns number of added projects</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PATCH /organizations/{organizationSlug}/projects/all/users/{userId} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return OK otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.services.ProjectBulkDeassignService.ProjectBulkDeassignRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "clientType" : null,
+  "clientId" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "clientType" : "External",
+  "clientId" : "261adf8c-d3ff-467c-bddd-f4343c8fd94d"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "clientType": {
+      "type": "string",
+      "enum": [
+        "External",
+        "Internal"
+      ]
+    },
+    "clientId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.services.ProjectBulkDeassignService.ProjectBulkDeassignResponse</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "changedProjectIds" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "changedProjectIds" : [
+    "2b35073b-11cc-4af3-8e6e-5cc5c4d1a791",
+    "8f5cabaf-79ba-47ab-bc5f-6eb837e82621"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "changedProjectIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    }
+  },
+  "required": [
+    "changedProjectIds"
+  ]
+}</pre></td></tr></table>

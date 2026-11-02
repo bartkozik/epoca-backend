@@ -1,0 +1,193 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>List projects</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/projects should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return Ok with service data otherwise -> [200]<br/>return Ok with service data when all optional params provided -> [200]<br/>preserve repeated client filters from a URI above the former limit </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>id [java.util.UUID] <br/>clientId [java.util.UUID] <br/>includeArchived [Boolean] <br/>includeArchivedConnections [Boolean] <br/>pageSize [Int] <br/>pageNumber [Int] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/projects</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/projects?id=2a07d362-240d-408e-b7dd-825caa091c1a&clientId=de818508-141b-4d1b-b994-9eb99ec8e583&includeArchived=false&includeArchivedConnections=true&pageSize=35&pageNumber=90</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.utils.db.PaginatedResult[pl.iterators.epoca.project.services.ProjectDtoService.ProjectListDto]</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "count" : 1709635161,
+  "results" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "count" : 126931961,
+  "results" : [
+    {
+      "id" : "99b996e3-bc03-4f98-995c-934e38a04999",
+      "name" : "P",
+      "description" : "8URfZF50GmJWn4jex0xKtkQzSwecSdHN7FnsVxJG30xLR0KO",
+      "client" : {
+        "id" : "a4da8526-af2a-4046-8f60-6dc086118428",
+        "name" : "JsJRpqe",
+        "color" : "#d8b677",
+        "type" : "Internal",
+        "texture" : "da118UBsWqk3kfolutOdTSHkku1baPd35TofZXu8W"
+      },
+      "userCount" : 2147483647,
+      "userIds" : [
+        "3fd5099a-d8d7-4250-9f72-033ffd18a026"
+      ],
+      "organizationId" : "1260b22f-1153-45c6-b576-65a054fcc400",
+      "createdAt" : "2026-08-12T14:26:11.822Z",
+      "createdBy" : "b06cb182-77f9-49ff-a792-1594fbbfd15d",
+      "modifiedAt" : "2026-07-18T17:54:48.175Z",
+      "modifiedBy" : "d474ec8e-09ab-4cdc-9f42-c30172558d5d",
+      "archivedAt" : "2026-08-12T14:26:11.825Z"
+    },
+    {
+      "id" : "e9ae2d90-6da6-4b57-9d50-f2c96ed40e79",
+      "name" : "SSjlvgTdXuQsHKAOXiHlkSjZfRUGZnfiLjLdFCWTXOQEAVQoZPBPPonuZettmkjzFkOHqUSoT",
+      "description" : "vjkdJo4zuF7",
+      "client" : {
+        "id" : "95e90e57-0e36-4e6d-a1d3-1deeaf6505a4",
+        "name" : "dkEyczUYErYCDGTJSThu",
+        "color" : "#7ead15",
+        "type" : "External",
+        "texture" : "hfcwAvfpiPEf2kL8V"
+      },
+      "userCount" : 0,
+      "userIds" : [
+        "85b1767b-c2ef-45a2-9f71-af0e9e4ca675"
+      ],
+      "organizationId" : "682d9f02-ddb1-4b60-8ea6-95ddc2015844",
+      "createdAt" : "2026-08-31T19:36:07.451Z",
+      "createdBy" : "d6a1b054-c9ad-4e60-8598-21ac3a681ec7",
+      "modifiedAt" : "2026-08-12T01:28:36.948Z",
+      "modifiedBy" : "74e4a36b-0107-4481-834f-2225b419c2ed",
+      "archivedAt" : "2026-07-29T22:46:13.735Z"
+    }
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "client": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "External",
+                  "Internal"
+                ]
+              },
+              "texture": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "color",
+              "type",
+              "texture"
+            ]
+          },
+          "organizationId": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "userIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            }
+          },
+          "userCount": {
+            "type": "integer"
+          },
+          "modifiedBy": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "userCount",
+          "userIds",
+          "organizationId",
+          "createdAt",
+          "createdBy",
+          "modifiedAt",
+          "modifiedBy"
+        ]
+      }
+    }
+  },
+  "required": [
+    "count",
+    "results"
+  ]
+}</pre></td></tr></table>

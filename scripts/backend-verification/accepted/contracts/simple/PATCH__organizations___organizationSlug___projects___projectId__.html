@@ -1,0 +1,165 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PATCH</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects/{projectId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Update project</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PATCH /organizations/{organizationSlug}/projects/{projectId} should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return Conflict when service returns ProjectNameNotUnique -> [409]<br/>return Forbidden when service returns NotProjectOwner -> [403]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns ProjectNotFound -> [404]<br/>return OK with service data otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404<br/>409</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.services.ProjectUpdateService.ProjectUpdateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "name" : null,
+  "description" : null,
+  "ownerIds" : [
+  ],
+  "memberIds" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "name" : "ADnwLNFGzxxfIwUpuhnbLORYbybKhCurR",
+  "description" : "ImiAaLjc5bgEUnqqadixcABOLS8sCKFJEbQd04JD0FCrXEKeOfFWYZuUycInWM",
+  "ownerIds" : [
+    "eb657c78-4437-47df-90ca-05eab1f18e01"
+  ],
+  "memberIds" : [
+    "4cc74fff-6cfa-4323-aff8-3fd8e7d1aaa4"
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "ownerIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "uniqueItems": true
+    },
+    "memberIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "ownerIds",
+    "memberIds"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.domain.Project</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "444dd480-1c55-49b9-8420-907587fdf662",
+  "name" : "pbOvDiXVddrOVwnmxPGAfVgGTwwhMXiUVabpIRWWaTLlhewBFdloIWRcBBoK",
+  "description" : null,
+  "organizationId" : "32a8c833-09a1-425e-a067-e30531d6621d",
+  "clientId" : "f4b9ae8a-2d02-4179-87a4-b15a7b5452fa",
+  "createdAt" : "2026-08-12T14:26:11.877Z",
+  "createdBy" : "32edf22e-5dd5-4c34-836e-71821955f748",
+  "modifiedAt" : "2026-08-03T14:56:30.832Z",
+  "modifiedBy" : "0d69693b-220f-4245-a784-ae26ac83b009",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "9e961ec6-37db-4f34-beee-7bf9bdec006c",
+  "name" : "vBsMkFzfFyDibgqaOUDFvObHCgwkQdOEYNIpokGTJIzPmNpXVIHsPRnPTsHdVkqAWmlRSsDPCwNKgCiGxR",
+  "description" : "jtW7FeK8hau2yyGjiXVWNb3EACLLf0Oh88yxcfc0khfsuEQQJMjaXSpJv0",
+  "organizationId" : "564b08a6-e03f-4203-b8a9-276cb53badc6",
+  "clientId" : "66b2c6de-f75e-41ff-b04c-42b5dfdcbd28",
+  "createdAt" : "2026-07-20T02:36:15.109Z",
+  "createdBy" : "2523e342-f9cb-4540-ad07-18aa40131b31",
+  "modifiedAt" : "2026-08-29T13:12:10.736Z",
+  "modifiedBy" : "b5606b64-23aa-497d-bdb0-0983c1afb83c",
+  "archivedAt" : "2026-07-19T07:04:33.488Z",
+  "archivedBy" : "7399c46a-0b06-45c7-b929-d48183b1e19f"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "description": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "organizationId",
+    "clientId",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

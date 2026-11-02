@@ -1,0 +1,338 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PATCH</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Update work unit</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PATCH /organizations/{organizationSlug}/work-units/{workUnitId} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound if service returns OrganizationNotFound -> [404]<br/>return BadRequest if service returns NonPositiveDuration -> [400]<br/>return BadRequest problem if service returns NonNeutralNoteDuration -> [400]<br/>return BadRequest problem if service returns FutureWorklogDate -> [400]<br/>return NotFound if service returns WorkUnitNotFound -> [404]<br/>return NotFound if service returns NoAccessToOrganization -> [404]<br/>return NotFound if service returns ProjectNotFound -> [404]<br/>return Forbidden if service returns NoAccessToProject -> [403]<br/>return Forbidden if service returns NoAccessToWorkUnit -> [403]<br/>return identical problem status and type with and without Idempotency-Key <br/>without Idempotency-Key return the legacy Ok response and call update once -> [200]<br/>document Idempotency-Key as optional <br/>with a canonical UUID call the idempotency facade and return its first exact response <br/>replay a stored custom status 299 and exact body with one replay header -> [299]<br/>fail with InternalServerError for an invalid persisted status 600 without a silent fallback -> [500]<br/>reject an invalid Idempotency-Key before invoking either service <br/>reject a noncanonical UUID accepted leniently by UUID.fromString -> [202]<br/>return Conflict (409) for an idempotency key conflict with the exact problem response -> [409]<br/>return Conflict (409) for an unsupported idempotency version with the exact problem response -> [409]<br/>return 410 Gone for an expired idempotency result with the exact problem response -> [410]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>202<br/>299<br/>400<br/>401<br/>403<br/>404<br/>409<br/>410<br/>500</td></tr>
+<tr><td><b>HEADERS</b></td><td>Idempotency-Key</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.WorkUnitUpdateService.WorkUnitUpdateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "projectId" : null,
+  "duration" : null,
+  "description" : null,
+  "taskId" : null,
+  "date" : null,
+  "shouldFinalize" : false
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "projectId" : "408e1c60-ad81-4e25-af1a-278e039705ea",
+  "duration" : "PT101H17M47S",
+  "description" : "kYCVl5lkSpXHAuOzimWVk580LHsx0B8EJULM",
+  "taskId" : "RPbt8oVSMLqJFFnAtw9wJEgEawjVIZ1xCwaYIc1EavZN1T7U7htYsPu73SqtdfLeJsceP1WQtd1UKk0FeO2bM",
+  "date" : "2017-03-13",
+  "shouldFinalize" : true
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "duration": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "shouldFinalize": {
+      "type": "boolean"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "taskId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "shouldFinalize"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.WorkUnitDtoService.WorkUnitDto</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "58ced764-e2f0-42fc-98c4-746159e38b4e",
+  "userId" : "b7986be2-a9d2-408d-9779-6558bee99e87",
+  "userFullName" : null,
+  "date" : "2094-02-10",
+  "duration" : "PT1S",
+  "entryType" : "Note",
+  "description" : "4zi4IP1XiA7hiVt25TQcKRi3Bhso8VojdEH5bGibT1",
+  "taskId" : null,
+  "state" : "Active",
+  "createdAt" : "2026-08-12T14:26:12.028Z",
+  "modifiedAt" : "2026-08-03T11:43:55.070Z",
+  "projectClient" : null,
+  "pmClassification" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "6ddce7ee-e9cb-462d-a1bb-770a64990612",
+  "userId" : "8c600d81-7448-4b60-b5aa-4b22a848df4a",
+  "userFullName" : "Mg8GRtpL2gr",
+  "date" : "1989-10-09",
+  "duration" : "PT0S",
+  "entryType" : "Note",
+  "description" : "TdlMw45f8HpjYJnJmKj8aiwlSVLXMxXtpgRqgkfM",
+  "taskId" : "O60wcAyJOGL7FCIspVZ3sh2MqnQGCX4T2izY3KGAbpXgK",
+  "state" : "Deleted",
+  "createdAt" : "2026-08-12T14:26:12.031Z",
+  "modifiedAt" : "2026-08-12T14:26:12.033Z",
+  "projectClient" : {
+    "clientId" : "276b856f-982d-48b0-9e0a-59417857ade6",
+    "clientColor" : "#000000",
+    "clientTexture" : "Kiz4yesjpUDx6bfUnX6Rar5uQBBF1tLLC",
+    "clientName" : "BlkChfjKqgdEInh",
+    "projectId" : "693d49fb-3e1e-48dd-bde6-584ec7e6a974",
+    "projectName" : "cmPCcJuimj",
+    "projectDescription" : "sJlKmzMj88f9DS0A2YjxDNbqyCLvoRm4h4Tb56TzmJGrDlPc9YH"
+  },
+  "pmClassification" : {
+    "active" : false,
+    "version" : 3126783122818094976,
+    "projectClient" : {
+      "projectId" : "277a580a-4046-4ba8-b5bd-6bbc319552d8",
+      "projectName" : "uJsqps",
+      "clientId" : "f33aaebb-0a3b-401c-b1b1-acd60e4ea6d1",
+      "clientName" : "kTrXFrSAKJyMqBwZLlGRroMyVKpelVuEjPEvl"
+    },
+    "taskId" : "ZE5LeaebXYCeALnWeeOwSkNhobZkgFwnAQj0ZPvVEtjqLnmkji4cspctKrCOHOnKKm1xTYaCDlIi2FOd0zLTrV0fWBDO9",
+    "lastChangedBy" : {
+      "id" : "5b0e3e16-21d6-4d8b-8ffa-eeccecf9bbfc",
+      "displayName" : "wFpy1npgoB9OIZ1qMLyyPxAjvlAQcC71"
+    },
+    "lastChangedAt" : "2026-07-21T06:07:05.120Z",
+    "permissions" : {
+      "canClassify" : false,
+      "canDelete" : false,
+      "canViewHistory" : true,
+      "allowedPmProjectIds" : [
+        "cfed8b40-3406-4a76-adc4-67804cf447a0",
+        "cbbf8d27-a26b-414e-a0a0-64b1ea621b59"
+      ]
+    }
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "duration": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "GdprAnonymized",
+        "Deleted",
+        "Inactive",
+        "Draft",
+        "Archived"
+      ]
+    },
+    "projectClient": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "projectName": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "clientName": {
+          "type": "string"
+        },
+        "clientColor": {
+          "type": "string"
+        },
+        "clientTexture": {
+          "type": "string"
+        },
+        "projectDescription": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clientId",
+        "clientColor",
+        "clientTexture",
+        "clientName",
+        "projectId",
+        "projectName"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "entryType": {
+      "type": "string",
+      "enum": [
+        "Note",
+        "Worklog"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "userId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "pmClassification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "permissions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "canClassify": {
+              "type": "boolean"
+            },
+            "canDelete": {
+              "type": "boolean"
+            },
+            "canViewHistory": {
+              "type": "boolean"
+            },
+            "allowedPmProjectIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+              }
+            }
+          },
+          "required": [
+            "canClassify",
+            "canDelete",
+            "canViewHistory",
+            "allowedPmProjectIds"
+          ]
+        },
+        "lastChangedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "number"
+        },
+        "taskId": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "projectClient": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "projectId": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            },
+            "projectName": {
+              "type": "string"
+            },
+            "clientId": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            },
+            "clientName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "projectId",
+            "projectName",
+            "clientId",
+            "clientName"
+          ]
+        },
+        "lastChangedBy": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            },
+            "displayName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "displayName"
+          ]
+        }
+      },
+      "required": [
+        "active",
+        "version",
+        "permissions"
+      ]
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "userFullName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "userId",
+    "date",
+    "duration",
+    "entryType",
+    "description",
+    "state",
+    "createdAt",
+    "modifiedAt"
+  ]
+}</pre></td></tr></table>

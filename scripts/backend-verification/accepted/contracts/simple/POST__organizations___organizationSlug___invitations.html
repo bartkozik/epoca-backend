@@ -1,0 +1,192 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/invitations</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Create new invitation</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/invitations should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return BadRequest when service returns NoAccessToOrganization -> [400]<br/>return Conflict when service returns AlreadyMember -> [409]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return Created with service data otherwise -> [201]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>201<br/>400<br/>401<br/>404<br/>409</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.invitation.services.OrganizationInvitationCreateService.OrganizationInvitationCreateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "email" : null,
+  "phoneNumber" : null,
+  "roles" : null,
+  "expireTimestamp" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "email" : "OEuKidi78P@kCRWfRQ0jrj5.hQw7WZ46JC",
+  "phoneNumber" : "RceE8pxR",
+  "roles" : [
+    "Owner",
+    "External"
+  ],
+  "expireTimestamp" : "2026-08-30T23:26:08.284Z"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Employee",
+          "External",
+          "Manager",
+          "Owner"
+        ]
+      }
+    },
+    "expireTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.invitation.domain.Invitation</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "40319ad4-352f-417f-85a5-c43ef12b519f",
+  "identityValue" : "ARWuKjlehVTXhL2kEp7VUkQN61efQBbu7ahA1x3",
+  "identityType" : "Phone",
+  "roles" : [
+  ],
+  "expireAt" : null,
+  "acceptAt" : null,
+  "rejectAt" : null,
+  "organizationId" : "73170eab-1249-452f-bd9f-9563a4e45ced",
+  "createdAt" : "2026-07-19T07:30:44.538Z",
+  "createdBy" : "ebcb058a-053e-4ed3-b428-ef603ebe4a6c",
+  "modifiedAt" : "2026-08-12T14:26:11.748Z",
+  "modifiedBy" : "506bd7de-c152-44e6-9c45-3ded55d7bafe",
+  "archivedAt" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "780b239a-f07f-4a10-860f-7ddf1ebc5f52",
+  "identityValue" : "SZKp3kt7up0rL9dmkPH",
+  "identityType" : "Saml",
+  "roles" : [
+    "Employee",
+    "Manager",
+    "Employee"
+  ],
+  "expireAt" : "2026-08-01T13:19:05.557Z",
+  "acceptAt" : "2026-08-29T10:14:47.062Z",
+  "rejectAt" : "2026-07-18T17:54:48.101Z",
+  "organizationId" : "6366b7c4-1664-475e-9a96-94831079fa26",
+  "createdAt" : "2026-08-12T14:26:11.749Z",
+  "createdBy" : "7ccbf76d-7759-4298-92ee-7b044cd99a03",
+  "modifiedAt" : "2026-08-06T05:47:48.358Z",
+  "modifiedBy" : "1df27b10-7c2b-4ff0-8709-7ead6956ce0e",
+  "archivedAt" : "2026-08-12T14:26:11.750Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "acceptAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "identityValue": {
+      "type": "string"
+    },
+    "expireAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Employee",
+          "External",
+          "Manager",
+          "Owner"
+        ]
+      }
+    },
+    "rejectAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "identityType": {
+      "type": "string",
+      "enum": [
+        "MailAddress",
+        "AdminImpersonate",
+        "CryptoVerification",
+        "Phone",
+        "TimeBasedOneTimePassword",
+        "Saml"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "identityValue",
+    "identityType",
+    "roles",
+    "organizationId",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

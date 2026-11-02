@@ -1,0 +1,189 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/work-units/export</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>List work units and exports it as xlxs or csv file - format parameter required. Requesting users' work units require admin/owner/manager access.
+</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/work-units/export should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound if service returns NoAccessToOrganization -> [404]<br/>return NotFound if service returns OrganizationNotFound -> [404]<br/>return Forbidden if service returns PmClassificationForbidden -> [403]<br/>return Ok with service data when service response is delayed -> [200]<br/>decode legacy and localized raw requests with fallback or custom entry type column name <br/>decode the PM include flag and exact optional PM labels </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>format [pl.iterators.epoca.export.domain.SpreadsheetDomain.SpreadsheetFormat] <b style='color: red'>*</b></td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/export?format=Csv</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/export?format=Csv</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.export.services.ExportWorkUnitService.ExportWorkUnitRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "columnNames" : {
+    "date" : null,
+    "clientName" : null,
+    "projectName" : null,
+    "userFullName" : null,
+    "taskId" : null,
+    "description" : null,
+    "duration" : null,
+    "createdAt" : null,
+    "modifiedAt" : null,
+    "entryType" : null,
+    "pmClientName" : null,
+    "pmProjectName" : null,
+    "pmTaskId" : null
+  },
+  "ids" : [
+  ],
+  "dateFrom" : null,
+  "dateTo" : null,
+  "projectIds" : [
+  ],
+  "userIds" : [
+  ],
+  "clientIds" : [
+  ],
+  "includePmClassification" : true
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "columnNames" : {
+    "date" : "GxF9vEUBoWFxSti587heK1RwzjM4FouChNauBMsm6nqJWS",
+    "clientName" : "4IFrc7CxKqISXGHwAEhToxdO21",
+    "projectName" : "jGSIq2EJYCrnQx9e6BGM2XSSleF9NVxjoGQ",
+    "userFullName" : "ZZp4TSJ70ZB6L0ywBYvFYAsd2sFJgc1YqCxsgxjPVU",
+    "taskId" : "fa66qIgW4132awRtkoSSVbzyRFGeotkjT6ZQsQiBy3ykeoAJxwDzJB8DkSlVMxuR0T",
+    "description" : "BKeSwbSOJphnt3OHLSEouoFh5mTvQ0uxUQiYVkQETp36X2R5FR7uZCMA7zJ80Utn",
+    "duration" : "1KblVmeLkzlsV09hiQd3prP9JhYOgYDfyxYdwbzg4FOtRuh",
+    "createdAt" : "AfH8D4UuKOhBd7JDBjqubxzjEJgZK6r01x9bOhz16nPnNxJuCibZHpwDsOvgkzjIlxOsK0dNVtTXUU",
+    "modifiedAt" : "xztP4cf",
+    "entryType" : "KRuNMf2lUQapLpcgIwO4tbT3sXHWEiKo5E33wBM",
+    "pmClientName" : "y69ubibHa4yEIOZtC0tvhFDfSOgGcwEpkHC1Ikz390R01sNYAM59lsBxBMNC4iHTvX01",
+    "pmProjectName" : "YYPPkZnSHOqYNZe50mBQ8oDEzw6fOH61tnneNQLGzI2kRPQhyv",
+    "pmTaskId" : "zYEgIck7Muw0S4c1UlZJjHI"
+  },
+  "ids" : [
+    "94ee1706-bfbc-437a-84b1-01b87911b460"
+  ],
+  "dateFrom" : "2097-02-08",
+  "dateTo" : "1999-09-01",
+  "projectIds" : [
+    "71ae58bb-641e-4d6c-ad63-817e020ff5ef",
+    "7baeaa67-49e2-4ca0-aab1-f30eaf1afd0e"
+  ],
+  "userIds" : [
+    "e572032d-13fa-4963-aa42-c89d459d3595"
+  ],
+  "clientIds" : [
+    "1bb4474c-a8d1-4e76-80df-e9427ca48eb8"
+  ],
+  "includePmClassification" : false
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "dateTo": {
+      "type": "string",
+      "format": "date"
+    },
+    "columnNames": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "type": "string"
+        },
+        "projectName": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "entryType": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "string"
+        },
+        "modifiedAt": {
+          "type": "string"
+        },
+        "userFullName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pmProjectName": {
+          "type": "string"
+        },
+        "pmClientName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "pmTaskId": {
+          "type": "string"
+        },
+        "clientName": {
+          "type": "string"
+        }
+      }
+    },
+    "projectIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    },
+    "dateFrom": {
+      "type": "string",
+      "format": "date"
+    },
+    "ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    },
+    "userIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    },
+    "clientIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    },
+    "includePmClassification": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "columnNames",
+    "ids",
+    "projectIds",
+    "userIds",
+    "clientIds"
+  ]
+}</pre></td></tr></table>

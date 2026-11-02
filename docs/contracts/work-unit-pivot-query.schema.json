@@ -1,0 +1,528 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.company-6818d5a431.example.invalid/contracts/work-unit-pivot-query.schema.json",
+  "$comment": "Validated as Draft 2020-12 with com.networknt json-schema-validator 3.0.0; repository tests also assert typed variants, constraints, and runtime-validator agreement.",
+  "title": "Epoca work-unit pivot query contract",
+  "description": "Request, response, and domain error bodies for the full work-unit pivot query endpoint.",
+  "x-route": {
+    "method": "POST",
+    "path": "/organizations/{organizationSlug}/pivot-tables/work-units/query"
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/request" },
+    { "$ref": "#/$defs/response" },
+    { "$ref": "#/$defs/invalidConfigurationError" },
+    { "$ref": "#/$defs/resultTooLargeError" }
+  ],
+  "$defs": {
+    "pivotKey": {
+      "type": "string",
+      "enum": ["UserKey", "ProjectKey", "ClientKey", "YearKey", "MonthYearKey", "DateKey", "EntryTypeKey", "TaskKey"]
+    },
+    "pivotValue": {
+      "type": "string",
+      "enum": ["DurationSum", "DurationAvg", "EntriesCount"]
+    },
+    "coordinateKind": {
+      "type": "string",
+      "enum": ["Leaf", "Subtotal", "GrandTotal"]
+    },
+    "violationCode": {
+      "type": "string",
+      "enum": [
+        "MISSING_REQUIRED_PROPERTY",
+        "INVALID_PROPERTY_TYPE",
+        "UNSUPPORTED_FIELD",
+        "UNSUPPORTED_MEASURE",
+        "DUPLICATE_FIELD",
+        "FIELD_ASSIGNED_TO_MULTIPLE_AREAS",
+        "EMPTY_VALUES",
+        "DUPLICATE_MEASURE",
+        "INVALID_FILTER_VALUE",
+        "EMPTY_SELECTION",
+        "DUPLICATE_FILTER_VALUE"
+      ]
+    },
+    "uuidValue": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "yearValue": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "monthValue": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+    },
+    "dateValue": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "entryTypeValue": {
+      "type": "string",
+      "enum": ["Worklog", "Note"]
+    },
+    "clientValue": {
+      "anyOf": [
+        { "$ref": "#/$defs/uuidValue" },
+        { "type": "null" }
+      ]
+    },
+    "taskValue": {
+      "anyOf": [
+        { "type": "string" },
+        { "type": "null" }
+      ]
+    },
+    "fieldValue": {
+      "anyOf": [
+        { "$ref": "#/$defs/uuidValue" },
+        { "$ref": "#/$defs/yearValue" },
+        { "$ref": "#/$defs/monthValue" },
+        { "$ref": "#/$defs/dateValue" },
+        { "$ref": "#/$defs/entryTypeValue" },
+        { "$ref": "#/$defs/taskValue" },
+        { "type": "null" }
+      ]
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rowSubtotals", "columnSubtotals", "grandTotals"],
+      "properties": {
+        "rowSubtotals": { "type": "boolean" },
+        "columnSubtotals": { "type": "boolean" },
+        "grandTotals": { "type": "boolean" }
+      }
+    },
+    "userFilter": {
+      "$ref": "#/$defs/uuidFilter",
+      "description": "A UserKey filter."
+    },
+    "projectFilter": {
+      "$ref": "#/$defs/uuidFilter",
+      "description": "A ProjectKey filter."
+    },
+    "uuidFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "includedValues"],
+      "properties": {
+        "key": { "enum": ["UserKey", "ProjectKey"] },
+        "includedValues": {
+          "type": ["array", "null"],
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/uuidValue" }
+        }
+      }
+    },
+    "clientFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "includedValues"],
+      "properties": {
+        "key": { "enum": ["ClientKey"] },
+        "includedValues": {
+          "type": ["array", "null"],
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/clientValue" }
+        }
+      }
+    },
+    "yearFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "includedValues"],
+      "properties": {
+        "key": { "enum": ["YearKey"] },
+        "includedValues": {
+          "type": ["array", "null"],
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/yearValue" }
+        }
+      }
+    },
+    "monthFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "includedValues"],
+      "properties": {
+        "key": { "enum": ["MonthYearKey"] },
+        "includedValues": {
+          "type": ["array", "null"],
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/monthValue" }
+        }
+      }
+    },
+    "dateFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "includedValues"],
+      "properties": {
+        "key": { "enum": ["DateKey"] },
+        "includedValues": {
+          "type": ["array", "null"],
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/dateValue" }
+        }
+      }
+    },
+    "entryTypeFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "includedValues"],
+      "properties": {
+        "key": { "enum": ["EntryTypeKey"] },
+        "includedValues": {
+          "type": ["array", "null"],
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/entryTypeValue" }
+        }
+      }
+    },
+    "taskFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "includedValues"],
+      "properties": {
+        "key": { "enum": ["TaskKey"] },
+        "includedValues": {
+          "type": ["array", "null"],
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/taskValue" }
+        }
+      }
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/uuidFilter" },
+            { "properties": { "key": { "enum": ["UserKey"] } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/uuidFilter" },
+            { "properties": { "key": { "enum": ["ProjectKey"] } } }
+          ]
+        },
+        { "$ref": "#/$defs/clientFilter" },
+        { "$ref": "#/$defs/yearFilter" },
+        { "$ref": "#/$defs/monthFilter" },
+        { "$ref": "#/$defs/dateFilter" },
+        { "$ref": "#/$defs/entryTypeFilter" },
+        { "$ref": "#/$defs/taskFilter" }
+      ]
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rows", "columns", "values", "filters", "options"],
+      "properties": {
+        "rows": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/pivotKey" }
+        },
+        "columns": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/pivotKey" }
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/pivotValue" }
+        },
+        "filters": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/filter" },
+          "allOf": [
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "UserKey" } } }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "ProjectKey" } } }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "ClientKey" } } }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "YearKey" } } }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "MonthYearKey" } } }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "DateKey" } } }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "EntryTypeKey" } } }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "TaskKey" } } }, "minContains": 0, "maxContains": 1 }
+          ]
+        },
+        "options": { "$ref": "#/$defs/options" }
+      },
+      "allOf": [
+        { "$comment": "UserKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "UserKey" } }, "columns": { "contains": { "const": "UserKey" } } } } },
+        { "$comment": "UserKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "UserKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "UserKey" } } } } } } },
+        { "$comment": "UserKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "UserKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "UserKey" } } } } } } },
+        { "$comment": "ProjectKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "ProjectKey" } }, "columns": { "contains": { "const": "ProjectKey" } } } } },
+        { "$comment": "ProjectKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "ProjectKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "ProjectKey" } } } } } } },
+        { "$comment": "ProjectKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "ProjectKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "ProjectKey" } } } } } } },
+        { "$comment": "ClientKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "ClientKey" } }, "columns": { "contains": { "const": "ClientKey" } } } } },
+        { "$comment": "ClientKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "ClientKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "ClientKey" } } } } } } },
+        { "$comment": "ClientKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "ClientKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "ClientKey" } } } } } } },
+        { "$comment": "YearKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "YearKey" } }, "columns": { "contains": { "const": "YearKey" } } } } },
+        { "$comment": "YearKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "YearKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "YearKey" } } } } } } },
+        { "$comment": "YearKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "YearKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "YearKey" } } } } } } },
+        { "$comment": "MonthYearKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "MonthYearKey" } }, "columns": { "contains": { "const": "MonthYearKey" } } } } },
+        { "$comment": "MonthYearKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "MonthYearKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "MonthYearKey" } } } } } } },
+        { "$comment": "MonthYearKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "MonthYearKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "MonthYearKey" } } } } } } },
+        { "$comment": "DateKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "DateKey" } }, "columns": { "contains": { "const": "DateKey" } } } } },
+        { "$comment": "DateKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "DateKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "DateKey" } } } } } } },
+        { "$comment": "DateKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "DateKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "DateKey" } } } } } } },
+        { "$comment": "EntryTypeKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "EntryTypeKey" } }, "columns": { "contains": { "const": "EntryTypeKey" } } } } },
+        { "$comment": "EntryTypeKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "EntryTypeKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "EntryTypeKey" } } } } } } },
+        { "$comment": "EntryTypeKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "EntryTypeKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "EntryTypeKey" } } } } } } },
+        { "$comment": "TaskKey:rows-columns", "not": { "required": ["rows", "columns"], "properties": { "rows": { "contains": { "const": "TaskKey" } }, "columns": { "contains": { "const": "TaskKey" } } } } },
+        { "$comment": "TaskKey:rows-filters", "not": { "required": ["rows", "filters"], "properties": { "rows": { "contains": { "const": "TaskKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "TaskKey" } } } } } } },
+        { "$comment": "TaskKey:columns-filters", "not": { "required": ["columns", "filters"], "properties": { "columns": { "contains": { "const": "TaskKey" } }, "filters": { "contains": { "type": "object", "required": ["key"], "properties": { "key": { "const": "TaskKey" } } } } } } }
+      ]
+    },
+    "pathSegment": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key", "value"],
+          "properties": { "key": { "enum": ["UserKey", "ProjectKey"] }, "value": { "$ref": "#/$defs/uuidValue" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key", "value"],
+          "properties": { "key": { "enum": ["ClientKey"] }, "value": { "$ref": "#/$defs/clientValue" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key", "value"],
+          "properties": { "key": { "enum": ["YearKey"] }, "value": { "$ref": "#/$defs/yearValue" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key", "value"],
+          "properties": { "key": { "enum": ["MonthYearKey"] }, "value": { "$ref": "#/$defs/monthValue" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key", "value"],
+          "properties": { "key": { "enum": ["DateKey"] }, "value": { "$ref": "#/$defs/dateValue" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key", "value"],
+          "properties": { "key": { "enum": ["EntryTypeKey"] }, "value": { "$ref": "#/$defs/entryTypeValue" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["key", "value"],
+          "properties": { "key": { "enum": ["TaskKey"] }, "value": { "$ref": "#/$defs/taskValue" } }
+        }
+      ]
+    },
+    "coordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path"],
+      "properties": {
+        "kind": { "$ref": "#/$defs/coordinateKind" },
+        "path": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/pathSegment" }
+        }
+      }
+    },
+    "isoDuration": {
+      "type": "string",
+      "pattern": "^PT(?=[0-9])(?:[0-9]+H)?(?:[0-9]+M)?(?:[0-9]+(?:\\.[0-9]{1,9})?S)?$"
+    },
+    "metricValues": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "durationSum": { "$ref": "#/$defs/isoDuration" },
+        "durationAvg": {
+          "anyOf": [
+            { "$ref": "#/$defs/isoDuration" },
+            { "type": "null" }
+          ]
+        },
+        "entriesCount": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        }
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["row", "column", "values"],
+      "properties": {
+        "row": { "$ref": "#/$defs/coordinate" },
+        "column": { "$ref": "#/$defs/coordinate" },
+        "values": { "$ref": "#/$defs/metricValues" }
+      }
+    },
+    "userFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "UserKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/uuidValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "projectFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "ProjectKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/uuidValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "clientFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "ClientKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/clientValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "yearFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "YearKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/yearValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "monthFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "MonthYearKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/monthValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "dateFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "DateKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/dateValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "entryTypeFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "EntryTypeKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/entryTypeValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "taskFilterMembers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "members"],
+      "properties": {
+        "key": { "const": "TaskKey" },
+        "members": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["value", "available"], "properties": { "value": { "$ref": "#/$defs/taskValue" }, "available": { "type": "boolean" } } } }
+      }
+    },
+    "filterMembers": {
+      "oneOf": [
+        { "$ref": "#/$defs/userFilterMembers" },
+        { "$ref": "#/$defs/projectFilterMembers" },
+        { "$ref": "#/$defs/clientFilterMembers" },
+        { "$ref": "#/$defs/yearFilterMembers" },
+        { "$ref": "#/$defs/monthFilterMembers" },
+        { "$ref": "#/$defs/dateFilterMembers" },
+        { "$ref": "#/$defs/entryTypeFilterMembers" },
+        { "$ref": "#/$defs/taskFilterMembers" }
+      ]
+    },
+    "resultMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cellCount", "displayValueCellCount", "maxDisplayValueCellCount"],
+      "properties": {
+        "cellCount": { "type": "integer", "format": "int64", "minimum": 0, "maximum": 9223372036854775807 },
+        "displayValueCellCount": { "type": "integer", "format": "int64", "minimum": 0, "maximum": 9223372036854775807 },
+        "maxDisplayValueCellCount": { "type": "integer", "format": "int64", "minimum": 1, "maximum": 9223372036854775807 }
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cells", "filterMembers", "result"],
+      "properties": {
+        "cells": { "type": "array", "items": { "$ref": "#/$defs/cell" } },
+        "filterMembers": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/filterMembers" } },
+        "result": { "$ref": "#/$defs/resultMetadata" }
+      }
+    },
+    "violation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "code"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "code": { "$ref": "#/$defs/violationCode" }
+      }
+    },
+    "invalidConfigurationError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "violations"],
+      "properties": {
+        "code": { "const": "PIVOT_INVALID_CONFIGURATION" },
+        "message": { "const": "Invalid pivot configuration" },
+        "violations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/violation" } }
+      }
+    },
+    "resultTooLargeError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "estimatedDisplayValueCellCount", "maxDisplayValueCellCount"],
+      "properties": {
+        "code": { "const": "PIVOT_RESULT_TOO_LARGE" },
+        "message": { "const": "Pivot result exceeds the configured limit" },
+        "estimatedDisplayValueCellCount": { "type": "integer", "format": "int64", "minimum": 0, "maximum": 9223372036854775807 },
+        "maxDisplayValueCellCount": { "type": "integer", "format": "int64", "minimum": 1, "maximum": 9223372036854775807 }
+      }
+    }
+  }
+}

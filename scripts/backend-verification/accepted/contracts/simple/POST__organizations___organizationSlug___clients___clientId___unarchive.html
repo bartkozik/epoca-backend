@@ -1,0 +1,128 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/clients/{clientId}/unarchive</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Unarchive previously archived client</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/clients/{clientId}/unarchive should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return NotFound when service returns ClientNotFound -> [404]<br/>return Conflict when service returns NameNotUnique -> [409]<br/>return Forbidden when service returns InsufficientRole -> [403]<br/>return Unarchived with service data otherwise </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>401<br/>403<br/>404<br/>409</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.client.domain.Client</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "343c8a27-e60e-4579-9259-9abb46e4908c",
+  "name" : "zCztllepXQIiFDUwFMtrftikEXfAgamySlzqpm",
+  "color" : "#000001",
+  "texture" : "6vuYtUNUTu8RimqcoDNP",
+  "logo" : "te0LQzYs0IFgcVkPmk5RhEYvi5ASqRUbr09",
+  "organizationId" : "a81c9d13-7d39-4291-b29c-3d07e158c55e",
+  "type" : "Internal",
+  "createdAt" : "2026-07-18T17:54:48.083Z",
+  "createdBy" : "6be372b9-a183-4200-ab2b-4e1e41d786fa",
+  "modifiedAt" : "2026-08-12T14:26:11.731Z",
+  "modifiedBy" : "814c6f2c-d21a-475c-b3c4-6cf94039603d",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "fce285f2-3047-4f96-a049-8003640d5f5e",
+  "name" : "zWYIBhNpZKEseEOHOrPRINzMgEHhKEIMKgUKJkvwdMqMobIaByTTScsMcvsDnyJkTXxUGeBqk",
+  "color" : "#12ef95",
+  "texture" : "AJhun4tJk8Bt3fnCLiMBsKlRnhYjvPGXWi3wJ8gmpVZiOwn1dsNHnnvQiUEPZo6V3uOcPMj9dKJCH0cV5RGMqKoRQeMZ",
+  "logo" : "wWuvlQ1Png4ne0pOhdd2LroOpUN",
+  "organizationId" : "cd47c21d-80df-4457-8fc2-0d60b1366e11",
+  "type" : "Internal",
+  "createdAt" : "2026-08-06T03:32:12.816Z",
+  "createdBy" : "130f3a03-baa9-4021-889f-eaeea599ca8b",
+  "modifiedAt" : "2026-08-12T14:26:11.735Z",
+  "modifiedBy" : "d489736d-334e-4223-aa66-1efad5ab69e8",
+  "archivedAt" : "2026-08-14T08:19:58.196Z",
+  "archivedBy" : "04b55fc6-60a0-421e-bd1d-50cc8290254a"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "color": {
+      "type": "string"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "External",
+        "Internal"
+      ]
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "texture": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "color",
+    "texture",
+    "logo",
+    "organizationId",
+    "type",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

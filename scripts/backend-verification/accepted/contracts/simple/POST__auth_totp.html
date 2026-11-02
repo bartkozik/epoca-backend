@@ -1,0 +1,80 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/totp</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Get totp data for user</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /auth/totp should <br/>returns BadRequest when incoming request is not json -> [400]<br/>returns BadRequest when incoming request is empty json -> [400]<br/>returns Unauthorized when service returns UserNotFound -> [401]<br/>returns Unauthorized when service returns InvalidCredentials -> [401]<br/>returns Ok when service returns Ok -> [200]<br/>returns Ok when service returns Ok for logged user as well -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401</td></tr>
+<tr><td><b>HEADERS</b></td><td>device-id<b style='color: red'>*</b></td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginByTimeBasedOneTimePasswordService.LoginByTimeBasedOneTimePasswordRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "userIdentityId" : "6f3a35c4-0bbf-4b74-88e3-3df89001248c",
+  "password" : "TrJ2EOJVp3fTM4E7xVEkKTxlJDGfDQIYgUJOakA"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "userIdentityId" : "ea064391-312b-49b4-92e4-c318577c4a04",
+  "password" : "XZfsRwyCq6tYdTvXxQrTYePQPwBoEzM5"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "userIdentityId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "password": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "userIdentityId",
+    "password"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginResolveService.LoginResolution</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "accessToken" : "A8tOGP4ybcBr1EbOACKyWmR0vTaT4iVwFWNNS0NljS44bgYB7qLElZWPbhm5",
+  "refreshToken" : "KVtjPknH13lU3lmMohb9tpMnqDPA0LycG"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "accessToken" : "tKpWnnc4HaWxXYVkUeVR5ygTxrRrJjR2dV9JxQ4ObYfUfzHxrtVsjvdBCprcEGsm5",
+  "refreshToken" : "L2VHObgQGyARBBdpKntZBHUJnfPGP2sdsVbtCF2zxK082AqBlVUMDOFo3gkc2OtkNCwKIyB7EUNXG1cNGuaqhs"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "accessToken": {
+      "type": "string"
+    },
+    "refreshToken": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "accessToken",
+    "refreshToken"
+  ]
+}</pre></td></tr></table>

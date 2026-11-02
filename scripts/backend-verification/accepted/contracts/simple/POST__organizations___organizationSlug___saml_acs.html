@@ -1,0 +1,33 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/saml/acs</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Webhook endpoint used by external identity provider</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/saml/acs should <br/>return NotFound if service return OrganizationNotFound -> [404]<br/>return NotFound if service return ErrorUpdatingRequest -> [404]<br/>return NotFound if service return SamlConfigNotFound -> [404]<br/>return NotFound if service return RequestNotFound -> [404]<br/>return BadRequest if service return NoInResponseTo -> [400]<br/>return BadRequest if service return ResponseInvalid -> [400]<br/>return TooManyRequests if service return RequestAlreadyUsed <br/>return ExpectationFailed if service return RequestExpired <br/>return Forbidden if service return ErrorCreatingNewUser -> [403]<br/>return Forbidden if service return ErrorCreatingNewUserConnection -> [403]<br/>return SeeOther otherwise with URL to home login page </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>400<br/>403<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.saml.domain.SamlDomain.SamlOneTimeToken</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>"dc3f9530-46af-4305-b19d-639362758f86"</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>"de003b09-c66e-466d-b1d5-d28f51e1b818"</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "string",
+  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+}</pre></td></tr></table>

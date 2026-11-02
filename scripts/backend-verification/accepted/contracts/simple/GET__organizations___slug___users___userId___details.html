@@ -1,0 +1,90 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{slug}/users/{userId}/details</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>List projects in a given organization that belongs to a requested user</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{slug}/users/{userId}/details should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound if service returns OrganizationNotFound -> [404]<br/>return NotFound if service returns OrganizationNoAccess -> [404]<br/>return NotFound if service returns NotAMember -> [404]<br/>return Ok with service data otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>Seq[pl.iterators.epoca.organizationdashboard.services.OrganizationUserDetailsService.OrganizationUserDetailsRow]</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>[
+]</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>[
+  {
+    "role" : "Member",
+    "projectId" : "6a6e585c-5675-4824-bdc7-c29686f1dead",
+    "clientId" : "e5a3425c-17f0-477a-8275-b0df941ba985",
+    "projectName" : "LQpThkOIUhTvXPuiJfHjPnBeWFPHoaQyHF",
+    "clientName" : "LVlgPKsSajskzOPChiwCfDElTsjJEMFlGvfTknsVpHHzjqthuEzRbXjesiCrvkzjmvXfjskLhpxIGFvTmqEAUULDZwBDYLe"
+  },
+  {
+    "role" : "Owner",
+    "projectId" : "a1f8940c-72e1-4578-adcc-0d6575d79dc6",
+    "clientId" : "56f2238f-a0bb-4d4f-96d2-5c7b1fec5ce8",
+    "projectName" : "fxikogjfFJfFojGQYrMBIOQrqtjWLjDFPKQYwxseELqktFkxjuGEMFMB",
+    "clientName" : "YsskyEFCBwMbXEHFeYQoKFYjBdWdL"
+  },
+  {
+    "role" : "Member",
+    "projectId" : "9f47cc68-067f-4490-aff9-733f6ca4a98d",
+    "clientId" : "ce88b782-5a2b-4736-a119-0ade68b9762e",
+    "projectName" : "cQXsMZipoLYQCpPNxhAT",
+    "clientName" : "EbtwaMjjsEVbnZMeRqsblftgPoMeu"
+  }
+]</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "projectName": {
+        "type": "string"
+      },
+      "clientId": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "role": {
+        "type": "string",
+        "enum": [
+          "Member",
+          "Owner"
+        ]
+      },
+      "projectId": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "clientName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "role",
+      "projectId",
+      "clientId",
+      "projectName",
+      "clientName"
+    ]
+  }
+}</pre></td></tr></table>

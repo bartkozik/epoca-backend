@@ -1,0 +1,93 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{slug}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Find organization by slug - admin has access to all organization, regular user can only find member organizations</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{slug} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound if service returns NotFound -> [404]<br/>return Ok with service data otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.organization.domain.Organization</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "219d1d4e-1301-423f-9aac-982871ce4930",
+  "name" : "egyjiLkyeoZeBlLpGGwroWFSwXHcbONHenMQKQSEtYJgtibYGlTFWsNiUSkWdhbxWXEUOkadjHfeUfetLsblUTZ",
+  "slug" : "nsORHGqFHDTGByykXQyeNeywUVHcfGfDxAxPdgyHNAfeQKMHouOcNssWPjUUZDg",
+  "createdAt" : "2026-08-20T09:56:40.409Z",
+  "createdBy" : "351bef4b-c60c-44f3-82f2-eddd12044463",
+  "modifiedAt" : "2026-07-18T17:54:48.425Z",
+  "modifiedBy" : "dc4e0104-9357-4dc5-8373-85c4387d4cf2",
+  "archivedAt" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "40c91914-4a43-41ed-88b1-05ae2b7bf302",
+  "name" : "usqApOizvkZs",
+  "slug" : "guPFtghsZbEzDpokTlqjFzHDkyeHjokwgeml",
+  "createdAt" : "2026-07-18T17:54:48.426Z",
+  "createdBy" : "76ca9bd9-5334-423d-942d-07c12f736705",
+  "modifiedAt" : "2026-09-06T10:57:35.721Z",
+  "modifiedBy" : "7dcc2da1-c25c-41d0-a32f-6161873651c1",
+  "archivedAt" : "2026-08-28T12:36:29.590Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "name": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "slug",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

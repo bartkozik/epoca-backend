@@ -1,0 +1,98 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/users/identities/{identityId}/main</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Update main identity</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /users/identities/{identityId}/main should <br/>should be inaccessible for no logged users -> [401]<br/>returns NotFound when service returns IdentityNotFound -> [404]<br/>returns NoContent when service returns AlreadyMain -> [204]<br/>returns OK when service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>204<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.domain.UserIdentityDto</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "4de190a9-f3ef-49e1-b50f-42d860ef5609",
+  "userId" : "f0e1d18a-6677-4414-8c40-7191afcea7eb",
+  "type" : "MailAddress",
+  "value" : "jcROENQq4ICEpLcTC1mo7smtPXgJjkeM4HoPwdvyi",
+  "main" : true,
+  "confirmed" : false,
+  "deviceId" : null,
+  "createdAt" : "2026-08-21T04:47:44.926Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "4fa62656-4144-4d85-8989-96c2bb9466e3",
+  "userId" : "d1a4a475-f536-4b0c-b1aa-ff83a7c75f26",
+  "type" : "Phone",
+  "value" : "BxGmfKB0djjsI4pZ28ZtRs3jlG9GlioW15GeNAAoZyzW3QTCtaKVxBSL",
+  "main" : true,
+  "confirmed" : false,
+  "deviceId" : "sY825fpdvWAhdE9FBY",
+  "createdAt" : "2026-08-12T14:26:12.148Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "confirmed": {
+      "type": "boolean"
+    },
+    "main": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deviceId": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "MailAddress",
+        "AdminImpersonate",
+        "CryptoVerification",
+        "Phone",
+        "TimeBasedOneTimePassword",
+        "Saml"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "userId",
+    "type",
+    "value",
+    "main",
+    "confirmed",
+    "createdAt"
+  ]
+}</pre></td></tr></table>

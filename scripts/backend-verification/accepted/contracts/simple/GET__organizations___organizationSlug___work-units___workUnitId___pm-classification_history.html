@@ -1,0 +1,269 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification/history</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Return the exact PM classification history snapshot page. upToVersion is required; pageSize and pageNumber must be supplied together or omitted for service defaults 25/1. Errors use RFC 9457 result:work-unit-pm-classification:* problem types (400 invalid-pagination, 403 forbidden, 404 work-unit-not-found).</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification/history should <br/>be inaccessible for a non-authenticated user -> [401]<br/>return 200 with the exact page and delegate omitted pagination to service defaults -> [200]<br/>return 200 while forwarding pageSize and pageNumber together without changing their meaning -> [200]<br/>return 400 for both invalid pagination fields with the exact field extension -> [400]<br/>return 403 for Forbidden with the exact problem type and empty extension -> [403]<br/>return 404 for WorkUnitNotFound with the exact problem type and empty extension -> [404]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>upToVersion [Long] <b style='color: red'>*</b><br/>pageSize [Int] <br/>pageNumber [Int] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification/history?upToVersion=12</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification/history?upToVersion=12&pageSize=10&pageNumber=2</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.WorkUnitPmHistoryPage</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "count" : 0,
+  "pageNumber" : 1,
+  "pageSize" : -444713355,
+  "upToVersion" : 561136446858812542,
+  "results" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "count" : 2147483647,
+  "pageNumber" : -591653024,
+  "pageSize" : 780056985,
+  "upToVersion" : -1,
+  "results" : [
+    {
+      "version" : 1,
+      "operation" : "Replace",
+      "actor" : {
+        "id" : "aa256f5c-0f3d-44d6-9070-6db7975d5dc4",
+        "displayName" : "WbAUvIvygFaNpFmWQ3mI3Pzl0FMBJvh2Vh4gcM0qwNlZFanwBP5R8OXvr7Bz5REXl9"
+      },
+      "changedAt" : "2026-08-10T14:56:53.682Z",
+      "before" : {
+        "projectClient" : {
+          "projectId" : "4b0ef47b-f584-4d30-bf76-a075e1dd7d78",
+          "projectName" : "mIvslTsynxzuyJnOdxmYrntQqyPL",
+          "clientId" : "aec6ff9f-89cb-41bd-b733-0d68ff34c72a",
+          "clientName" : "jHfTtcwZpZfoSytl"
+        },
+        "taskId" : "aYUOb7lTw50GAN7aMUIp6At3Ny7yM2mMXawgCXUa0QnLgP8B5yHOzXXnq0Mh1KTc0XbmG8gYv5gjPGM47UQ"
+      },
+      "after" : {
+        "projectClient" : {
+          "projectId" : "9e5f9951-1d05-4a40-9afc-061ad3014fe3",
+          "projectName" : "grEGEABWuCJVUegZhruHizSqXutkEjNCpOaVpLazA",
+          "clientId" : "5db96849-1d64-4fdd-af98-7bfb0bec4ff0",
+          "clientName" : "UYxrvmbCvsuy"
+        },
+        "taskId" : "i4zm9V4cnGkDbxcqC2WLYHON3zBWZQK9utrJXeFeOhKsCcudGMiunwgTWgJS7At8bF4cpHMasSvByalQ4"
+      }
+    },
+    {
+      "version" : 1,
+      "operation" : "Clear",
+      "actor" : {
+        "id" : "c709fa9a-67a7-4a91-93f7-b663e025fd67",
+        "displayName" : "lAcz2Byj4fGPvmMWsK5EjW2d8AboNzTIy1dCJ1U5OEsDOxT1ANzBRNZ19Fv3S6T3iMDKYb3JHS"
+      },
+      "changedAt" : "2026-07-29T05:44:22.003Z",
+      "before" : {
+        "projectClient" : {
+          "projectId" : "eaf7ea83-210d-4589-8002-e9b71e3ea045",
+          "projectName" : "eewdEWrPVgbhPndrDaLLWaBPaDJpUEiNYuyPYwSTyscaskxyFPWDccvThiOjKZdMiNvLGxW",
+          "clientId" : "746ffa0b-b15d-4b01-a22f-66f4c834b891",
+          "clientName" : "ewTaMjRyPotoWhylluwUAAwotOfItWQyDVZCzkwLbnFPuvZIqG"
+        },
+        "taskId" : "qp8ZyfAFpDwaOQfWeiuuB51ekZUSqmxan4sgSkkQNozRqmQrlesgMswBaGOerZubzTs2Sk64X0GNjVmsXDzmGCcbUUg4jLvt"
+      },
+      "after" : {
+        "projectClient" : {
+          "projectId" : "0eb2f66c-0b95-477d-9ced-d648560465f8",
+          "projectName" : "FCkQdJbNFfILYutUOVuhqPjFmVINuCuZrOgtYXzWFa",
+          "clientId" : "032dceec-bd20-4a61-ac42-9d7aab9fe0a1",
+          "clientName" : "mqOZfLfyySrQIgioBdoSNHQqvzyqfhidQkBJvcNRwRKeQXOPWeIZrnAfxuAyfgKRIoHZAhWa"
+        },
+        "taskId" : "MYRPQyT4usYBtEVYzqwqdkDGaIfijFoyvhYX93uSQSVD81Sdi3"
+      }
+    },
+    {
+      "version" : -5982521994721102690,
+      "operation" : "Clear",
+      "actor" : {
+        "id" : "adcd8768-a3c1-4da0-a40b-435f05e09d9b",
+        "displayName" : "RFUXAwfZvW1Mg3ti"
+      },
+      "changedAt" : "2026-07-18T17:54:48.421Z",
+      "before" : {
+        "projectClient" : {
+          "projectId" : "10f83275-d072-416e-a26e-cbf812fd7ef6",
+          "projectName" : "yCapyCgHhJwwQbIdzELMrtHRfAhQZLGDgwqwYTdeodTryDAaWmXLTygZZhwmN",
+          "clientId" : "b97c2a6b-8c5b-466f-a667-6447cd9dee0c",
+          "clientName" : "vimdGWvtzvugUDVuCoSGbrIhbdXyqRnlObuSsZGwIMewlZo"
+        },
+        "taskId" : "oJOSwhBYRICr2uUxvv5QhLb6g"
+      },
+      "after" : {
+        "projectClient" : {
+          "projectId" : "556884e7-dccf-4714-bce7-a1790d99f61e",
+          "projectName" : "MFWxYkhlxtyZGJjuhiChQWLLomzlEdELFPBYpobUnEhXIjTWiCHvqdpeHMmrlUwFPYPrUqtBNugfJxKkHa",
+          "clientId" : "67417507-c265-4a24-bebb-89ea28241a9f",
+          "clientName" : "PJWcpZerCKayeTCUgAhkhnDrVrcGYOWXH"
+        },
+        "taskId" : "YnqgbMGQtQNmxISEihXwBiTE561BQERZYBW7kvJkSi1on1vbmCWAzxABNPVMifesR3"
+      }
+    }
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "pageSize": {
+      "type": "integer"
+    },
+    "upToVersion": {
+      "type": "number"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+              },
+              "displayName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "displayName"
+            ]
+          },
+          "before": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "projectClient": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "projectId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "projectName": {
+                    "type": "string"
+                  },
+                  "clientId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "clientName": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "projectId",
+                  "projectName",
+                  "clientId",
+                  "clientName"
+                ]
+              },
+              "taskId": {
+                "type": "string"
+              }
+            }
+          },
+          "version": {
+            "type": "number"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "Clear",
+              "Replace"
+            ]
+          },
+          "after": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "projectClient": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "projectId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "projectName": {
+                    "type": "string"
+                  },
+                  "clientId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "clientName": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "projectId",
+                  "projectName",
+                  "clientId",
+                  "clientName"
+                ]
+              },
+              "taskId": {
+                "type": "string"
+              }
+            }
+          },
+          "changedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "version",
+          "operation",
+          "actor",
+          "changedAt",
+          "before",
+          "after"
+        ]
+      }
+    },
+    "pageNumber": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "count",
+    "pageNumber",
+    "pageSize",
+    "upToVersion",
+    "results"
+  ]
+}</pre></td></tr></table>

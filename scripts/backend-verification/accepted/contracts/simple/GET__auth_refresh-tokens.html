@@ -1,0 +1,78 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/refresh-tokens</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Get request tokens for all user devices</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /auth/refresh-tokens should <br/>should be inaccessible for no logged users -> [401]<br/>returns Ok when service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>Seq[pl.iterators.epoca.auth.services.RefreshTokenListService.RefreshTokenDto]</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>[
+]</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>[
+  {
+    "deviceId" : "TXenDRrNYzM8ynfcEYpH3g3UqLe1APEYFf6s0s8vg9nFQOIYLVpC2i9",
+    "userAgent" : "WjDnzlVZanHGGM6EjD2RZwopbNCo9hRqDbljXA2P1qsfpVPxUd",
+    "lastAuthedAt" : "2026-08-12T14:26:11.575Z",
+    "createdAt" : "2026-08-16T01:38:19.670Z",
+    "expiredAt" : "2026-08-12T14:26:11.574Z"
+  },
+  {
+    "deviceId" : "9KfmrfWcFYMTe95e33ty5XYiSanB4msJ0X5DEPBgLCpvfxIzf7dFuLZlRJh0YNMUtwLYfcCJhkcu4FAdL2RTmZ3OzHA5rPb",
+    "userAgent" : "7QYCuy2lFRe0TPB55XvBHL9GoeRWDQ5",
+    "lastAuthedAt" : "2026-08-12T14:26:11.576Z",
+    "createdAt" : "2026-08-24T03:02:47.708Z",
+    "expiredAt" : "2026-08-12T14:26:11.575Z"
+  }
+]</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "expiredAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "userAgent": {
+        "type": "string"
+      },
+      "lastAuthedAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "deviceId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "deviceId",
+      "lastAuthedAt",
+      "createdAt"
+    ]
+  }
+}</pre></td></tr></table>

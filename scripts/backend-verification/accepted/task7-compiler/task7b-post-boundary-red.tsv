@@ -1,0 +1,34 @@
+src/main/scala/pl/iterators/epoca/archiver/services/ClientDeleteService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/client/services/ClientListService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationDeleteService.scala	51:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationDeleteService.scala	55:14|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUpdateService.scala	48:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUpdateService.scala	52:14|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/organizationdashboard/services/OrganizationUserDetailsService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/organizationdashboard/services/OrganizationUserListService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	107:125|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	107:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	148:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	152:14|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectBulkDeassignService.scala	6:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	113:125|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	113:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	119:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	123:14|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectFindService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/project/services/ProjectListService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/project/services/ProjectUpdateService.scala	164:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/project/services/ProjectUpdateService.scala	172:14|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigGetService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigUpsertService.scala	73:12|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[pl.iterators.epoca.saml.services.SamlConfigUpsertService.SamlConfigUpsertResult.PermissionsAreTooLow.type,slick.dbio.NoStream,E],Nothing,slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT,type ADT1).	sealed-type-inference
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigUpsertService.scala	79:18|type mismatch;	sealed-type-inference
+src/main/scala/pl/iterators/epoca/stats/repositories/WorkUnitPivotQuerySql.scala	278:13|type mismatch;	slick-sql-builder
+src/main/scala/pl/iterators/epoca/stats/services/WorkUnitPivotQueryService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/stats/services/WorkUnitPivotTableService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/unarchiver/services/ClientUnarchiveService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/unarchiver/services/ProjectUnarchiveService.scala	5:23|Unused import	werror-unused-import
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	114:60|type DatabaseDef is not a member of slick.basic.BasicBackend	dbio-database-alias
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	120:68|type DatabaseDef is not a member of slick.basic.BasicBackend	dbio-database-alias
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	125:82|type DatabaseDef is not a member of slick.basic.BasicBackend	dbio-database-alias
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	130:62|type DatabaseDef is not a member of slick.basic.BasicBackend	dbio-database-alias
+src/main/scala/pl/iterators/epoca/workunit/services/WorkUnitOrderUpsertService.scala	5:23|Unused import	werror-unused-import

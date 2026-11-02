@@ -1,0 +1,88 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/crypto</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Login user</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /auth/crypto should <br/>returns BadRequest when incoming request is not json -> [400]<br/>returns BadRequest when incoming request is empty json -> [400]<br/>returns Unauthorized when service returns UserNotFound -> [401]<br/>returns Unauthorized when service returns InvalidCredentials -> [401]<br/>returns Ok when service returns Ok -> [200]<br/>returns Ok when service returns Ok for logged user as well -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401</td></tr>
+<tr><td><b>HEADERS</b></td><td>device-id<b style='color: red'>*</b></td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginByCryptoVerificationService.LoginByCryptoVerificationRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "userId" : "1f96624c-d75d-402d-b8ad-aed3aca30731",
+  "signature" : "PPvK5RfzALm2sjt6POmqRoUAbTTl2eqzgPfUew4rWyqgxUqBCdQHU0dYNbWxULWgc",
+  "algorithm" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "userId" : "48512019-9d0d-4a6f-b489-4728eb3961b4",
+  "signature" : "ZvRc9oJaNzVgMbPGvNB9nkf7sDUAAMcmsw0L0vMum77WfSzMseDdNFGgQvRMN4KwBJPq4YY2aOGq76FsECbO",
+  "algorithm" : "SHA256withRSA"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "userId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "signature": {
+      "type": "string"
+    },
+    "algorithm": {
+      "type": "string",
+      "enum": [
+        "SHA256withRSA"
+      ]
+    }
+  },
+  "required": [
+    "userId",
+    "signature"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginResolveService.LoginResolution</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "accessToken" : "hFjNPj7vvdgkgOqgOasn1DoKVFngp8bNFl4O4ixAsy1tvGH1WYJupfL6Gb65JVVhDqyXh3ckD",
+  "refreshToken" : "Rof5Sf25"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "accessToken" : "56AJcIrjnQ2GzDQFJ5dd3PM1xZwVe",
+  "refreshToken" : "J87nKI0Bpb00B7OQxHfmcR8WdF6M5LKezmUTKAmNQDkZR73wxAMB1"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "accessToken": {
+      "type": "string"
+    },
+    "refreshToken": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "accessToken",
+    "refreshToken"
+  ]
+}</pre></td></tr></table>

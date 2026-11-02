@@ -1,0 +1,38 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/users/deassign</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Deassign user from organization</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/users/deassign should <br/>be inaccessible for no-logged user -> [401]<br/>be BadRequest on empty json -> [400]<br/>return NotFound when service returns OperationNotPermitted -> [404]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return BadRequest when service returns UserAlreadyUnassigned -> [400]<br/>return BadRequest when service returns InvalidRequest -> [400]<br/>return NoContent otherwise -> [204]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>204<br/>400<br/>401<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.organization.services.OrganizationUserDeassignService.OrganizationDeassignRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "userId" : "e3982f47-81ad-42b7-80f4-1076f3059588"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "userId" : "d7c149fc-9796-4806-890b-2e26112fbd33"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "string",
+  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+}</pre></td></tr></table>

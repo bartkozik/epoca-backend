@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+    <logger name="slick" level="INFO"/>
+    <logger name="slick.session" level="INFO"/>
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+    <logger name="org.apache.pekko.actor.RepointableActorRef" level="INFO"/>
+    <logger name="org.apache.pekko.http.impl.engine.client.PoolGateway" level="INFO"/>
+    <logger name="org.apache.pekko.stream.impl.io.TLSActor" level="INFO"/>
+    <logger name="org.apache.pekko.io.TcpOutgoingConnection" level="INFO"/>
+    <logger name="org.apache.pekko.io.SimpleDnsManager" level="INFO"/>
+    <logger name="oshi.util.FileUtil" level="WARN"/>
+
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{"yyyy-MM-dd HH:mm:ss.SSS"} %-5level %thread %logger{36} - [%X{context}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/epoca-backend.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{"yyyy-MM-dd HH:mm:ss.SSS"} %-5level %thread %logger{36} - [%X{context}] %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>logs/epoca-backend-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- or whenever the file size reaches 64 MB -->
+            <maxFileSize>64 MB</maxFileSize>
+            <!-- keep 28 days' worth of history -->
+            <maxHistory>28</maxHistory>
+        </rollingPolicy>
+
+        <!-- Safely log to the same file from multiple JVMs. Degrades performance! -->
+        <!--<prudent>true</prudent>-->
+    </appender>
+
+    <root level="${LOG_LEVEL:-INFO}">
+        <!--appender-ref ref="FILE"/-->
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

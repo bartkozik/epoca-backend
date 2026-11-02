@@ -1,0 +1,406 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/work-units</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>List work units. Requesting users' work units require admin/owner/manager access.
+Parameters id, dateFrom, dateTo, projectId - list, userId - list, clientId - list, state - list, includeArchived - bool, shouldReturnDraftIds - bool, includePmClassification - bool, pmProjectId - list, pmClientId - list (PM filters require includePmClassification=true), pageSize - pagination, pageNumber - pagination</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/work-units should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound if service returns NoAccessToOrganization -> [404]<br/>return NotFound if service returns OrganizationNotFound -> [404]<br/>return Forbidden if service returns PmClassificationForbidden -> [403]<br/>return Ok with service data otherwise -> [200]<br/>return Ok with service data when all optional params provided -> [200]<br/>decode includePmClassification and preserve repeatable PM project/client filters independently from source filters <br/>return 400 for PM filters without includePmClassification=true using the stable validation problem -> [400]<br/>keep the ordinary report shape when PM inclusion is requested but the service returns no visible PM section <br/>preserve every repeated filter from a URI above the former limit </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>id [java.util.UUID] <br/>dateFrom [java.time.LocalDate] <br/>dateTo [java.time.LocalDate] <br/>projectId [java.util.UUID] <br/>userId [java.util.UUID] <br/>clientId [java.util.UUID] <br/>state [pl.iterators.epoca.workunit.domain.WorkUnitDomain.WorkUnitState] <br/>includeArchived [Boolean] <br/>shouldReturnDraftIds [Boolean] <br/>includePmClassification [Boolean] <br/>pmProjectId [Seq[java.util.UUID]] <br/>pmClientId [Seq[java.util.UUID]] <br/>pageSize [Int] <br/>pageNumber [Int] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/work-units?id=55555555-5555-4555-8555-555555555555&dateFrom=2026-08-01&dateTo=2026-08-06&projectId=66666666-6666-4666-8666-666666666666&userId=77777777-7777-4777-8777-777777777777&clientId=88888888-8888-4888-8888-888888888888&state=Draft&includeArchived=false&shouldReturnDraftIds=false&includePmClassification=true&pmProjectId=11111111-1111-4111-8111-111111111111&pmProjectId=11111111-1111-4111-8111-111111111112&pmClientId=22222222-2222-4222-8222-222222222221&pmClientId=22222222-2222-4222-8222-222222222222&pageSize=25&pageNumber=1</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.WorkUnitListService.WorkUnitListData</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "workUnits" : {
+    "count" : 2147483647,
+    "results" : [
+    ]
+  },
+  "orders" : [
+  ],
+  "draftIds" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "workUnits" : {
+    "count" : -1,
+    "results" : [
+      {
+        "id" : "5148672a-d70d-44de-a7af-a8891ad2eae8",
+        "userId" : "2de19a88-c295-4900-b9d4-7256d51cae25",
+        "userFullName" : "P4ums5Ln2hAh0VPp5LDogPn11gyonrT11eT8qopcCOjkTqBX",
+        "date" : "2088-02-02",
+        "duration" : "PT277H46M39S",
+        "entryType" : "Worklog",
+        "description" : "8NSQp9eoNFxiSfOkGlHAr7l3aFSrNEXjA4H3rB",
+        "taskId" : "wbMBk7xzOIWYDwfvPy0YGNyA6gKawpT2DZp4",
+        "state" : "Deleted",
+        "createdAt" : "2026-07-18T17:54:48.306Z",
+        "modifiedAt" : "2026-08-12T14:26:11.955Z",
+        "projectClient" : {
+          "clientId" : "bd6e6343-6a64-4b2f-b7e4-45fea5ee49a7",
+          "clientColor" : "#f8a6a6",
+          "clientTexture" : "xhK0C7AbjXQkFrBmZ9XXQMgCZrTKDsdhfYWQrD4kyjIfTJ3EYeFk5628LcOYWJKtjroDNUtXKqgeEPJAg9CT",
+          "clientName" : "levruGYwWUnkMmyWfgRfMySSzQZYzfGBxIhmNTiiobNZwfbKhXuqeEPjDppsfmcAVbZZDKtUngFbuo",
+          "projectId" : "6915cd8d-9c94-4107-9e6c-9e547668fa30",
+          "projectName" : "JUGXkngpLGxT",
+          "projectDescription" : "8COY8bxqjxtXv6r790op3"
+        },
+        "pmClassification" : {
+          "active" : true,
+          "version" : 6367543091734448316,
+          "projectClient" : {
+            "projectId" : "99ccb18e-a0e3-4f6b-a59c-8f5626b5aa55",
+            "projectName" : "vEGzvPOiMloEoonGFLzcbzAzmlqfLDzXVyGDIRoUGobBjmqDvcWIzkleCBnEkzwfHknJDOZlWdzsW",
+            "clientId" : "acb21ab4-24cc-4f19-9386-30b90d315c0a",
+            "clientName" : "ySGNxeqeDQAUkWVZjJvJZqptPFSUtswSByhVXkKmzsheaKEvtmZpJnPuXgNjCiIKLxGRF"
+          },
+          "taskId" : "vGFso9cj48eUkbSyGCBv12axu6Lw0vdNrbvKTvrzGANLlPPJ1d936rj9yLVZtOttDP2Dh4V1qgf85ZBXTYmw8YKAqaAIg",
+          "lastChangedBy" : {
+            "id" : "8d0681b3-a45f-4c83-b9fd-6b4d1d26eddc",
+            "displayName" : "H6Gj9MUUoitevyMYS5xQeb9gzYY2kcAk"
+          },
+          "lastChangedAt" : "2026-09-05T21:35:54.300Z",
+          "permissions" : {
+            "canClassify" : true,
+            "canDelete" : false,
+            "canViewHistory" : false,
+            "allowedPmProjectIds" : [
+              "925c1ff4-ae09-4e27-8d75-ad47afbed5a7"
+            ]
+          }
+        }
+      },
+      {
+        "id" : "4da10039-b9b1-4300-9395-0642ab1c7321",
+        "userId" : "acbbef00-07b7-4bf0-9d97-e8a3d4c1dc9d",
+        "userFullName" : "QebCL7xLQHCZrL0SwfpK670bYIwDN0LuzY34n3AW",
+        "date" : "2003-11-25",
+        "duration" : "PT0S",
+        "entryType" : "Note",
+        "description" : "ibMa1xXtUFGZAUcFaF0jgNcIvkbXxkVUFFXJ8QFeWu62YTzYSkJfwaFFXPIhHIqtrylwPBuIEkrGswyXaBJq5inJZkv1g55",
+        "taskId" : "ZzNpTDQLX393sskjF4YxtaGXsws8PPedn",
+        "state" : "GdprAnonymized",
+        "createdAt" : "2026-08-08T05:21:10.233Z",
+        "modifiedAt" : "2026-09-01T17:19:23.026Z",
+        "projectClient" : {
+          "clientId" : "bb41880a-6de8-4502-8489-3aa8960953cc",
+          "clientColor" : "#ffffff",
+          "clientTexture" : "xnn6H2Bj2PNCll3GcDKlJYo",
+          "clientName" : "GwO",
+          "projectId" : "446a46f0-10c1-4f69-b358-a09d0b461719",
+          "projectName" : "KgWswdEIgbQGWuiHRnPLbkZowOgoj",
+          "projectDescription" : "xLYJLtQZiDizVLXUS1vHHUzaw93DT1OBhezlX3RcTyOpeoDO6NKh3sGyibITj2ToDR59hV"
+        },
+        "pmClassification" : {
+          "active" : false,
+          "version" : -1,
+          "projectClient" : {
+            "projectId" : "ec3fa6b1-e7d5-4959-b47b-68e2e137424a",
+            "projectName" : "APzhi",
+            "clientId" : "a30e4b81-81c6-4864-aa10-0829dc0c978d",
+            "clientName" : "OJFRBGMLnmZTqgyxJZFybrVyUwWKEJMMX"
+          },
+          "taskId" : "dY9mcS5JAxiihRJmMT8EkID6emvQWKyTOPAHzeDGyy4w",
+          "lastChangedBy" : {
+            "id" : "c530a7ba-b2ef-4036-abe6-32547d808338",
+            "displayName" : "P9cyRz7NRlBCWSAafYKXBryELlyGrvb45YFRrh8m7m4QJ14nM29XxckJwRAcJMN5HXHOZLacPU04iL0QMzWJw5eqhG6"
+          },
+          "lastChangedAt" : "2026-08-12T14:26:11.967Z",
+          "permissions" : {
+            "canClassify" : true,
+            "canDelete" : false,
+            "canViewHistory" : true,
+            "allowedPmProjectIds" : [
+              "2c36931a-0b21-499c-a63b-36aaf1f9dcff"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "orders" : [
+    {
+      "date" : "2042-01-03",
+      "ids" : [
+        "81121fb5-7b40-430f-9772-70229b52d1da"
+      ]
+    }
+  ],
+  "draftIds" : [
+    "c1c00884-fa09-4af3-a407-0798fbdecf81"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "workUnits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "duration": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "Active",
+                  "GdprAnonymized",
+                  "Deleted",
+                  "Inactive",
+                  "Draft",
+                  "Archived"
+                ]
+              },
+              "projectClient": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "projectName": {
+                    "type": "string"
+                  },
+                  "clientId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "projectId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "clientName": {
+                    "type": "string"
+                  },
+                  "clientColor": {
+                    "type": "string"
+                  },
+                  "clientTexture": {
+                    "type": "string"
+                  },
+                  "projectDescription": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "clientId",
+                  "clientColor",
+                  "clientTexture",
+                  "clientName",
+                  "projectId",
+                  "projectName"
+                ]
+              },
+              "description": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+              },
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "entryType": {
+                "type": "string",
+                "enum": [
+                  "Note",
+                  "Worklog"
+                ]
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "userId": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+              },
+              "taskId": {
+                "type": "string"
+              },
+              "pmClassification": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "permissions": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "canClassify": {
+                        "type": "boolean"
+                      },
+                      "canDelete": {
+                        "type": "boolean"
+                      },
+                      "canViewHistory": {
+                        "type": "boolean"
+                      },
+                      "allowedPmProjectIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "canClassify",
+                      "canDelete",
+                      "canViewHistory",
+                      "allowedPmProjectIds"
+                    ]
+                  },
+                  "lastChangedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "version": {
+                    "type": "number"
+                  },
+                  "taskId": {
+                    "type": "string"
+                  },
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "projectClient": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "projectId": {
+                        "type": "string",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      },
+                      "projectName": {
+                        "type": "string"
+                      },
+                      "clientId": {
+                        "type": "string",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      },
+                      "clientName": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectId",
+                      "projectName",
+                      "clientId",
+                      "clientName"
+                    ]
+                  },
+                  "lastChangedBy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      },
+                      "displayName": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "displayName"
+                    ]
+                  }
+                },
+                "required": [
+                  "active",
+                  "version",
+                  "permissions"
+                ]
+              },
+              "modifiedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "userFullName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "userId",
+              "date",
+              "duration",
+              "entryType",
+              "description",
+              "state",
+              "createdAt",
+              "modifiedAt"
+            ]
+          }
+        }
+      },
+      "required": [
+        "count",
+        "results"
+      ]
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            }
+          }
+        },
+        "required": [
+          "date",
+          "ids"
+        ]
+      }
+    },
+    "draftIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    }
+  },
+  "required": [
+    "workUnits",
+    "orders"
+  ]
+}</pre></td></tr></table>

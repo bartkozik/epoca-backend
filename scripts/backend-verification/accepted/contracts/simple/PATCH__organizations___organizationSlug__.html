@@ -1,0 +1,105 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PATCH</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Update organization</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PATCH /organizations/{organizationSlug} should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return NotFound when service returns OperationNotPermitted -> [404]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return OK with service data otherwise -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.organization.services.OrganizationUpdateService.OrganizationUpdateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "name" : "DORsFVpsoOIsmJVMwiMlKnios"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "name" : "QjYfFecgqVJtc"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "string"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.organization.domain.Organization</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "67f34921-2f49-40a2-b04c-81ed271974cc",
+  "name" : "iTHoyhMRVnmPtLfDabtJvlpcFIRWaexGjQQOTSzDb",
+  "slug" : "TmyNzmjOmUXYUKtR",
+  "createdAt" : "2026-08-05T23:23:20.776Z",
+  "createdBy" : "e94f5406-89ad-4b65-83be-1864388aed6a",
+  "modifiedAt" : "2026-07-18T17:54:48.034Z",
+  "modifiedBy" : "caa30be8-f55e-4a24-ab74-803758f5ed9b",
+  "archivedAt" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "1dc89c6b-d191-4f39-adf9-09736b58c2b5",
+  "name" : "hxgyAglevogmuZPcDiXFLaLXALAQQtKQw",
+  "slug" : "JkKRxxlcJzDCOWDEATTEYmkSeePAEmGFtjiykPxRCUgBsLknrQtczTfoae",
+  "createdAt" : "2026-08-06T00:01:01.180Z",
+  "createdBy" : "e1fc3458-15c6-470c-8d69-483b2a6022fa",
+  "modifiedAt" : "2026-08-12T14:26:11.683Z",
+  "modifiedBy" : "d911dbf1-5740-4fe2-a816-2e525ec4b76c",
+  "archivedAt" : "2026-07-22T19:21:05.800Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "name": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "slug",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

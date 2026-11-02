@@ -1,0 +1,24 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/health-check</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Health check</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /health-check should <br/>return NoContent for no-logged user -> [204]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>204</td></tr></table>

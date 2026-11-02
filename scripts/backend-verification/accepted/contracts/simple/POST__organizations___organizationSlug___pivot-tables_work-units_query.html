@@ -1,0 +1,611 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units/query</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Query a full work-unit pivot table with Rows, Columns, Values, Filters, subtotals and grand totals.</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/pivot-tables/work-units/query should <br/>document global ID filters as repeatable UUID arrays with every fixture value <br/>use a valid documentation response fixture without weakening the runtime metric invariant <br/>be inaccessible without authentication -> [401]<br/>return Ok and pass the exact raw JSON, slug, auth context, and ordered global filters to the query service -> [200]<br/>return Ok for the required dateFrom with all other global filters absent -> [200]<br/>return BadRequest with the exact bare invalid-configuration error -> [400]<br/>return 422 UnprocessableEntity with the exact bare result-too-large error -> [422]<br/>preserve the platform text-body 404 semantics for absent and inaccessible organizations -> [404]<br/>return Forbidden with the exact shared Problem Details body for an insufficient role -> [403]<br/>reject malformed JSON through the shared rejection schema without calling the service <br/>reject a missing or malformed dateFrom through the shared query-parameter rejection schema <br/>support a trailing slash but reject other HTTP methods <br/>keep the legacy endpoint dispatching only the legacy pivot service </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404<br/>422</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>dateFrom [java.time.LocalDate] <b style='color: red'>*</b><br/>dateTo [java.time.LocalDate] <br/>projectId [Seq[java.util.UUID]] <br/>userId [Seq[java.util.UUID]] <br/>clientId [Seq[java.util.UUID]] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units/query?dateFrom=2026-08-01</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units/query?dateFrom=2026-08-01&dateTo=2026-08-31&projectId=11111111-1111-4111-8111-111111111111&projectId=22222222-2222-4222-8222-222222222222&userId=33333333-3333-4333-8333-333333333333&userId=44444444-4444-4444-8444-444444444444&clientId=55555555-5555-4555-8555-555555555555&clientId=66666666-6666-4666-8666-666666666666</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.stats.domain.WorkUnitPivotQuery.Request</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "rows" : [
+  ],
+  "columns" : [
+  ],
+  "values" : [
+  ],
+  "filters" : [
+  ],
+  "options" : {
+    "rowSubtotals" : false,
+    "columnSubtotals" : true,
+    "grandTotals" : false
+  }
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "rows" : [
+    "DateKey",
+    "ProjectKey"
+  ],
+  "columns" : [
+    "ProjectKey",
+    "EntryTypeKey"
+  ],
+  "values" : [
+    "DurationAvg"
+  ],
+  "filters" : [
+    {
+      "key" : "ProjectKey",
+      "includedValues" : [
+        -1,
+        "1fe4b73a-e993-48d6-b88c-cb8b66ee416e",
+        "9cc5bb9f-9786-4df6-9db8-c00fbfe68c55"
+      ]
+    },
+    {
+      "key" : "DateKey",
+      "includedValues" : [
+        "-140279820-09",
+        "382019407-06",
+        null
+      ]
+    },
+    {
+      "key" : "YearKey",
+      "includedValues" : [
+        null,
+        "4000-11-03",
+        "328742554-06"
+      ]
+    }
+  ],
+  "options" : {
+    "rowSubtotals" : true,
+    "columnSubtotals" : false,
+    "grandTotals" : false
+  }
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rowSubtotals": {
+          "type": "boolean"
+        },
+        "columnSubtotals": {
+          "type": "boolean"
+        },
+        "grandTotals": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "rowSubtotals",
+        "columnSubtotals",
+        "grandTotals"
+      ]
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "DurationAvg",
+          "DurationSum",
+          "EntriesCount"
+        ]
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "UserKey",
+          "ClientKey",
+          "EntryTypeKey",
+          "MonthYearKey",
+          "ProjectKey",
+          "YearKey",
+          "DateKey"
+        ]
+      }
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "UserKey",
+          "ClientKey",
+          "EntryTypeKey",
+          "MonthYearKey",
+          "ProjectKey",
+          "YearKey",
+          "DateKey"
+        ]
+      }
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "UserKey",
+              "ClientKey",
+              "EntryTypeKey",
+              "MonthYearKey",
+              "ProjectKey",
+              "YearKey",
+              "DateKey"
+            ]
+          },
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "Null"
+                  ]
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "enum": [
+                        "Note",
+                        "Worklog"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "value"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "key"
+        ]
+      }
+    }
+  },
+  "required": [
+    "rows",
+    "columns",
+    "values",
+    "filters",
+    "options"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.stats.domain.WorkUnitPivotQuery.Response</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "cells" : [
+    {
+      "row" : {
+        "kind" : "Leaf",
+        "path" : [
+          {
+            "key" : "UserKey",
+            "value" : "33333333-3333-4333-8333-333333333333"
+          }
+        ]
+      },
+      "column" : {
+        "kind" : "GrandTotal",
+        "path" : [
+        ]
+      },
+      "values" : {
+        "durationSum" : "PT2H",
+        "entriesCount" : 3
+      }
+    }
+  ],
+  "filterMembers" : [
+  ],
+  "result" : {
+    "cellCount" : 1,
+    "displayValueCellCount" : 4,
+    "maxDisplayValueCellCount" : 10000
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "cells" : [
+    {
+      "row" : {
+        "kind" : "Leaf",
+        "path" : [
+          {
+            "key" : "UserKey",
+            "value" : "33333333-3333-4333-8333-333333333333"
+          }
+        ]
+      },
+      "column" : {
+        "kind" : "GrandTotal",
+        "path" : [
+        ]
+      },
+      "values" : {
+        "durationSum" : "PT2H",
+        "entriesCount" : 3
+      }
+    }
+  ],
+  "filterMembers" : [
+  ],
+  "result" : {
+    "cellCount" : 1,
+    "displayValueCellCount" : 4,
+    "maxDisplayValueCellCount" : 10000
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "row": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "GrandTotal",
+                  "Leaf",
+                  "Subtotal"
+                ]
+              },
+              "path": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "enum": [
+                        "UserKey",
+                        "ClientKey",
+                        "EntryTypeKey",
+                        "MonthYearKey",
+                        "ProjectKey",
+                        "YearKey",
+                        "DateKey"
+                      ]
+                    },
+                    "value": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "Null"
+                          ]
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "value": {
+                              "type": "string",
+                              "enum": [
+                                "Note",
+                                "Worklog"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "value"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "value"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "path"
+            ]
+          },
+          "column": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "GrandTotal",
+                  "Leaf",
+                  "Subtotal"
+                ]
+              },
+              "path": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "enum": [
+                        "UserKey",
+                        "ClientKey",
+                        "EntryTypeKey",
+                        "MonthYearKey",
+                        "ProjectKey",
+                        "YearKey",
+                        "DateKey"
+                      ]
+                    },
+                    "value": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "Null"
+                          ]
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "value": {
+                              "type": "string",
+                              "enum": [
+                                "Note",
+                                "Worklog"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "value"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "value"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "path"
+            ]
+          },
+          "values": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "durationSum": {
+                "type": "string"
+              },
+              "durationAvg": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "None"
+                    ]
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "entriesCount": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "required": [
+          "row",
+          "column",
+          "values"
+        ]
+      }
+    },
+    "filterMembers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "UserKey",
+              "ClientKey",
+              "EntryTypeKey",
+              "MonthYearKey",
+              "ProjectKey",
+              "YearKey",
+              "DateKey"
+            ]
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "Null"
+                      ]
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "enum": [
+                            "Note",
+                            "Worklog"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "value"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                    }
+                  ]
+                },
+                "available": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "value",
+                "available"
+              ]
+            }
+          }
+        },
+        "required": [
+          "key",
+          "members"
+        ]
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cellCount": {
+          "type": "number"
+        },
+        "displayValueCellCount": {
+          "type": "number"
+        },
+        "maxDisplayValueCellCount": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "cellCount",
+        "displayValueCellCount",
+        "maxDisplayValueCellCount"
+      ]
+    }
+  },
+  "required": [
+    "cells",
+    "filterMembers",
+    "result"
+  ]
+}</pre></td></tr></table>

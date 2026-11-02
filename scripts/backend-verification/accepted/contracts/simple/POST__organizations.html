@@ -1,0 +1,120 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Create new organization</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return Conflict when service returns UserHasOrganization -> [409]<br/>return Conflict when service return SlugIsAlreadyTaken -> [409]<br/>return Created with service data otherwise -> [201]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>201<br/>400<br/>401<br/>409</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.organization.services.OrganizationCreateService.OrganizationCreateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "name" : "othylgFEZrNzlTnoTbXnCqocKzjnfoEdosaDktXvtNjZmRxjqmScJ",
+  "slug" : "HHUqvunFNspDgsIZx"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "name" : "RxQLnFYrFaVUmgPvpfuI",
+  "slug" : "NSTPIkfGyxIsjENmhfUbkgWXPp"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "slug"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.organization.domain.Organization</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "46f83881-ef60-45a4-90cc-9907bdd402dc",
+  "name" : "a",
+  "slug" : "jjlaYZWhVOfqAEwki",
+  "createdAt" : "2026-07-30T21:01:22.371Z",
+  "createdBy" : "6ddb6744-9684-4876-a488-07c545d8a8bc",
+  "modifiedAt" : "2026-07-18T17:54:48.022Z",
+  "modifiedBy" : "a8dbd7b1-6b7c-43e5-80ee-dbe154feceb0",
+  "archivedAt" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "faa3da9c-b238-40e1-9768-6d024456c266",
+  "name" : "JkWwwqikyFHEMPDlTYtBx",
+  "slug" : "GkjPVHFkpUsbtikCzhdYXap",
+  "createdAt" : "2026-08-12T14:26:11.672Z",
+  "createdBy" : "92dc255e-5af0-441f-8984-9df35629eac7",
+  "modifiedAt" : "2026-08-12T14:26:11.672Z",
+  "modifiedBy" : "48590030-36fe-4008-8814-6652dd8c7cea",
+  "archivedAt" : "2026-09-06T10:57:35.319Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "name": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "slug",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

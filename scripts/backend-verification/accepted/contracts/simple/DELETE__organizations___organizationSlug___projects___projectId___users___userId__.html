@@ -1,0 +1,25 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>DELETE</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects/{projectId}/users/{userId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Deassign user from project</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>DELETE /organizations/{organizationSlug}/projects/{projectId}/users/{userId} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return Forbidden when service returns OperationNotPermitted -> [403]<br/>return NotFound when service returns ProjectNotFound -> [404]<br/>return NotFound when service returns UserNotFound -> [404]<br/>return BadRequest when service returns UserAlreadyUnassigned -> [400]<br/>return Conflict when service returns OwnerNotDeassignable -> [409]<br/>return NoContent otherwise -> [204]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>204<br/>400<br/>401<br/>403<br/>404<br/>409</td></tr></table>

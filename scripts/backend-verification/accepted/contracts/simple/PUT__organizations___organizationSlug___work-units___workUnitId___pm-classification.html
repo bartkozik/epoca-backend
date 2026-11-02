@@ -1,0 +1,195 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PUT</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Replace a work unit PM classification using optimistic concurrency. A no-op returns the current DTO with 200. Errors use RFC 9457 result:work-unit-pm-classification:* problem types (400 empty/invalid-task-id, 403 forbidden, 404 work-unit/project-not-found, 409 stale-version/project-unavailable).</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PUT /organizations/{organizationSlug}/work-units/{workUnitId}/pm-classification should <br/>be inaccessible for a non-authenticated user -> [401]<br/>return 200 and the exact DTO when the service reports Ok, including a no-op -> [200]<br/>return 400 for empty and invalid-task-id errors with their exact extensions -> [400]<br/>return 403 for Forbidden with an empty extension -> [403]<br/>return 404 for work-unit-not-found and project-not-found with their exact extensions -> [404]<br/>return 409 for stale-version and project-unavailable with their exact extensions -> [409]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404<br/>409</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.ReplacePmClassificationRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "expectedVersion" : 1989071082524237727,
+  "pmProjectId" : null,
+  "pmTaskId" : null
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "expectedVersion" : 0,
+  "pmProjectId" : "6bd1ceef-a772-4ead-ad26-34f5834e4625",
+  "pmTaskId" : "R8G2dk8925WYfiZvmyWEllIdDm6qAXtqGNFKMPbY4cde2jyyOe9U5PkLStsCqnIRAsu2ifmdtlZx16"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "expectedVersion": {
+      "type": "number"
+    },
+    "pmProjectId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "pmTaskId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "expectedVersion"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.workunit.services.WorkUnitDtoService.WorkUnitPmClassificationDto</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "active" : false,
+  "version" : 8796867579798119230,
+  "projectClient" : null,
+  "taskId" : null,
+  "lastChangedBy" : null,
+  "lastChangedAt" : null,
+  "permissions" : {
+    "canClassify" : true,
+    "canDelete" : false,
+    "canViewHistory" : false,
+    "allowedPmProjectIds" : [
+    ]
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "active" : false,
+  "version" : 1335215335232698053,
+  "projectClient" : {
+    "projectId" : "6ac2d4c4-7646-4490-8275-a3856e3c66f3",
+    "projectName" : "bPWyeoOayACWXEYxxcVCCRkqzbpZOslFoFroujrJtCkLaKzPQTIkXZaqzgdUFEGP",
+    "clientId" : "7150bca3-8606-492e-ba31-e6ed299304be",
+    "clientName" : "YILBzZOSIehELZFercOmqoZsjAfuJosFHMHviLyFRnRnNexzmuMBKMKc"
+  },
+  "taskId" : "rKdflpY1OP3cgfC6z0D7d44uA593waWJku7CBNCLESldUhHSCqep8lJPkop5sz3FeInRlpYYss6FbRdggFQ",
+  "lastChangedBy" : {
+    "id" : "f4049b42-5ab4-4aa8-bc0b-8a451d191c8d",
+    "displayName" : "g1PMBBhkK0CdAN3Q1kV9utU8Gc4kymfQr"
+  },
+  "lastChangedAt" : "2026-08-12T14:26:12.059Z",
+  "permissions" : {
+    "canClassify" : true,
+    "canDelete" : true,
+    "canViewHistory" : true,
+    "allowedPmProjectIds" : [
+      "d3c95d05-6ea7-483e-91af-22c71674a58f",
+      "bf3429ad-22cc-43f8-b0a0-9300265a462a"
+    ]
+  }
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "canClassify": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "canViewHistory": {
+          "type": "boolean"
+        },
+        "allowedPmProjectIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          }
+        }
+      },
+      "required": [
+        "canClassify",
+        "canDelete",
+        "canViewHistory",
+        "allowedPmProjectIds"
+      ]
+    },
+    "lastChangedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "number"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "projectClient": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "projectName": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "clientName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId",
+        "projectName",
+        "clientId",
+        "clientName"
+      ]
+    },
+    "lastChangedBy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "displayName"
+      ]
+    }
+  },
+  "required": [
+    "active",
+    "version",
+    "permissions"
+  ]
+}</pre></td></tr></table>

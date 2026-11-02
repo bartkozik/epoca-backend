@@ -1,0 +1,162 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Generate pivot table for work unit entity - input should be non-empty list of keys and values.
+Parameters dateFrom, dateTo, projectId - list, userId - list, clientId - list</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/pivot-tables/work-units should <br/>keep existing pivot keys and expose EntryTypeKey to the documented enum <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound if service returns OrganizationNotFound -> [404]<br/>return NotFound if service returns NoAccessToOrganization -> [404]<br/>return Forbidden if service returns InsufficientRole -> [403]<br/>return BadRequest if service returns KeysRequired -> [400]<br/>return BadRequest if service returns ValuesRequired -> [400]<br/>return Ok with service data otherwise -> [200]<br/>decode EntryTypeKey and encode the grouped entry type <br/>return Ok with service data when all optional params provided -> [200]<br/>preserve repeated filters from a URI above the former limit </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>dateFrom [java.time.LocalDate] <br/>dateTo [java.time.LocalDate] <br/>projectId [java.util.UUID] <br/>userId [java.util.UUID] <br/>clientId [java.util.UUID] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units?dateFrom=2026-08-12&dateTo=2026-08-12&projectId=873d65e1-37b2-4ab3-8732-60063da7fa17&userId=1efed0d5-970c-4f0a-a399-e2d5785d8378&clientId=ae6080b5-7fc6-40b3-9daf-02608e965a36</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.stats.services.WorkUnitPivotTableService.WorkUnitPivotTableRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "keys" : [
+  ],
+  "values" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "keys" : [
+    "EntryTypeKey",
+    "YearKey",
+    "DateKey"
+  ],
+  "values" : [
+    "EntriesCount",
+    "DurationSum",
+    "DurationSum"
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "UserKey",
+          "ClientKey",
+          "EntryTypeKey",
+          "MonthYearKey",
+          "ProjectKey",
+          "YearKey",
+          "DateKey"
+        ]
+      }
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "DurationAvg",
+          "DurationSum",
+          "EntriesCount"
+        ]
+      }
+    }
+  },
+  "required": [
+    "keys",
+    "values"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>Seq[pl.iterators.epoca.stats.domain.WorkUnitPivotTableRow]</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>[
+]</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>[
+  {
+    "year" : -2122766064,
+    "monthYear" : "2079-10",
+    "date" : "1975-10-03",
+    "userId" : "e0b8ec99-d7de-448c-94c0-ff42555ea3ab",
+    "projectId" : "94f01ba6-4950-4892-a976-f27814a1661e",
+    "clientId" : "87f94751-b17d-4ba1-9ac9-f2b9fa5692fa",
+    "entryType" : "Worklog",
+    "entriesCount" : 599747700601294368,
+    "durationSum" : "PT277H46M39S",
+    "durationAvg" : "PT239H38M24S"
+  },
+  {
+    "year" : -1,
+    "monthYear" : "2015-03",
+    "date" : "2090-12-19",
+    "userId" : "9929503c-35ca-4954-a203-f0a25fdfb18a",
+    "projectId" : "23517ce2-e597-4c3f-938d-77bbd17e9161",
+    "clientId" : "25b40fb8-7efb-41cb-b3a6-e4f33ac125e7",
+    "entryType" : "Worklog",
+    "entriesCount" : -5498765392741761415,
+    "durationSum" : "PT277H46M39S",
+    "durationAvg" : "PT277H13M39S"
+  }
+]</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "clientId": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "year": {
+        "type": "integer"
+      },
+      "projectId": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "date": {
+        "type": "string",
+        "format": "date"
+      },
+      "monthYear": {
+        "type": "string"
+      },
+      "userId": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "entriesCount": {
+        "type": "number"
+      },
+      "durationSum": {
+        "type": "string"
+      },
+      "entryType": {
+        "type": "string",
+        "enum": [
+          "Note",
+          "Worklog"
+        ]
+      },
+      "durationAvg": {
+        "type": "string"
+      }
+    }
+  }
+}</pre></td></tr></table>

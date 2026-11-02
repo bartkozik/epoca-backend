@@ -1,0 +1,136 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/sendgrid</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Saves sendgrid history data</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /sendgrid should <br/>returns BadRequest for empty json -> [400]<br/>returns OK for proper json array and call service -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>Seq[pl.iterators.epoca.mail.domain.MailDomain.SendgridMailEvent]</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>[
+]</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>[
+  {
+    "mailUuid" : "5074c773-bb75-41ee-beff-33ab3aaaeb94",
+    "environment" : "m1s5SoTDrLmwy0wcKhkAsAn4mlwVg1jlpz9LxJ1M2Qx4DTJ8Iy",
+    "email" : "GMFlQsfkFa@QfHWpvGD9r.Y7UFruAIEHY3",
+    "event" : "3fNe6sE0mvzdUiQ8VlVDm9gMLB7RO3sxEhWkLe5ZVUCd7tU2tw1ookYziNW0niLGFEShwxaLjqM6J",
+    "ip" : "ltv5krcfoqjik96rsgCWQVwdpdpvd38eKONsF6tsMhDSecCMNjdZ6Zx0UB",
+    "mc_stats" : "ao9pR9oPt8ZT2e7S82S",
+    "phase_id" : "eryHLq9doxlYVpIXKB7Fg1MTKjQAA",
+    "send_at" : -9223372036854775808,
+    "sg_content_type" : "zakXYlupHWdIKftsrkeh0VPLbiIkCWiLCWqAOlKJ631hneptyHKoyPe3tbKKTTiM0D9AVcxNd1jYT",
+    "sg_event_id" : "Btl75Yf7YeZNP4j",
+    "sg_message_id" : "aX60C6LNxIBQg0uCKi02cz7KigUHNEVtwVo6BdpDNImnsV32p",
+    "sg_template_id" : "APdAeXltPTIsg8NSRu8ZEfApHMDRtyoTnaUmPfuyTe7pL61XtNBTcs0iX7xoc6PLSyNgE",
+    "sg_template_name" : "zAVM0YOAzxK9HqlvTCrdOMk2LHrY4ah2bZhbjmTkKentlwZl81hpvWQ7C9Vqm2C4uXnIW0DVMjziR9ba4rFwwrmj",
+    "singlesend_id" : "Yoj3me0tFM1Hbuw5vDGSAbubsKlYG3iVqyhF0nwc7CRqz1hsNRvvs5bSTeX2drDTF",
+    "singlesend_name" : "XErw1wiYvgne1Om8QXSnU8uYmYc8tyJUeGQGBGkbHoST89DkeIl2siyVAo31bOehHEXSVew4C8Coqy4qM",
+    "template_hash" : "I7aUW5hAP3dSEIObHOJqiNTCdUGTwSrsNYKwVtazYUSSA1qDjepDS3vGZEYToJjXWxnRqaKyyW3VchnAYVrT",
+    "template_id" : "nmD8jjIQ7CoqrIRBbrbf",
+    "template_version_id" : "3hO9sUn4iNQhSHy3yKtQR7WMgsgjoW3gpQ7NfpNR9Dez4egzbYAEwevAIwx9pWhDbCBgaA7Lj5lNQYtl99HSWO",
+    "timestamp" : -603090731906304852,
+    "useragent" : "Kyj3RczSn7sHqzjNj3xZpcQrsukMlfo3urZu1jtWrYKnF5CiKKjEF14TjFve6oSHPeGMW3",
+    "processed" : false,
+    "reason" : "flQy3qyM0fRledG7AT97oy5Frk0g0"
+  }
+]</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "sg_template_id": {
+        "type": "string"
+      },
+      "ip": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "number"
+      },
+      "sg_event_id": {
+        "type": "string"
+      },
+      "useragent": {
+        "type": "string"
+      },
+      "reason": {
+        "type": "string"
+      },
+      "singlesend_id": {
+        "type": "string"
+      },
+      "sg_message_id": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "phase_id": {
+        "type": "string"
+      },
+      "mailUuid": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "event": {
+        "type": "string"
+      },
+      "mc_stats": {
+        "type": "string"
+      },
+      "singlesend_name": {
+        "type": "string"
+      },
+      "sg_content_type": {
+        "type": "string"
+      },
+      "processed": {
+        "type": "boolean"
+      },
+      "sg_template_name": {
+        "type": "string"
+      },
+      "environment": {
+        "type": "string"
+      },
+      "template_hash": {
+        "type": "string"
+      },
+      "template_version_id": {
+        "type": "string"
+      },
+      "template_id": {
+        "type": "string"
+      },
+      "send_at": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "mailUuid",
+      "environment",
+      "email"
+    ]
+  }
+}</pre></td></tr></table>

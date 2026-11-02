@@ -1,0 +1,212 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units/export</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Generate pivot table for work unit entity and exports it as xlxs or csv file - format parameter required - input should be non-empty list of keys and values.
+</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/pivot-tables/work-units/export should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound if service returns OrganizationNotFound -> [404]<br/>return NotFound if service returns NoAccessToOrganization -> [404]<br/>return Forbidden if service returns InsufficientRole -> [403]<br/>return BadRequest if service returns KeysRequired -> [400]<br/>return BadRequest if service returns ValuesRequired -> [400]<br/>return Ok with service data otherwise -> [200]<br/>decode legacy and localized raw requests with fallback or custom entry type column name </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>format [pl.iterators.epoca.export.domain.SpreadsheetDomain.SpreadsheetFormat] <b style='color: red'>*</b></td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units/export?format=Csv</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/pivot-tables/work-units/export?format=Csv</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.export.services.ExportWorkUnitPivotTableService.ExportWorkUnitPivotTableRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "columnNames" : {
+    "year" : null,
+    "monthYear" : null,
+    "date" : null,
+    "userId" : null,
+    "projectId" : null,
+    "clientId" : null,
+    "entriesCount" : null,
+    "durationSum" : null,
+    "durationAvg" : null,
+    "entryType" : null
+  },
+  "pivotRequest" : {
+    "keys" : [
+    ],
+    "values" : [
+    ]
+  },
+  "dateFrom" : null,
+  "dateTo" : null,
+  "projectIds" : [
+  ],
+  "userIds" : [
+  ],
+  "clientIds" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "columnNames" : {
+    "year" : "EkVbI2fZpOPaPwJ1Jkq72G8CfmfqWzIJTMxai3yXdWxEWX1J9TiEhSZClVeX0f2fYJIT6WRYiNW6S",
+    "monthYear" : "c9uK0xyUwEJBMB9cMW1tsiNSW7FjRuXWKk1vX21hZxLYMotPN4rLdBjZIOfRRtTixMyCD1X2WuJjyg3iPRmPJzMC5YG",
+    "date" : "qrjM936nHbjRm9K6ho3ZNkgdx6z1xBGbkZ2RFv5N",
+    "userId" : "LoxssGzpJoGdqxJNVySejhCC96xXQJ7M0KuGCr973sy8OgQmpvUteZjHapNi",
+    "projectId" : "iMcYVTSVI2cbUNKQqnyewJ",
+    "clientId" : "ZlgK8R69ohMFSkpVkwWttilOtP5PICFMluGTE8pZZcxypOUaJnevzEUm9wqJnvlj4iE4n88pa5rs",
+    "entriesCount" : "CnvNU93NDink3GNhvex",
+    "durationSum" : "ia7O7kPE7ZdvjP5jw82DbtHnvKYIdqvS4PvbSwyJkDtYwLk5Kr",
+    "durationAvg" : "fZpNiuzfUhUxd3ukIRDO499N1R9SXs2AU60uSxhB1VLniKXjUivf",
+    "entryType" : "nVdyR4pxzfckEjy1N"
+  },
+  "pivotRequest" : {
+    "keys" : [
+      "EntryTypeKey",
+      "EntryTypeKey",
+      "ProjectKey"
+    ],
+    "values" : [
+      "DurationAvg"
+    ]
+  },
+  "dateFrom" : "2046-11-10",
+  "dateTo" : "2085-11-24",
+  "projectIds" : [
+    "2e07f80c-a78e-4ffc-add3-7fd9e0c59714",
+    "e96e6962-35d5-47d7-965c-cce504956536",
+    "10681fb5-6ef0-4f3d-a365-c3581a14a0ff"
+  ],
+  "userIds" : [
+    "587026b8-aff7-4455-baae-b92f4328f4d7",
+    "ee9ca0f5-bb51-43ef-bd02-f758f2539f53",
+    "dcf30ae2-8ec4-44c1-a676-a0fde4927faa"
+  ],
+  "clientIds" : [
+    "693da3d3-77aa-4ca8-9770-22030b6d0ee2",
+    "614c8439-c7eb-4c48-ac18-802ad3dabf7a"
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "dateTo": {
+      "type": "string",
+      "format": "date"
+    },
+    "pivotRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "UserKey",
+              "ClientKey",
+              "EntryTypeKey",
+              "MonthYearKey",
+              "ProjectKey",
+              "YearKey",
+              "DateKey"
+            ]
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "DurationAvg",
+              "DurationSum",
+              "EntriesCount"
+            ]
+          }
+        }
+      },
+      "required": [
+        "keys",
+        "values"
+      ]
+    },
+    "columnNames": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "monthYear": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "entriesCount": {
+          "type": "string"
+        },
+        "durationSum": {
+          "type": "string"
+        },
+        "entryType": {
+          "type": "string"
+        },
+        "durationAvg": {
+          "type": "string"
+        }
+      }
+    },
+    "projectIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    },
+    "dateFrom": {
+      "type": "string",
+      "format": "date"
+    },
+    "userIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    },
+    "clientIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      }
+    }
+  },
+  "required": [
+    "columnNames",
+    "pivotRequest",
+    "projectIds",
+    "userIds",
+    "clientIds"
+  ]
+}</pre></td></tr></table>

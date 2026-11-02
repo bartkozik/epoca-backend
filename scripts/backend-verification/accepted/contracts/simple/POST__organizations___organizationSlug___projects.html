@@ -1,0 +1,263 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Create new project</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/projects should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return Conflict when service returns ProjectNameNotUnique -> [409]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return ServiceUnavailable with retry guidance when the database lock times out <br/>return InternalServerError without retry guidance for another database failure -> [500]<br/>return Created with service data otherwise -> [201]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>201<br/>400<br/>401<br/>404<br/>409<br/>500</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.services.ProjectCreateService.ProjectCreateRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "name" : "DjXJjCPMzUIPEROYlvoQU",
+  "description" : null,
+  "clientId" : "11f585b8-7210-4303-901e-ea83df813a9a",
+  "ownerIds" : [
+  ],
+  "memberIds" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "name" : "SjHOMVEtMeacpimvnrdOnSeq",
+  "description" : "9Fmnh1asWR94RUkrz0mAaRmRVppRgTbhWfhaQE1dStx8EC54ptTQpFg0U2IjgCMY7yxwxShEnP",
+  "clientId" : "70ee2dcd-1f10-45f5-a677-45a97b1fa86e",
+  "ownerIds" : [
+    "4c6b426b-2bef-4311-9905-eac7644dfc82",
+    "b0a4da27-0ea6-4117-8766-447baa300d72",
+    "58f165dc-f83d-4162-bd37-e63c30810bb0"
+  ],
+  "memberIds" : [
+    "c78be106-aaee-4c2f-8cf8-d725fe0f4b2a",
+    "9b851a27-eed9-466a-b3f4-ddb57f112bb6",
+    "e246e62c-f33b-4d6e-ac11-dec7c3bae188"
+  ]
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "memberIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "uniqueItems": true
+    },
+    "ownerIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      },
+      "uniqueItems": true
+    },
+    "clientId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "name",
+    "clientId",
+    "ownerIds",
+    "memberIds"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.services.ProjectDtoService.ProjectDto</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "f7b24812-09ae-4d32-bd31-79363fde6716",
+  "name" : "EYZgwBpeoDh",
+  "description" : null,
+  "client" : null,
+  "projectUsers" : [
+  ],
+  "organizationId" : "fea21bfc-df2f-4267-b51a-7d6132294b0e",
+  "createdAt" : "2026-07-18T17:54:48.186Z",
+  "createdBy" : "789c69aa-0fa0-498a-9da3-1b18abe9e793",
+  "modifiedAt" : "2026-07-25T00:02:04.519Z",
+  "modifiedBy" : "26d9ed6d-ba0a-410d-9c07-d2e8afbcebe8",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "945adcea-9515-4a69-9fad-5659deabd764",
+  "name" : "gUCYuIziziWptBpWVSEMuPuokCleAoVUmdSDwyDsFwyqXKJBGeIPpCWCAVTqVzUmeWIDMjo",
+  "description" : "FazFKZWFZBe",
+  "client" : {
+    "id" : "edc8d37a-6b0a-4f11-ab1c-3ce3eaac2c52",
+    "name" : "dTngBudpMs",
+    "color" : "#ffffff",
+    "type" : "External",
+    "texture" : "tgxqSNSujdHWso6CK2rmXmt4Kdd3n4CqNFCE7SW6FgQVnaJFKP3kniCALyyb"
+  },
+  "projectUsers" : [
+    {
+      "id" : "5acdc23e-435d-4384-9647-be82b29ab22e",
+      "role" : "Member",
+      "firstName" : "isWlIVFQOROQsVhLpmAjwBIBhP",
+      "lastName" : "LbdvUGUwUdEWwzLiNdXbYKZxANwzxRjLWzMMlgX",
+      "avatar" : "39l7AURHKY1DTg",
+      "archivedAt" : "2026-07-18T17:54:48.192Z"
+    }
+  ],
+  "organizationId" : "a4a619c1-ff1f-444c-bd14-fc5d7d827dcd",
+  "createdAt" : "2026-07-18T17:54:48.193Z",
+  "createdBy" : "1d3cd33a-ad1c-4d72-9725-ebfa3578625f",
+  "modifiedAt" : "2026-07-25T23:12:14.124Z",
+  "modifiedBy" : "d3441e9e-c300-4a93-8577-e626b74ac5c1",
+  "archivedAt" : "2026-07-28T04:15:46.004Z",
+  "archivedBy" : "74d38ef2-3bb6-45ee-a575-179841c928a8"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "projectUsers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "avatar": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Member",
+              "Owner"
+            ]
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "firstName",
+          "lastName"
+        ]
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "External",
+            "Internal"
+          ]
+        },
+        "texture": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "color",
+        "type",
+        "texture"
+      ]
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "projectUsers",
+    "organizationId",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

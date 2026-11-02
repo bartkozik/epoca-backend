@@ -1,0 +1,83 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/auth/token</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Login user by token</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /auth/token should <br/>returns BadRequest when incoming request is not json -> [400]<br/>returns BadRequest when incoming request is empty json -> [400]<br/>returns Unauthorized when service returns UserOrPasswordNotFound -> [401]<br/>returns Unauthorized when service returns InvalidCredentials -> [401]<br/>returns Conflict when service returns TokenExpired -> [409]<br/>returns Ok when service returns Ok -> [200]<br/>returns Ok when service returns Ok for logged user as well -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401<br/>409</td></tr>
+<tr><td><b>HEADERS</b></td><td>device-id<b style='color: red'>*</b></td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginByTokenService.LoginByTokenRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "email" : null,
+  "phoneNumber" : null,
+  "token" : "2"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "email" : "nBKsiCEWZKHv@JQ0vHhVHHl.OHyjLSad0kSN",
+  "phoneNumber" : "5ChHp9KJLmuLaj2bSR9FWr11EVxwclxHe1T01e5LNoc4jBJSR8Xz",
+  "token" : "XxKh1ubHmTeQ2HWdFsD6VbpOM8ILBd1RtBFulUgGBV7u7jZZl8FMCfgGYBiF7eB4juCsfH5hM8GAr86"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "token"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.auth.services.LoginResolveService.LoginResolution</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "accessToken" : "UI7TyFrRJVB9z1a9SdJ1l1pJq",
+  "refreshToken" : "LUvfR30SNekpLSrJfue2rn0VZeNOtmtkN"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "accessToken" : "zhQVydlaJixKZITamKX9v9zINJLpiFfyFxYc8Rs4umBvJQaz0SSHaDzk5qIAkaWnT96HxOYwIlzHp65rqsB3",
+  "refreshToken" : "OCG4qpcwEWBX2K5RM7LSyDUXOiv7ltFHdznk1h1ZCVpGeBmo3tb8pSmASmHulD4SEgJjTL3dzkkM3zt8uWK68HDGq5vjfcva"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "accessToken": {
+      "type": "string"
+    },
+    "refreshToken": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "accessToken",
+    "refreshToken"
+  ]
+}</pre></td></tr></table>

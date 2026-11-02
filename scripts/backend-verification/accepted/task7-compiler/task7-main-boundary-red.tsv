@@ -1,0 +1,988 @@
+src/main/scala/pl/iterators/epoca/archiver/routers/ClientArchiverRouter.scala	14:28|parameter clientDeleteService in class ClientArchiverRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/archiver/routers/ClientArchiverRouter.scala	14:79|parameter runtime in class ClientArchiverRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/archiver/routers/ClientArchiverRouter.scala	18:44|value as is not a member of object ClientArchiverRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/archiver/routers/ClientArchiverRouter.scala	19:41|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/archiver/services/ClientDeleteService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/RefreshTokenRepositoryImpl.scala	15:43|parameter e in class RefreshTokenRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/RefreshTokenRepositoryImpl.scala	20:11|value insertOrUpdate is not a member of slick.lifted.TableQuery[pl.iterators.epoca.auth.repositories.tables.RefreshTokenTable]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/RefreshTokenRepositoryImpl.scala	23:17|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/RefreshTokenRepositoryImpl.scala	28:33|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/RefreshTokenRepositoryImpl.scala	32:65|type arguments [pl.iterators.epoca.auth.repositories.tables.RefreshTokenTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/RefreshTokenRepositoryImpl.scala	8:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	12:45|parameter e in class UserLoginTokenRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	15:12|value += is not a member of slick.lifted.TableQuery[pl.iterators.epoca.auth.repositories.tables.UserLoginTokenTable]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	23:15|private method filter in class UserLoginTokenRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	23:55|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	25:29|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	29:13|value validTo is not a member of Any	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	29:37|value validTo is not a member of Any	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	32:20|private val table in class UserLoginTokenRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	32:61|type arguments [pl.iterators.epoca.auth.repositories.tables.UserLoginTokenTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserLoginTokenRepositoryImpl.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserPasswordRepositoryImpl.scala	12:43|parameter e in class UserPasswordRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserPasswordRepositoryImpl.scala	15:11|value insertOrUpdate is not a member of slick.lifted.TableQuery[pl.iterators.epoca.auth.repositories.tables.UserPasswordTable]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserPasswordRepositoryImpl.scala	18:17|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserPasswordRepositoryImpl.scala	20:20|private val table in class UserPasswordRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserPasswordRepositoryImpl.scala	20:59|type arguments [pl.iterators.epoca.auth.repositories.tables.UserPasswordTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/UserPasswordRepositoryImpl.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	10:30|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	17:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	17:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	18:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	18:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	19:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	19:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	20:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	20:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	21:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	21:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	22:21|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	22:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	23:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	23:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	24:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	24:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/RefreshTokenTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	14:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	14:40|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	16:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	16:45|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	18:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	18:41|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	20:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	20:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserLoginTokenTable.scala	9:32|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserPasswordTable.scala	14:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserPasswordTable.scala	16:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserPasswordTable.scala	16:45|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserPasswordTable.scala	18:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserPasswordTable.scala	18:37|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserPasswordTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/repositories/tables/UserPasswordTable.scala	9:30|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/routers/AuthRouter.scala	140:38|value as is not a member of object AuthRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/routers/AuthRouter.scala	32:3|parameter adminImpersonateLoginService in class AuthRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/routers/AuthRouter.scala	33:3|parameter passwordSetService in class AuthRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/routers/AuthRouter.scala	35:3|parameter timeBasedOneTimePasswordSecretGetService in class AuthRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/routers/AuthRouter.scala	36:3|parameter refreshTokenDeleteService in class AuthRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/routers/AuthRouter.scala	37:3|parameter refreshTokenListService in class AuthRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByFirebaseService.scala	65:24|parameter prevAuthContext in method findUser is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByFirebaseService.scala	71:15|missing parameter type	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByPasswordService.scala	32:3|parameter userRepository in class LoginByPasswordService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByPasswordService.scala	33:3|parameter userPasswordRepository in class LoginByPasswordService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByPasswordService.scala	71:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByPasswordService.scala	98:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByRefreshTokenService.scala	32:3|parameter refreshTokenRepository in class LoginByRefreshTokenService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByRefreshTokenService.scala	64:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByTimeBasedOneTimePasswordService.scala	32:3|parameter userIdentityRepository in class LoginByTimeBasedOneTimePasswordService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByTimeBasedOneTimePasswordService.scala	63:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByTokenService.scala	71:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginByTokenService.scala	80:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginTokenGetService.scala	34:3|parameter userRepository in class LoginTokenGetService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/auth/services/LoginTokenGetService.scala	67:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	20:28|parameter config in class ClientRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	25:24|private val setUuid in class ClientRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	29:69|type arguments [pl.iterators.epoca.client.repositories.tables.ClientTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	31:79|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.client.domain.ClientDomain.ClientId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	33:20|private val orgUserTable in class ClientRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	33:70|type arguments [pl.iterators.epoca.organization.repositories.tables.OrganizationUserTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	35:46|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	38:15|private method setTransactionLockTimeout in class ClientRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	38:42|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	39:5|value sql is not a member of StringContext	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	44:53|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	45:9|local val rawClientId in method lockForMutation is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	52:114|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	52:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/ClientRepositoryImpl.scala	9:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	10:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	12:24|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	14:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	14:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	15:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	15:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	16:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	16:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	17:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	17:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	18:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	18:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	19:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	19:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	20:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	20:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	21:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	21:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	22:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	22:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	23:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	23:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	24:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	24:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	25:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	25:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	26:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	26:51|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	28:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/repositories/tables/ClientTable.scala	7:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/routers/ClientRouter.scala	18:3|parameter clientCreateService in class ClientRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/routers/ClientRouter.scala	19:3|parameter clientListService in class ClientRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/routers/ClientRouter.scala	20:3|parameter clientUpdateService in class ClientRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/routers/ClientRouter.scala	21:12|parameter runtime in class ClientRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/routers/ClientRouter.scala	26:44|value as is not a member of object ClientRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/routers/ClientRouter.scala	54:31|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/services/ClientCreateService.scala	28:3|parameter organizationRepository in class ClientCreateService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/services/ClientCreateService.scala	55:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/services/ClientCreateService.scala	67:10|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/services/ClientCreateService.scala	78:16|missing parameter type for expanded function ((<x$5: error>) => x$5.isEmpty)	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/services/ClientCreateService.scala	78:8|a type was inferred to be `Any`; this may indicate a programming error.	boundary-cascade
+src/main/scala/pl/iterators/epoca/client/services/ClientListService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	16:3|parameter exportWorkUnitService in class ExportRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	17:3|parameter exportWorkUnitPivotTableService in class ExportRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	18:12|parameter runtime in class ExportRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	24:44|value as is not a member of object ExportRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	50:21|private val organizationsPath in object ExportRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	51:21|private val workUnitPath in object ExportRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	52:21|private val exportPath in object ExportRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/export/routers/ExportRouter.scala	53:21|private val pivotPath in object ExportRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/healthcheck/repositories/HealthRepositoryImpl.scala	11:5|value sql is not a member of StringContext	boundary-cascade
+src/main/scala/pl/iterators/epoca/healthcheck/repositories/HealthRepositoryImpl.scala	4:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/healthcheck/repositories/HealthRepositoryImpl.scala	9:28|parameter config in class HealthRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/healthcheck/repositories/HealthRepositoryImpl.scala	9:53|parameter e in class HealthRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	13:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	22:73|type arguments [pl.iterators.epoca.invitation.repositories.tables.InvitationTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	24:83|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.invitation.domain.InvitationDomain.InvitationId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	26:20|private val orgUserTable in class InvitationRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	26:70|type arguments [pl.iterators.epoca.organization.repositories.tables.OrganizationUserTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	28:50|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	31:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	32:7|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/InvitationRepositoryImpl.scala	8:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	10:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	12:28|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	17:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	17:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	18:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	18:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	19:21|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	19:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	20:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	20:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	21:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	21:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	22:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	22:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	23:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	23:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	24:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	24:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	25:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	25:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	26:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	26:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	27:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	27:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	28:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	28:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	29:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	29:55|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	31:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/repositories/tables/InvitationTable.scala	7:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/routers/InvitationRouter.scala	25:3|parameter organizationInvitationCreateService in class InvitationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/routers/InvitationRouter.scala	26:3|parameter organizationInvitationListService in class InvitationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/routers/InvitationRouter.scala	27:3|parameter organizationInvitationDeleteService in class InvitationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/routers/InvitationRouter.scala	44:48|value as is not a member of object InvitationRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/routers/InvitationRouter.scala	64:31|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/InvitationAcceptService.scala	21:3|parameter transactor in class InvitationAcceptService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/InvitationAcceptService.scala	57:17|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/InvitationAcceptService.scala	62:15|private method updateInvitation in class InvitationAcceptService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/InvitationAcceptService.scala	78:15|private method insertUser in class InvitationAcceptService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationCreateService.scala	34:3|parameter organizationRepository in class OrganizationInvitationCreateService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationCreateService.scala	66:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationDeleteService.scala	25:3|parameter transactor in class OrganizationInvitationDeleteService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationDeleteService.scala	27:3|parameter organizationRepository in class OrganizationInvitationDeleteService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationDeleteService.scala	28:3|parameter invitationRepository in class OrganizationInvitationDeleteService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationDeleteService.scala	50:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationDeleteService.scala	71:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationDeleteService.scala	87:8|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationListService.scala	25:3|parameter organizationRepository in class OrganizationInvitationListService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/invitation/services/OrganizationInvitationListService.scala	46:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/MailHistoryRepositoryImpl.scala	16:42|parameter ec in class MailHistoryRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/MailHistoryRepositoryImpl.scala	18:24|private val setUuid in class MailHistoryRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/MailHistoryRepositoryImpl.scala	19:24|private val setInstantOption in class MailHistoryRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/MailHistoryRepositoryImpl.scala	48:5|value sqlu is not a member of StringContext	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/MailHistoryRepositoryImpl.scala	69:15|private val table in class MailHistoryRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/MailHistoryRepositoryImpl.scala	69:23|type arguments [pl.iterators.epoca.mail.repositories.tables.MailHistoryTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/MailHistoryRepositoryImpl.scala	6:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/SendgridMailEventRepositoryImpl.scala	12:48|parameter ec in class SendgridMailEventRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/SendgridMailEventRepositoryImpl.scala	37:15|private val table in class SendgridMailEventRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/SendgridMailEventRepositoryImpl.scala	37:23|type arguments [pl.iterators.epoca.mail.repositories.tables.SendgridMailEventTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/SendgridMailEventRepositoryImpl.scala	6:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	13:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	13:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	14:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	14:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	15:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	15:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	16:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	16:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	17:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	17:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	18:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	18:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	19:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	19:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	20:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	20:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	4:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/MailHistoryTable.scala	9:29|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	10:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	10:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	11:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	11:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	12:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	12:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	13:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	13:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	14:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	14:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	15:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	15:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	16:24|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	16:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	17:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	17:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	18:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	18:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	19:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	19:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	20:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	20:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	21:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	21:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	22:24|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	22:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	23:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	23:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	24:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	24:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	25:28|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	25:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	26:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	26:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	27:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	27:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	28:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	28:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	29:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	29:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	4:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	6:35|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	6:48|not found: type Table	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	6:73|no arguments allowed for nullary constructor Object: (): Object	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	8:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	8:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	9:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/mail/repositories/tables/SendgridMailEventTable.scala	9:50|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	10:38|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	10:56|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	10:78|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	12:109|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	12:41|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	12:65|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	12:81|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	24:7|pattern var actorSystem in value $anonfun is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	32:7|pattern var httpClient in value $anonfun is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/main/Main.scala	57:64|constructor cannot be instantiated to expected type;	boundary-cascade
+src/main/scala/pl/iterators/epoca/metrics/services/MetricsFrontendErrorService.scala	13:32|object noflat is not a member of package pl.iterators.kebs.circe	kebs-package
+src/main/scala/pl/iterators/epoca/metrics/services/MetricsFrontendErrorService.scala	39:4|not found: type noflat	kebs-package
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	20:75|type arguments [pl.iterators.epoca.organization.repositories.tables.OrganizationTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	22:85|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.organization.domain.OrganizationDomain.OrganizationId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	24:20|private val orgUserTable in class OrganizationRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	24:70|type arguments [pl.iterators.epoca.organization.repositories.tables.OrganizationUserTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	26:52|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	29:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	30:7|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	5:98|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationRepositoryImpl.scala	7:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationUserRepositoryImpl.scala	19:60|type arguments [pl.iterators.epoca.organization.repositories.tables.OrganizationUserTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationUserRepositoryImpl.scala	21:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationUserRepositoryImpl.scala	22:7|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationUserRepositoryImpl.scala	36:89|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.organization.domain.OrganizationDomain.OrganizationUserId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/OrganizationUserRepositoryImpl.scala	7:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	11:30|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	16:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	16:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	17:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	17:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	18:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	18:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	19:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	19:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	20:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	20:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	21:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	21:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	22:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	22:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	23:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	23:57|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	25:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationTable.scala	9:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	11:34|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	16:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	16:61|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	17:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	17:61|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	18:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	18:61|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	19:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	19:61|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	20:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	20:61|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	21:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/repositories/tables/OrganizationUserTable.scala	9:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	21:3|parameter organizationCreateService in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	22:3|parameter organizationListService in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	23:3|parameter organizationUpdateService in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	24:3|parameter organizationDeleteService in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	25:3|parameter organizationFindService in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	26:3|parameter organizationUserAssignService in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	27:3|parameter organizationUserDeassignService in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	28:12|parameter runtime in class OrganizationRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/routers/OrganizationRouter.scala	59:32|value as is not a member of object OrganizationRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationCreateService.scala	26:3|parameter config in class OrganizationCreateService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationCreateService.scala	50:16|parameter limit in anonymous function is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationCreateService.scala	54:14|a type was inferred to be `Any`; this may indicate a programming error.	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationCreateService.scala	55:15|missing parameter type	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationCreateService.scala	56:15|missing parameter type	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationCreateService.scala	70:16|missing parameter type for expanded function ((<x$5: error>) => x$5.isEmpty)	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationCreateService.scala	70:8|a type was inferred to be `Any`; this may indicate a programming error.	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationDeleteService.scala	51:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationDeleteService.scala	55:14|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUpdateService.scala	48:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUpdateService.scala	52:14|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserAssignService.scala	25:3|parameter organizationRepository in class OrganizationUserAssignService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserAssignService.scala	59:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserAssignService.scala	87:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserDeassignService.scala	25:3|parameter organizationRepository in class OrganizationUserDeassignService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserDeassignService.scala	53:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserDeassignService.scala	87:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserMembershipService.scala	19:3|parameter organizationRepository in class OrganizationUserMembershipService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserMembershipService.scala	42:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserMembershipService.scala	50:14|constructor cannot be instantiated to expected type;	boundary-cascade
+src/main/scala/pl/iterators/epoca/organization/services/OrganizationUserMembershipService.scala	54:14|pattern type is incompatible with expected type;	boundary-cascade
+src/main/scala/pl/iterators/epoca/organizationdashboard/routers/OrganizationDashboardRouter.scala	16:3|parameter organizationUserDetailsService in class OrganizationDashboardRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organizationdashboard/routers/OrganizationDashboardRouter.scala	17:3|parameter organizationUserListService in class OrganizationDashboardRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organizationdashboard/routers/OrganizationDashboardRouter.scala	18:12|parameter runtime in class OrganizationDashboardRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/organizationdashboard/routers/OrganizationDashboardRouter.scala	23:44|value as is not a member of object OrganizationDashboardRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/organizationdashboard/routers/OrganizationDashboardRouter.scala	24:28|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/organizationdashboard/services/OrganizationUserDetailsService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/organizationdashboard/services/OrganizationUserListService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	21:70|type arguments [pl.iterators.epoca.project.repositories.tables.ProjectTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	23:80|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.project.domain.ProjectDomain.ProjectId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	25:20|private val projectUserTable in class ProjectRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	25:69|type arguments [pl.iterators.epoca.project.repositories.tables.ProjectUserTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	27:47|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	30:41|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	31:5|value sqlu is not a member of StringContext	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	33:53|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	36:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	37:7|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	64:6|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectRepositoryImpl.scala	8:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	20:64|type arguments [pl.iterators.epoca.project.repositories.tables.ProjectUserTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	23:15|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.project.domain.ProjectDomain.ProjectUserId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	25:50|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	26:12|value += is not a member of slick.lifted.TableQuery[pl.iterators.epoca.project.repositories.tables.ProjectUserTable]	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	28:56|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	29:12|value ++= is not a member of slick.lifted.TableQuery[pl.iterators.epoca.project.repositories.tables.ProjectUserTable]	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	31:94|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	32:17|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	34:57|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	37:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	38:7|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	44:108|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	44:15|private method filtered in class ProjectUserRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	44:36|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/ProjectUserRepositoryImpl.scala	7:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	11:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	13:25|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	15:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	15:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	16:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	16:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	17:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	17:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	18:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	18:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	19:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	19:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	20:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	20:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	21:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	21:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	22:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	22:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	23:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	23:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	24:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	24:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	25:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	25:54|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	27:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectTable.scala	8:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	11:29|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	16:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	16:56|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	17:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	17:56|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	18:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	18:56|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	19:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	19:56|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	20:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	20:56|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	21:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	21:56|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	23:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/repositories/tables/ProjectUserTable.scala	9:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	100:33|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	128:53|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	26:3|parameter projectCreateService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	27:3|parameter projectListService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	28:3|parameter projectFindService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	29:3|parameter projectUpdateService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	30:3|parameter projectDeleteService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	31:3|parameter projectAssignService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	32:3|parameter projectDeassignService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	33:3|parameter projectBulkAssignService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	34:3|parameter projectBulkDeassignService in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	35:12|parameter runtime in class ProjectRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	41:44|value as is not a member of object ProjectRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/routers/ProjectRouter.scala	71:31|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	107:125|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	107:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	148:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectAssignService.scala	152:14|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectBulkDeassignService.scala	6:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	113:125|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	113:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	119:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectDeassignService.scala	123:14|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectFindService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectListService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectUpdateService.scala	164:8|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[Object,slick.dbio.NoStream,E with slick.dbio.Effect.All],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/project/services/ProjectUpdateService.scala	172:14|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlConfigRepositoryImpl.scala	18:75|type arguments [pl.iterators.epoca.saml.repositories.tables.SamlConfigTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlConfigRepositoryImpl.scala	20:85|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.organization.domain.OrganizationDomain.OrganizationId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlConfigRepositoryImpl.scala	6:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlRequestRepositoryImpl.scala	17:74|type arguments [pl.iterators.epoca.saml.repositories.tables.SamlRequestTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlRequestRepositoryImpl.scala	19:84|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.saml.domain.SamlDomain.SamlRequestId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlRequestRepositoryImpl.scala	21:44|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlRequestRepositoryImpl.scala	21:84|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/SamlRequestRepositoryImpl.scala	6:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	11:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	11:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	12:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	12:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	13:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	13:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	14:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	14:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	15:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	15:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	16:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	16:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	17:35|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	17:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	18:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	18:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	19:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	19:73|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlConfigTable.scala	9:28|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	11:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	11:46|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	12:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	12:46|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	13:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	13:46|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	14:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	14:46|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	15:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	15:46|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/repositories/tables/SamlRequestTable.scala	9:29|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	117:15|private method extractLoginHttpRequestContext in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	21:3|parameter samlConfigXmlService in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	22:3|parameter samlAuthnService in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	23:3|parameter samlLoginService in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	24:3|parameter samlAuthorizeService in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	25:3|parameter samlConfigUpsertService in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	26:3|parameter samlConfigGetService in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	27:12|parameter runtime in class SamlRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	32:44|value as is not a member of object SamlRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/routers/SamlRouter.scala	56:44|value as is not a member of object SamlRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthnService.scala	24:3|parameter organizationRepository in class SamlAuthnService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthnService.scala	45:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthnService.scala	53:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	102:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	138:14|local val defaultOrgUser in method findOrCreateOrganizationUser is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	144:17|missing parameter type for expanded function	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	158:31|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	27:3|parameter transactor in class SamlAuthorizeService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	28:3|parameter organizationRepository in class SamlAuthorizeService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	29:3|parameter organizationUserRepository in class SamlAuthorizeService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	30:3|parameter samlConfigRepository in class SamlAuthorizeService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	4:35|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	64:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlAuthorizeService.scala	74:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigGetService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigUpsertService.scala	73:12|inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[pl.iterators.epoca.saml.services.SamlConfigUpsertService.SamlConfigUpsertResult.PermissionsAreTooLow.type,slick.dbio.NoStream,E],Nothing,slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type ADT,type ADT1).	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigUpsertService.scala	79:18|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigXmlService.scala	20:3|parameter transactor in class SamlConfigXmlService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigXmlService.scala	23:3|parameter organizationRepository in class SamlConfigXmlService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigXmlService.scala	41:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlConfigXmlService.scala	49:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlFindOrCreateUserService.scala	44:17|missing parameter type for expanded function	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlLoginService.scala	31:3|parameter organizationRepository in class SamlLoginService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlLoginService.scala	66:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlLoginService.scala	75:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/saml/services/SamlLoginService.scala	87:8|value valueOrF is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/repositories/WorkUnitPivotQuerySql.scala	278:13|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	22:3|parameter workUnitPivotTableService in class StatsRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	23:3|parameter workUnitPivotQueryService in class StatsRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	24:12|parameter runtime in class StatsRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	29:44|value as is not a member of object StatsRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	93:21|private val organizationsPath in object StatsRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	94:21|private val workUnitPath in object StatsRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	95:21|private val pivotPath in object StatsRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/routers/StatsRouter.scala	96:21|private val queryPath in object StatsRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/services/WorkUnitPivotQueryService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/stats/services/WorkUnitPivotTableService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ClientUnarchiverRouter.scala	14:30|parameter clientUnarchiveService in class ClientUnarchiverRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ClientUnarchiverRouter.scala	14:87|parameter runtime in class ClientUnarchiverRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ClientUnarchiverRouter.scala	18:44|value as is not a member of object ClientUnarchiverRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ClientUnarchiverRouter.scala	19:41|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ProjectUnarchiverRouter.scala	14:31|parameter projectUnarchiveService in class ProjectUnarchiverRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ProjectUnarchiverRouter.scala	14:90|parameter runtime in class ProjectUnarchiverRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ProjectUnarchiverRouter.scala	18:44|value as is not a member of object ProjectUnarchiverRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/routers/ProjectUnarchiverRouter.scala	19:42|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/services/ClientUnarchiveService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/unarchiver/services/ProjectUnarchiveService.scala	5:23|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserIdentityRepositoryImpl.scala	22:85|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.user.domain.UserDomain.UserIdentityId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserIdentityRepositoryImpl.scala	29:29|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserIdentityRepositoryImpl.scala	42:24|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserIdentityRepositoryImpl.scala	44:65|type arguments [pl.iterators.epoca.user.repositories.tables.UserIdentityTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserIdentityRepositoryImpl.scala	7:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	21:77|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.user.domain.UserDomain.UserId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	27:29|ambiguous implicit values:	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	29:39|parameter param in anonymous function is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	34:45|parameter param in anonymous function is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	3:51|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	4:46|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	54:57|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	55:24|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	66:71|type arguments [pl.iterators.epoca.user.repositories.tables.UserTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	67:20|private val userIdentityTable in class UserRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	67:71|type arguments [pl.iterators.epoca.user.repositories.tables.UserIdentityTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/UserRepositoryImpl.scala	7:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	11:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	11:42|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	13:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	13:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	14:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	14:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	15:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	15:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	16:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	16:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	17:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	17:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	18:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	18:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	19:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	19:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	20:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	20:69|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserIdentityTable.scala	9:30|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	10:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	10:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	11:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	11:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	12:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	12:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	13:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	13:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	14:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	14:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	15:21|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	15:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	16:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	16:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	17:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	17:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	18:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	18:49|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	5:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/repositories/tables/UserTable.scala	8:22|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	18:3|parameter userIdentityConfirmService in class UserIdentityRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	19:3|parameter userIdentityCreateService in class UserIdentityRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	20:3|parameter userIdentityDeleteService in class UserIdentityRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	21:3|parameter userIdentityListService in class UserIdentityRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	22:3|parameter userIdentitySetMainService in class UserIdentityRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	23:12|parameter runtime in class UserIdentityRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	41:31|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserIdentityRouter.scala	69:15|private val mainPath in object UserIdentityRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserRouter.scala	22:3|parameter userDeleteService in class UserRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserRouter.scala	23:3|parameter userFindService in class UserRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserRouter.scala	24:3|parameter userListService in class UserRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserRouter.scala	25:3|parameter userUpdateService in class UserRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/routers/UserRouter.scala	46:31|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserCreateService.scala	95:16|missing parameter type for expanded function ((<x$10: error>) => x$10.isEmpty)	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserDeleteService.scala	41:73|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserFindService.scala	16:23|parameter transactor in class UserFindService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserFindService.scala	16:57|parameter userRepository in class UserFindService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserFindService.scala	32:73|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserIdentityCreateService.scala	145:15|private method send in class UserIdentityCreateService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserIdentityCreateService.scala	29:3|parameter transactor in class UserIdentityCreateService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserIdentityCreateService.scala	51:39|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserUpdateService.scala	17:25|parameter transactor in class UserUpdateService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserUpdateService.scala	17:59|parameter userRepository in class UserUpdateService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserUpdateService.scala	39:73|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserUpdateService.scala	51:53|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserWithIdentitiesFindService.scala	17:3|parameter userRepository in class UserWithIdentitiesFindService is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/user/services/UserWithIdentitiesFindService.scala	30:73|value valueOr is not a member of cats.effect.IO[Nothing]	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/config/package.scala	3:26|object macros is not a member of package pl.iterators.kebs	kebs-package
+src/main/scala/pl/iterators/epoca/utils/config/package.scala	3:33|Unused import	kebs-package
+src/main/scala/pl/iterators/epoca/utils/config/package.scala	7:59|not found: type CaseClass1Rep	kebs-package
+src/main/scala/pl/iterators/epoca/utils/config/package.scala	9:59|not found: type CaseClass1Rep	kebs-package
+src/main/scala/pl/iterators/epoca/utils/db/BaseTable.scala	3:30|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/BaseTable.scala	3:35|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/BaseTable.scala	5:34|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/BaseTable.scala	5:66|not found: type Table	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/BaseTable.scala	5:75|no arguments allowed for nullary constructor Object: (): Object	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	114:60|type DatabaseDef is not a member of slick.basic.BasicBackend	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	120:68|type DatabaseDef is not a member of slick.basic.BasicBackend	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	125:82|type DatabaseDef is not a member of slick.basic.BasicBackend	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/DBIOInstances.scala	130:62|type DatabaseDef is not a member of slick.basic.BasicBackend	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/FilteringRepository.scala	11:24|not found: type TableQuery	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/FilteringRepository.scala	13:33|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/FilteringRepository.scala	16:33|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/FilteringRepository.scala	3:29|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/FilteringRepository.scala	7:49|not found: type Table	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/FilteringRepository.scala	9:101|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/FilteringRepository.scala	9:48|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	10:18|local val idbtt in method find is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	11:18|local val fidbtt in method find is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	15:35|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	16:18|local val fidbtt in method list is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	20:41|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	21:18|local val fidbtt in method list is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	25:24|not found: type TableQuery	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	5:29|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/ForeignIdRepository.scala	9:43|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	14:23|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	17:29|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	20:21|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	21:18|local val btt in method find is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	25:20|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	26:18|local val btt in method get is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	30:15|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	32:27|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	33:18|local val btt in method list is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	37:31|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	38:18|local val btt in method update is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	39:18|local val ecc in method update is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	46:42|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	47:18|local val btt in method update is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	48:18|local val ecc in method update is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	63:26|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	64:18|local val btt in method purgeById is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	68:22|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	71:24|not found: type TableQuery	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/IdRepository.scala	7:29|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresDriver.scala	14:22|type mismatch;	slick-profile-api
+src/main/scala/pl/iterators/epoca/utils/db/PostgresDriver.scala	17:15|not found: type API	slick-profile-api
+src/main/scala/pl/iterators/epoca/utils/db/PostgresDriver.scala	21:12|not found: type DateTimeImplicits	slick-profile-api
+src/main/scala/pl/iterators/epoca/utils/db/PostgresDriver.scala	24:12|not found: type Kebs	kebs-package
+src/main/scala/pl/iterators/epoca/utils/db/PostgresDriver.scala	25:12|not found: type KebsEnums	kebs-package
+src/main/scala/pl/iterators/epoca/utils/db/PostgresDriver.scala	4:26|object Kebs is not a member of package pl.iterators.kebs	kebs-package
+src/main/scala/pl/iterators/epoca/utils/db/PostgresDriver.scala	5:32|object KebsEnums is not a member of package pl.iterators.kebs.enums	kebs-package
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	12:28|parameter db in class PostgresIOTransactor is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	12:32|not found: type Database	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	12:51|parameter runtime in class PostgresIOTransactor is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	12:90|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	13:41|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	13:57|not found: value DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	14:38|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	14:57|not found: value DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	15:32|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	18:33|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	19:39|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	20:48|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	21:71|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	24:15|private method isolationLevelToTransactionIsolation in class PostgresIOTransactor is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/PostgresIOTransactor.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	14:6|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	15:18|local val btt in method find is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	20:46|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	23:53|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	26:38|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	33:6|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	34:18|local val btt in method list is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	38:52|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	41:89|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	42:18|local val btt in method delete is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	43:9|local val normalizedWhen in method delete is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	48:82|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteRepository.scala	8:29|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteTable.scala	11:36|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteTable.scala	13:33|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteTable.scala	15:34|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteTable.scala	3:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteTable.scala	7:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/SoftDeleteTable.scala	9:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/UpsertRepository.scala	3:29|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/UpsertRepository.scala	7:23|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/db/UpsertRepository.scala	9:24|not found: type TableQuery	boundary-cascade
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	23:26|object matchers is not a member of package pl.iterators.kebs	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	23:35|Unused import	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	24:26|object unmarshallers is not a member of package pl.iterators.kebs	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	24:40|Unused import	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	25:26|object unmarshallers is not a member of package pl.iterators.kebs	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	25:46|Unused import	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	37:10|not found: type KebsMatchers	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	38:10|not found: type KebsUnmarshallers	kebs-package
+src/main/scala/pl/iterators/epoca/utils/http/BaseRouter.scala	39:10|not found: type KebsEnumUnmarshallers	kebs-package
+src/main/scala/pl/iterators/epoca/utils/json/JsonProtocol.scala	10:10|not found: value KebsCirce	kebs-package
+src/main/scala/pl/iterators/epoca/utils/json/JsonProtocol.scala	11:10|not found: type KebsEnumFormats	kebs-package
+src/main/scala/pl/iterators/epoca/utils/json/JsonProtocol.scala	4:44|object KebsEnumFormats is not a member of package pl.iterators.kebs.circe	kebs-package
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	112:15|private method matchesScope in class WorkUnitIdempotencyRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	112:93|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	115:15|private method decode in class WorkUnitIdempotencyRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	11:3|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	25:24|private val setUuid in class WorkUnitIdempotencyRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	28:24|private val setOptionalUuid in class WorkUnitIdempotencyRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	35:24|private val setJson in class WorkUnitIdempotencyRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	38:24|private val setInstant in class WorkUnitIdempotencyRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	41:15|private val table in class WorkUnitIdempotencyRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	41:23|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitIdempotencyTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	4:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitIdempotencyRepositoryImpl.scala	98:5|value sqlu is not a member of StringContext	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitOrderRepositoryImpl.scala	18:66|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitOrderTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitOrderRepositoryImpl.scala	19:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitOrderRepositoryImpl.scala	20:7|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitOrderRepositoryImpl.scala	3:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	10:15|private val table in class WorkUnitPmClassificationHistoryRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	10:23|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitPmClassificationHistoryTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	12:64|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	15:71|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	19:8|value result is not a member of slick.lifted.Query[pl.iterators.epoca.workunit.repositories.tables.WorkUnitPmClassificationHistoryTable,pl.iterators.epoca.workunit.domain.WorkUnitPmClassificationHistory,Seq]	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	22:72|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	23:29|value result is not a member of slick.lifted.Rep[Int]	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationHistoryRepositoryImpl.scala	3:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationRepositoryImpl.scala	10:15|private val table in class WorkUnitPmClassificationRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationRepositoryImpl.scala	10:23|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitPmClassificationTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationRepositoryImpl.scala	12:66|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationRepositoryImpl.scala	18:52|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationRepositoryImpl.scala	19:30|not found: value DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationRepositoryImpl.scala	22:57|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmClassificationRepositoryImpl.scala	3:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	13:54|parameter executionContext in class WorkUnitPmFilterOptionsRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	14:15|private val classificationTable in class WorkUnitPmFilterOptionsRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	14:37|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitPmClassificationTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	15:15|private val workUnitTable in class WorkUnitPmFilterOptionsRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	15:37|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	16:15|private val projectTable in class WorkUnitPmFilterOptionsRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	16:37|type arguments [pl.iterators.epoca.project.repositories.tables.ProjectTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	17:15|private val clientTable in class WorkUnitPmFilterOptionsRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	17:37|type arguments [pl.iterators.epoca.client.repositories.tables.ClientTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	19:71|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	22:70|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	25:65|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	28:58|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	29:60|parameter clientIds in anonymous function is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	29:9|local val sourceClientProjectIds in method list is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	5:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	6:59|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	6:78|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitPmFilterOptionsRepositoryImpl.scala	7:84|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	20:87|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	21:20|private val projectTable in class WorkUnitRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	21:87|type arguments [pl.iterators.epoca.project.repositories.tables.ProjectTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	22:20|private val pmClassificationTable in class WorkUnitRepositoryImpl is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	22:87|type arguments [pl.iterators.epoca.workunit.repositories.tables.WorkUnitPmClassificationTable] conform to the bounds of none of the overloaded alternatives of	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	24:97|could not find implicit value for parameter e: slick.ast.BaseTypedType[pl.iterators.epoca.workunit.domain.WorkUnitDomain.WorkUnitId]	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	26:48|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	29:59|not found: type DBIO	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	37:57|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	38:7|not found: type Query	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	4:62|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/WorkUnitRepositoryImpl.scala	8:86|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	14:37|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	15:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	15:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	16:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	16:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	17:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	17:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	18:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	18:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	19:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	19:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	20:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	20:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	21:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	22:5|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	23:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	23:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	24:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	24:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	25:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	25:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	26:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	26:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	27:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	27:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	28:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	28:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	29:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	29:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	30:26|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	30:58|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	71:15|private method fromTuple in object WorkUnitIdempotencyTable is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	7:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitIdempotencyTable.scala	88:15|private method toTuple in object WorkUnitIdempotencyTable is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	11:31|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	13:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	13:45|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	14:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	14:45|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	15:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	15:45|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	16:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	16:45|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	18:52|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitOrderTable.scala	5:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	11:49|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	13:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	13:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	14:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	14:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	15:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	15:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	16:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	16:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	17:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	17:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	18:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	18:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	19:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	19:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	20:26|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	20:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	21:28|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	21:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	22:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	22:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	23:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	23:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	24:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	24:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	25:25|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	25:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	26:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	26:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	27:24|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	27:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	28:26|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	28:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	29:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	29:59|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	74:15|private method fromTuple in object WorkUnitPmClassificationHistoryTable is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	7:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationHistoryTable.scala	87:15|private method toTuple in object WorkUnitPmClassificationHistoryTable is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	11:42|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	15:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	15:63|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	16:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	16:63|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	17:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	17:63|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	18:16|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	18:63|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	19:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	19:63|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	20:22|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	20:63|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	22:52|type mismatch;	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitPmClassificationTable.scala	5:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	11:18|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	13:26|not found: type Tag	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	18:11|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	18:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	19:23|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	19:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	20:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	20:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	21:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	21:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	22:13|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	22:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	23:17|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	23:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	24:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	24:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	25:20|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	25:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	26:15|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	26:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	27:14|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	27:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	28:18|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	28:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	29:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	29:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	30:19|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	30:53|not found: value column	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	32:27|not found: type Rep	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/repositories/tables/WorkUnitTable.scala	6:57|Unused import	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	183:33|value as is not a member of akka.http.scaladsl.server.PathMatcher1[java.util.UUID]	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	201:84|parameter request in anonymous function is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	243:15|private method pmClassificationHistoryResponse in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	302:15|private method pmClassificationProblem in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	306:5|private default argument in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	307:5|private default argument in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	321:15|private method legacyCreateProblem in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	324:15|private method legacyUpdateProblem in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	334:15|private method idempotencyResponse in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	354:21|private val organizationsPath in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	355:21|private val workUnitPath in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	356:21|private val orderPath in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	357:21|private val pmClassificationPath in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	358:21|private val filterOptionsPath in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	359:21|private val historyPath in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	35:3|parameter workUnitCreateService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	360:21|private val pmFiltersRequireIncludeMessage in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	361:21|private val idempotencyKeyHeaderName in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	367:15|private method parseIdempotencyKey in object WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	36:3|parameter workUnitListService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	37:3|parameter workUnitUpdateService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	38:3|parameter workUnitDeleteService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	39:3|parameter workUnitOrderUpsertService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	40:3|parameter workUnitPmFilterOptionsService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	41:3|parameter workUnitPmClassificationService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	42:3|parameter workUnitPmClassificationHistoryService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	43:3|parameter workUnitIdempotencyService in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	45:12|parameter runtime in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	49:24|private val workUnitEntryTypeDecoder in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	53:29|private val workUnitDtoEncoder in class WorkUnitRouter is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	57:44|value as is not a member of object WorkUnitRouter.this.Segment	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/routers/WorkUnitRouter.scala	65:77|parameter request in anonymous function is never used	boundary-cascade
+src/main/scala/pl/iterators/epoca/workunit/services/WorkUnitOrderUpsertService.scala	5:23|Unused import	boundary-cascade

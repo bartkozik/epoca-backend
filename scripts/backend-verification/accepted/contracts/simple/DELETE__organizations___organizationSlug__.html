@@ -1,0 +1,93 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>DELETE</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Delete organization</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>DELETE /organizations/{organizationSlug} should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OperationNotPermitted -> [404]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return BadRequest when service returns OrganizationHasUsers -> [400]<br/>return NoContent otherwise -> [204]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>204<br/>400<br/>401<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.organization.domain.Organization</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "fd046b43-5dff-4699-ba4b-e9945dacaf10",
+  "name" : "zjrxnShmmPWYDjWTvLozeDrPtmfBZwPxqgRNNAOmQnxEeXziNeoqBgzfMUtoXrueuEPzCuSsTyycUUZFWOPVRV",
+  "slug" : "ZQcakzgEGEBPmLQTdDMaiolmReKcXzVUSOwSnWsAmXRPvnHJsbiSOhIHX",
+  "createdAt" : "2026-07-18T17:54:48.027Z",
+  "createdBy" : "86923144-f18f-412b-b889-a9790e906f99",
+  "modifiedAt" : "2026-07-18T17:54:48.027Z",
+  "modifiedBy" : "80be748d-e34a-4a6d-a513-84e206d829b7",
+  "archivedAt" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "eacf04f7-9d4e-49a4-b4fb-0bdc399231a4",
+  "name" : "zaOuISNYIBAaIGBDIOluMEpWMfWnMFWElxlhoBEfnFBTvUEYyClYIblokSyLsdZYonxeYeMQQCEyEW",
+  "slug" : "zrZWejcBEBtHgTciSweBfqFCHVYqSvXRKZIUvDePUytdAfgWmRPNUTckIJTHmlZWFiNMRwOtveZiEJhBodo",
+  "createdAt" : "2026-08-01T20:27:18.068Z",
+  "createdBy" : "cab14b14-7977-4984-834f-8dda32a2d5e8",
+  "modifiedAt" : "2026-07-23T14:35:24.864Z",
+  "modifiedBy" : "d4f7af2d-5c1c-43f9-9672-5c8b4dc509d8",
+  "archivedAt" : "2026-08-08T19:54:16.887Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "name": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "slug",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

@@ -1,0 +1,112 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/projects/{projectId}/unarchive</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Unarchive previously archived project - if related client is archived, it is also unarchived</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/projects/{projectId}/unarchive should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return Conflict when service returns ProjectNameNotUnique -> [409]<br/>return Conflict when service returns ClientNameNotUnique -> [409]<br/>return NotFound when service returns NoAccessToOrganization -> [404]<br/>return NotFound when service returns ProjectNotFound -> [404]<br/>return NotFound when service returns ClientNotFound -> [404]<br/>return Forbidden when service returns InsufficientRole -> [403]<br/>return Unarchived with service data otherwise </td></tr>
+<tr><td><b>STATUS CODES</b></td><td>401<br/>403<br/>404<br/>409</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.project.domain.Project</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "896306b5-257b-4e05-b4b4-0cd61767482a",
+  "name" : "xScIbgslqykStvkGobJIcCXKItNtoeNHjkwpFscnvbEaOEvjwFrSfmgrMPVrTJNLBaVVjSriqyYNtWWFcGjxxmTwaOlJQVtqoDn",
+  "description" : null,
+  "organizationId" : "73f7959b-d62d-4c61-a3c5-5111dbec59d1",
+  "clientId" : "091822fb-4203-4c4e-8dde-6b77ca2231af",
+  "createdAt" : "2026-07-22T04:57:36.528Z",
+  "createdBy" : "ba23aa22-844c-4a99-86c7-2f987e06938a",
+  "modifiedAt" : "2026-07-30T19:19:09.778Z",
+  "modifiedBy" : "4028494d-77a1-4319-9dbf-92acc40a4245",
+  "archivedAt" : null,
+  "archivedBy" : null
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "e5e3c045-2040-4b3a-af1a-3616c1a4cc68",
+  "name" : "qKDDUPatsrVkCfsjiWTQQumYgkcMcWXyPpMYqRYvRvWtxomAklsNQsLnnVadIAgfNa",
+  "description" : "dfjcW1qCiQm7IiH9etqD3uGlc4XY1gES6y",
+  "organizationId" : "b66e853c-ee0f-4ca3-9a2c-f630bec82d7e",
+  "clientId" : "96c529e0-cef0-4195-b7f0-7593c977ea66",
+  "createdAt" : "2026-08-02T23:34:49.765Z",
+  "createdBy" : "543f38c7-c419-475f-9a42-57161c70b6ea",
+  "modifiedAt" : "2026-08-23T21:40:21.623Z",
+  "modifiedBy" : "9f2361f4-8301-458a-be4e-01e943ec277e",
+  "archivedAt" : "2026-09-05T02:30:35.049Z",
+  "archivedBy" : "28521153-6ca4-4386-be77-e1dedc270abc"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "description": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "organizationId",
+    "clientId",
+    "createdAt",
+    "createdBy",
+    "modifiedAt",
+    "modifiedBy"
+  ]
+}</pre></td></tr></table>

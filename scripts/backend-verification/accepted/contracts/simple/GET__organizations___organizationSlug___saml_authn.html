@@ -1,0 +1,51 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/saml/authn</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Returns encoded SamlResponse and SSO url that should point to an identity provider</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/saml/authn should <br/>return NotFound if service return OrganizationNotFound -> [404]<br/>return NotFound if service return SamlConfigNotFound -> [404]<br/>return Forbidden if service return SamlDisabled -> [403]<br/>return Created with service data otherwise -> [201]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>201<br/>403<br/>404</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.saml.services.SamlAuthnService.SamlAuthnResultData</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "samlRequest" : "iiYvNwkW1dS0eso0bESHaBVWek113D7MCPUCaTD38uaaD2LrRh9PWLkjojzJ297MGwklbXU0268GEAHOSlcqFEVfMdtc",
+  "ssoUrl" : "BMY0UabYSuJuSyslVnWQSt1XaJLUaJRNqmRffce9uvgmHWtdu4hV305UjnCnYo35r0RnPZURuSwnfq7oPz3uY"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "samlRequest" : "gCNZM3ARxV0R3NXibKSvUp3zsREhDTOuBXwgjhnZkPfkNXUkizgn7fT8a",
+  "ssoUrl" : "fteUEZwFydfQ4NuCQsXJqabS1jdp4DHm"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "samlRequest": {
+      "type": "string"
+    },
+    "ssoUrl": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "samlRequest",
+    "ssoUrl"
+  ]
+}</pre></td></tr></table>

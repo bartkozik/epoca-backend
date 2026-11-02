@@ -1,0 +1,3 @@
+family	organization	name_pattern	expected_revision
+pekko-http	org.apache.pekko	^pekko-(http.*|parsing)_2[.]13$	1.4.0
+pekko-core	org.apache.pekko	^pekko-(actor|cluster|coordination|discovery|distributed-data|event|protobuf-v3|remote|serialization-jackson|slf4j|stream|testkit).*_2[.]13$	1.7.0

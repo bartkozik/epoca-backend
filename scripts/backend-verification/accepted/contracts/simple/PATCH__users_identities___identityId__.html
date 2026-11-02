@@ -1,0 +1,110 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>PATCH</td></tr>
+<tr><td><b>ROUTE</b></td><td>/users/identities/{identityId}</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Confirm user identity</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>PATCH /users/identities/{identityId} should <br/>should be inaccessible for no logged users -> [401]<br/>returns Conflict when service returns InvalidCode -> [409]<br/>returns NotFound when service returns IdentityNotFound -> [404]<br/>returns OK when service returns Ok -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404<br/>409</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.services.UserIdentityConfirmService.UserIdentityConfirmRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "confirmationCode" : "F927raoOLvVcTkrwlkKV3jZ3NeK"
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "confirmationCode" : "UG5lLd0XfLObaNn9tVNwidz2ETRlwnslt1GH5mPrHX"
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "string"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.user.domain.UserIdentityDto</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "id" : "99f1a147-92b0-4924-a3ff-1cebd1412eef",
+  "userId" : "b1e66cbd-a4aa-4969-a848-7541db5a8113",
+  "type" : "AdminImpersonate",
+  "value" : "azRQmYzULHi",
+  "main" : false,
+  "confirmed" : true,
+  "deviceId" : null,
+  "createdAt" : "2026-08-08T10:17:46.507Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "id" : "d37e8445-09d3-41d6-aab0-bec76bc6b21f",
+  "userId" : "b2b854a2-cfd4-42c8-91b7-3802b48bd4e5",
+  "type" : "MailAddress",
+  "value" : "1YLLJUUfxsjfY3gc5epkGgI5Gt5Dv0m3Ei35A8NXmLk0dcHj50ORIx0KtkYpdWzj",
+  "main" : true,
+  "confirmed" : false,
+  "deviceId" : "3hT9aR1g",
+  "createdAt" : "2026-08-31T20:11:40.087Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "confirmed": {
+      "type": "boolean"
+    },
+    "main": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deviceId": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "MailAddress",
+        "AdminImpersonate",
+        "CryptoVerification",
+        "Phone",
+        "TimeBasedOneTimePassword",
+        "Saml"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "userId",
+    "type",
+    "value",
+    "main",
+    "confirmed",
+    "createdAt"
+  ]
+}</pre></td></tr></table>

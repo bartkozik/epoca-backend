@@ -1,0 +1,152 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/saml/configs</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Create/Update SAML configuration for organization - needs to be a Manager, Owner or Admin</td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /organizations/{organizationSlug}/saml/configs should <br/>be inaccessible for no loggged users -> [401]<br/>return NotFound if service return OrganizationNotFound -> [404]<br/>return NotFound if service return NoAccessToOrganization -> [404]<br/>return Forbidden if service return PermissionsAreTooLow -> [403]<br/>return Created with service data otherwise -> [201]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>201<br/>401<br/>403<br/>404</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.saml.services.SamlConfigUpsertService.SamlConfigUpsertRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "idpCert" : "eYo5K6imt3RFeBmufpsfWBXbvcQe2MMk4xftVb4Zc7jFDVSwF19eoTA0WaTveUkZQeyFWJkbOq5H",
+  "idpEntityId" : "454IjfKJS4wD4mwBoMExZ2aPD7MibtV8JktRMzslcZ3VRo4W9UkBhVanVVb",
+  "idpSsoUrl" : "w6g106z8WH6HxcIOYYf5BrVeiid",
+  "langCode" : "QUK3ltpeOfb3IMhtApmzrxaKCfaHEf",
+  "validFor" : "PT66H3M13S",
+  "allowAccountInit" : false,
+  "isEnabled" : false
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "idpCert" : "lfK2dSROusoXIyGwvsMfHYKvkOjxHkX9y6KwXld",
+  "idpEntityId" : "e5xhBjnj3W",
+  "idpSsoUrl" : "gywtQ5MSetr",
+  "langCode" : "gbjGB2rnmherBHEcqy5m9KW5",
+  "validFor" : "PT0S",
+  "allowAccountInit" : false,
+  "isEnabled" : true
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "langCode": {
+      "type": "string"
+    },
+    "idpSsoUrl": {
+      "type": "string"
+    },
+    "isEnabled": {
+      "type": "boolean"
+    },
+    "allowAccountInit": {
+      "type": "boolean"
+    },
+    "validFor": {
+      "type": "string"
+    },
+    "idpEntityId": {
+      "type": "string"
+    },
+    "idpCert": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "idpCert",
+    "idpEntityId",
+    "idpSsoUrl",
+    "langCode",
+    "validFor",
+    "allowAccountInit",
+    "isEnabled"
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.saml.domain.SamlConfig</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "organizationId" : "d2903060-3741-459a-8d86-6d518e211a43",
+  "idpCert" : "WvJwxoH5A",
+  "idpEntityId" : "WTPE7kzAWYyxSGyeT9HXmP2VaiW1PvcHM87ccsqoKdLgLmsDGIdo3ZMKK94UdmYz25zuqRJtJMk7dKrc3hS75lF9de4XwxGo",
+  "idpSsoUrl" : "o77YqGIl7TlQ93RFOlCbKgLDLxQQAN",
+  "langCode" : "wnsP8nCI7s1FSsJVQq",
+  "validFor" : "PT277H46M39S",
+  "allowAccountInit" : true,
+  "isEnabled" : true,
+  "createdAt" : "2026-08-29T16:55:14.499Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "organizationId" : "6f086a4c-94b1-493d-bac5-a391a97e4ee3",
+  "idpCert" : "LCh6uqzf1LRmLEGWSUJtRIo8zfWudvah1WJAlflggcIZJJjEArBwPi76SODf1Z0VUHFF0VD",
+  "idpEntityId" : "HdgnNWCsFBr",
+  "idpSsoUrl" : "77LfFGTozqrr9wPKkARFukGsUHprnkWuoNarVVuNYM8Xec4VsoouaExclWGyhIaFTSqkFETHd2HxKu0c46iBOfrASLh",
+  "langCode" : "EsCfXN",
+  "validFor" : "PT0S",
+  "allowAccountInit" : true,
+  "isEnabled" : false,
+  "createdAt" : "2026-09-03T22:59:02.600Z"
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "langCode": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "idpSsoUrl": {
+      "type": "string"
+    },
+    "organizationId": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "isEnabled": {
+      "type": "boolean"
+    },
+    "allowAccountInit": {
+      "type": "boolean"
+    },
+    "validFor": {
+      "type": "string"
+    },
+    "idpEntityId": {
+      "type": "string"
+    },
+    "idpCert": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organizationId",
+    "idpCert",
+    "idpEntityId",
+    "idpSsoUrl",
+    "langCode",
+    "validFor",
+    "allowAccountInit",
+    "isEnabled",
+    "createdAt"
+  ]
+}</pre></td></tr></table>

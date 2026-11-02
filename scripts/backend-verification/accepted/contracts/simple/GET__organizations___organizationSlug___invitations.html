@@ -1,0 +1,189 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>GET</td></tr>
+<tr><td><b>ROUTE</b></td><td>/organizations/{organizationSlug}/invitations</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>List invitations</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>GET /organizations/{organizationSlug}/invitations should <br/>be inaccessible for no-logged user -> [401]<br/>return NotFound when service returns OrganizationNotFound -> [404]<br/>return NotFound when service returns OperationNotPermitted -> [404]<br/>return Ok with service data otherwise -> [200]<br/>return Ok with service data when all optional params provided -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>401<br/>404</td></tr>
+<tr><td><b>PARAMETERS</b></td><td>id [java.util.UUID] <br/>pageSize [Int] <br/>pageNumber [Int] </td></tr><tr><td><b>ROUTE WITH MINIMAL PARAMS</b></td><td>/organizations/{organizationSlug}/invitations</td></tr><tr><td><b>ROUTE WITH ALL PARAMS</b></td><td>/organizations/{organizationSlug}/invitations?id=2768bac3-e9d6-496d-bd66-fa4bd3446f4b&pageSize=46&pageNumber=94</td></tr>
+<tr><td><b>RESPONSE SCALA TYPE</b></td><td><pre>pl.iterators.epoca.utils.db.PaginatedResult[pl.iterators.epoca.invitation.domain.Invitation]</pre></td></tr>
+<tr><td><b>RESPONSE MINIMAL JSON</b></td><td><pre>{
+  "count" : -1,
+  "results" : [
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE MAXIMAL JSON</b></td><td><pre>{
+  "count" : 1596902962,
+  "results" : [
+    {
+      "id" : "3c38db73-e5a9-4a8e-b0fe-b5de05cb4a01",
+      "identityValue" : "mj",
+      "identityType" : "AdminImpersonate",
+      "roles" : [
+        "Manager"
+      ],
+      "expireAt" : "2026-09-01T02:27:42.965Z",
+      "acceptAt" : "2026-08-12T04:58:56.008Z",
+      "rejectAt" : "2026-08-22T06:30:52.770Z",
+      "organizationId" : "2b990a5f-8153-4954-81e4-cd57612f422b",
+      "createdAt" : "2026-08-12T14:26:11.739Z",
+      "createdBy" : "1ecc0e1e-e8f1-46e4-8297-eeea07e98309",
+      "modifiedAt" : "2026-08-12T14:26:11.739Z",
+      "modifiedBy" : "1a26b2c8-2ab9-4bf1-93a6-d7e9ce653928",
+      "archivedAt" : "2026-09-06T10:57:35.386Z"
+    },
+    {
+      "id" : "0b3fb18a-67f6-4142-96e4-c1888793e9ae",
+      "identityValue" : "3xQ",
+      "identityType" : "TimeBasedOneTimePassword",
+      "roles" : [
+        "External"
+      ],
+      "expireAt" : "2026-07-18T17:54:48.092Z",
+      "acceptAt" : "2026-08-27T02:56:06.500Z",
+      "rejectAt" : "2026-07-30T07:24:24.018Z",
+      "organizationId" : "1e3b6f93-a395-4314-bdba-3f0d18680db6",
+      "createdAt" : "2026-08-04T23:22:10.198Z",
+      "createdBy" : "3d3ffd52-f313-49d8-ab3f-eb7ccc7e8f6e",
+      "modifiedAt" : "2026-08-05T15:04:49.660Z",
+      "modifiedBy" : "c82b4f19-b804-4214-9c42-f46994178431",
+      "archivedAt" : "2026-08-06T18:32:18.732Z"
+    },
+    {
+      "id" : "072981eb-d536-45c4-b2a3-283f5490e3af",
+      "identityValue" : "BBQnAmtR7UKK7u5D5UQwM3El48jTWnGCBsjSWjaC5tylj4IOYcJBLRXtoYQW6tL0Qlz0Wfja7dgYoSWMpfp8",
+      "identityType" : "Saml",
+      "roles" : [
+        "External"
+      ],
+      "expireAt" : "2026-08-13T16:38:15.568Z",
+      "acceptAt" : "2026-07-21T02:05:17.514Z",
+      "rejectAt" : "2026-08-31T19:02:58.880Z",
+      "organizationId" : "148724f6-037e-40ca-bd51-c93d8796ee1c",
+      "createdAt" : "2026-08-12T14:26:11.741Z",
+      "createdBy" : "af186076-43e3-4010-97b7-565754570b4d",
+      "modifiedAt" : "2026-08-12T14:26:11.740Z",
+      "modifiedBy" : "f261f7a3-e7b3-4977-aeb7-6ff9cd533949",
+      "archivedAt" : "2026-08-01T03:47:23.547Z"
+    }
+  ]
+}</pre></td></tr>
+<tr><td><b>RESPONSE SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "acceptAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "identityValue": {
+            "type": "string"
+          },
+          "expireAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "organizationId": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Employee",
+                "External",
+                "Manager",
+                "Owner"
+              ]
+            }
+          },
+          "rejectAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "modifiedBy": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          },
+          "identityType": {
+            "type": "string",
+            "enum": [
+              "MailAddress",
+              "AdminImpersonate",
+              "CryptoVerification",
+              "Phone",
+              "TimeBasedOneTimePassword",
+              "Saml"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "identityValue",
+          "identityType",
+          "roles",
+          "organizationId",
+          "createdAt",
+          "createdBy",
+          "modifiedAt",
+          "modifiedBy"
+        ]
+      }
+    }
+  },
+  "required": [
+    "count",
+    "results"
+  ]
+}</pre></td></tr></table>

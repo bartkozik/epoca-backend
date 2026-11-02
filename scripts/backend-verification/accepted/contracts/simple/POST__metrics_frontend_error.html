@@ -1,0 +1,73 @@
+
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 5px 5px 5px;
+}
+table tbody td {
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+</style>
+<table><tr><td><b>METHOD</b></td><td>POST</td></tr>
+<tr><td><b>ROUTE</b></td><td>/metrics/frontend/error</td></tr>
+<tr><td><b>DESCRIPTION</b></td><td>Logs error from frontend to backend logger.</td></tr>
+<tr><td><b>AUTHENTICATION</b></td><td><ul><li>Bearer</li></ul></td></tr>
+<tr><td><b>BEHAVIOUR</b></td><td>POST /metrics/frontend/error should <br/>be inaccessible for no-logged user -> [401]<br/>return BadRequest when incoming request is not json -> [400]<br/>return Ok and log payload to logger -> [200]</td></tr>
+<tr><td><b>STATUS CODES</b></td><td>200<br/>400<br/>401</td></tr>
+<tr><td><b>REQUEST SCALA TYPE</b></td><td><pre>pl.iterators.epoca.metrics.services.MetricsFrontendErrorService.MetricsFrontendErrorRequest</pre></td></tr>
+<tr><td><b>REQUEST MINIMAL JSON</b></td><td><pre>{
+  "payload" : {
+    "WrfBCOslV3YtKeSXqe" : "Q2h7burrhbkzmcGOBR9CfBaxluxzc4lBhBvJel3cZFvw2frRooAlX3wnIYJCjz7DTFRCfwyu18Q",
+    "qvAoz7Xr6APw1bL5xLt" : {
+      "WKLi" : 9.447809878545319E182,
+      "xpoHJdavLIE16k7u9T8QYB59nDvjOv0xj3MRu7AmP2WzGqckqVzhDyuYuEFf3CyT0ThLiErnI" : "Drkv8zux2vZDrjcmRvvLdG2hB9EFVs7ie9J4f41wDiRupFrpjt",
+      "MVeRdbSrjhHHVlIfYGQ7PUOQkANZ0vZMAVqw1wdbTH6ycoamMYbR" : true,
+      "HYyp3FPYmmqn8O7YMlHSQoEb7gADvSy5pjjVE7qzzjoZk3ORwPbMNWmenuRqUJIJ4hLf8FVD4" : "4EgyEcgKuQTLHG6wOaHLyi7s8eWZ0A0zjQP93TI9oGJ6ECZ08yAUp2KxqCwKBGmPWaV2zpAVZHrMufBw"
+    },
+    "HOfpQKVKKD3KOX" : {
+      "QQWh6za03iy6tfpqpBkKg8KKh00X162EKddKy5uOicaBmeiBnzk77" : [
+        "FcDnbbbj6zdkXKTzEJOXNbfWRhYEqrVYw4bzCb3QExvShPVrl8iEj0rz03767gJFetGM7HyZq54Vnv2kwDt8QCiP1hdlmUO13",
+        "reDqkyfsDnbquqWG14C5Knt0nV0JXyrfTtQDk8iN",
+        "1xGz2NSgUp"
+      ],
+      "j45rnZaDXmZEmypJKjw5g7YpKb4ud618mbE8gdsadPUCqzEVx9eEKK" : 1.3964798803841696E-142,
+      "cbdeOvugAIWxi7Cgaw6b8woLAucZrRYhvo0Wj2akPSe8xaYQn9Q0" : [
+        -7924106704184483136,
+        -2.723078534327447E118,
+        1
+      ],
+      "baZwoGcKwF5IDY34fNh5oqcyeKbgcj6Q4DyfcyK56oeydjYgi4fmTh5zQk" : "NYcECOyY6tUKaakTSmuu3nGWGgCjws9xN249z6Oadt"
+    },
+    "MIFXYfuArMaW6NmF91VRXrQEqBG7rsDGKzbD0Utz1IbmQCxX14E4ukseya" : 9223372036854775807,
+    "YwcJv4ttUdxz6GaLO9J3E011HKOFbjr" : {
+      "QSVNaVmgxXMPBWBDSfVa3V1r04Drn7" : "sh9jIfmq2I00MbdBBq7Pb7JcXYkmDOKowM47ZBjsQxdx8Dx2G56FWwzc19",
+      "HYkKQ41PPNdFnonsHOS8WeE4cmuhEVNlLwllDb" : true,
+      "zKaFqyhP7zerl3ps7VQxW2svs5vm1LYU0ZXhipW0" : true,
+      "O5pmMWfZJ4XUT1kdg3oHsnPk9Lah9tVcRrgs52MwXKPWAipiANJwidExFSQIDDj4XyjCUFPwfpKL" : "8AIJiOyBaeIpPrIUk7iVh8waceQQJh"
+    }
+  }
+}</pre></td></tr>
+<tr><td><b>REQUEST MAXIMAL JSON</b></td><td><pre>{
+  "payload" : {
+    "ewarsc4YRpRWzgTamqKT266VKCDvrOTDjCHYKu1YyoQWZjDYFqjXgbapqjza5pyHvRj" : true,
+    "hCQ8fjJOhL0bvSoBeyW61E409B" : -1.7421561451713673E102,
+    "dMN3U5wPbp7MHQxGlKJpP5xESqPV0FiZhmio4nd9b8gGMzOsSy0HKPW" : "roqqYCaKB9dGZ0YvS4Ty",
+    "ROnDnPJ78RgJeepONU" : 0,
+    "SeXcpTlGyMaPa6w41T08Z9" : -1.1321368212260533E188
+  }
+}</pre></td></tr>
+<tr><td><b>REQUEST SCHEMA</b></td><td><pre>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "",
+  "type": "object",
+  "additionalProperties": true
+}</pre></td></tr></table>
