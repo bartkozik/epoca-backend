@@ -55,6 +55,7 @@ Test / scalacOptions --= Seq("-Wnonunit-statement", "-Wnonunit-if")
 // transaction/teardown races internally; separate specifications must not mutate
 // that schema concurrently.
 Test / parallelExecution := false
+Test / testListeners ++= (if (sys.env.get("CI").contains("true")) Seq(CiTestProgress) else Seq.empty)
 
 libraryDependencies ++= {
   val pekkoHttpV             = "1.4.0"
