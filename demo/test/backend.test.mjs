@@ -90,8 +90,17 @@ test('real Scala backend supports isolated demo CRUD, reports, reset and expiry'
     assert.equal((await request('/api/v1/organizations', 'GET', { ...current, accessToken: first.accessToken })).status, 401);
     const resumed = await request('/api/demo/session', 'GET', current);
     assert.equal(resumed.data.organizationSlug, current.organizationSlug);
-    await pool.query('UPDATE demo.session SET expires_at=now()-interval \'1 second\' WHERE organization_slug=$1', [current.organizationSlug]);
+    await pool.query("UPDATE demo.session SET expires_at=now()+interval '30 seconds' WHERE organization_slug=$1", [current.organizationSlug]);
     assert.equal((await request('/api/v1/organizations', 'GET', current)).status, 401);
+    const renewedResponse = await request('/api/demo/session', 'POST', current);
+    assert.equal(renewedResponse.status, 200, JSON.stringify(renewedResponse.data));
+    const renewed = { ...renewedResponse.data, cookie: renewedResponse.cookie };
+    sessions.push(renewed);
+    assert.notEqual(renewed.organizationSlug, current.organizationSlug);
+    assert.ok(Date.parse(renewed.expiresAt) > Date.now() + 23 * 3600000);
+    assert.equal((await request('/api/v1/organizations', 'GET', renewed)).status, 200);
+    await pool.query("UPDATE demo.session SET expires_at=now()-interval '1 second' WHERE organization_slug=$1", [renewed.organizationSlug]);
+    assert.equal((await request('/api/v1/organizations', 'GET', renewed)).status, 401);
   } catch (error) { failure = error; throw error; } finally {
     try {
       if (server) await new Promise(resolve => server.close(resolve));

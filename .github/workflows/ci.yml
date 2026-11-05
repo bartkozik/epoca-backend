@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   pull_request:
   push:
-    branches: [main, feat/public-demo]
+    branches: [main]
 permissions:
   contents: read
 concurrency:
@@ -27,8 +27,7 @@ jobs:
           --health-cmd "pg_isready -U epoca -d epoca_test"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
-      JVM_OPTS: -Xms512m -Xmx8g -Xss4m -XX:ActiveProcessorCount=2
-      DB_URL: jdbc:postgresql://localhost:5432/epoca_test
+      DB_URL: jdbc:postgresql://localhost:5432/epoca_demo
       DB_USER: epoca
       DB_PASSWORD: disposable-ci-password
       TEST_DB_URL: jdbc:postgresql://localhost:5432/epoca_test
@@ -38,14 +37,20 @@ jobs:
       KAMON_ENABLED: 'false'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
       - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
         with:
           distribution: temurin
           java-version: '17'
           cache: sbt
       - uses: sbt/setup-sbt@c6bd01274abceb9dd5bd9f1a336c2a26c259de69
+      - name: Create a separate application database
+        env:
+          PGPASSWORD: disposable-ci-password
+        run: psql -h localhost -U epoca -d epoca_test -c 'CREATE DATABASE epoca_demo'
       - name: Compile, migrate and package
-        run: sbt -batch compile 'Test / flywayMigrate' test 'runMain pl.iterators.epoca.main.MigrateMain' 'Universal / stage'
+        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch compile 'runMain pl.iterators.epoca.main.MigrateMain' 'Universal / stage'
       - name: Build runtime image
         run: docker build -f Dockerfile.demo -t epoca-backend:ci .
       - name: Verify packaged runtime
@@ -63,7 +68,7 @@ jobs:
       - name: Test isolated guests against PostgreSQL and Scala
         working-directory: demo
         env:
-          TEST_DATABASE_URL: postgres://epoca:disposable-ci-password@localhost:5432/epoca_test
+          TEST_DATABASE_URL: postgres://epoca:disposable-ci-password@localhost:5432/epoca_demo
           TEST_BACKEND_URL: http://localhost:9000
         run: |
           npm ci --ignore-scripts
@@ -72,7 +77,7 @@ jobs:
       - name: Build and verify gateway image
         run: |
           docker build -f demo/Dockerfile -t epoca-demo-gateway:ci .
-          docker run -d --name gateway-ci --network host --memory 128m --read-only --pids-limit 64 -e DATABASE_URL=postgres://epoca:disposable-ci-password@localhost:5432/epoca_test -e JWT_SECRET -e DEMO_ORIGIN=https://demo.example -e BACKEND_URL=http://localhost:9000 epoca-demo-gateway:ci
+          docker run -d --name gateway-ci --network host --memory 128m --read-only --pids-limit 64 -e DATABASE_URL=postgres://epoca:disposable-ci-password@localhost:5432/epoca_demo -e JWT_SECRET -e DEMO_ORIGIN=https://demo.example -e BACKEND_URL=http://localhost:9000 epoca-demo-gateway:ci
           for attempt in $(seq 1 20); do
             if curl --fail --silent http://localhost:8080/health >/dev/null; then exit 0; fi
             sleep 1
@@ -85,6 +90,8 @@ jobs:
           name: gateway-image
           path: /tmp/epoca-demo-gateway.tar
           retention-days: 2
+      - name: Run the Scala regression suite against its own database
+        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'Test / flywayMigrate' test
       - name: Save tested image
         run: docker save epoca-backend:ci -o /tmp/epoca-backend.tar
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9

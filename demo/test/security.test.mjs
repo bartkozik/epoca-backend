@@ -65,3 +65,10 @@ test('idempotency replay remains available at capacity while new claims are boun
   const replay = { query: async sql => sql.includes('idempotency_key=') ? { rowCount: 1, rows: [{ claim_id: key }] } : { rowCount: 1, rows: [{ n: 2000 }] } };
   await assert.doesNotReject(store.checkCapacity(replay, session, r, key));
 });
+test('sessions inside the frontend refresh window require renewal', async () => {
+  const { Store } = await import('../store.mjs');
+  const store = new Store({}, { secret: 'test' });
+  const nearExpiry = { ...session, expires_at: new Date(Date.now() + 30000), request_window: new Date(), request_count: 0 };
+  store.transaction = async fn => fn({ query: async () => ({ rows: [nearExpiry] }) });
+  await assert.rejects(store.withSession('a'.repeat(43), async () => 'must not resume'), { status: 401 });
+});

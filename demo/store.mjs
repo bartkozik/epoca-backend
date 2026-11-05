@@ -61,7 +61,7 @@ export class Store {
     return this.transaction(async db => {
       const result = await db.query('SELECT * FROM demo.session WHERE token_hash=$1 FOR UPDATE', [hash(cookie)]);
       const session = result.rows[0];
-      if (!session || session.expires_at.getTime() <= Date.now()) throw new DemoError(401, 'Your demo session has ended. Start a new demo to continue.');
+      if (!session || session.expires_at.getTime() <= Date.now() + 60000) throw new DemoError(401, 'Your demo session has ended. Start a new demo to continue.');
       const now = Date.now();
       const count = now - session.request_window.getTime() >= 60000 ? 1 : session.request_count + 1;
       if (count > 180) throw new DemoError(429, 'Please wait a minute before making more demo requests.');

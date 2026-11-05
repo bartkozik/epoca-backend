@@ -42,3 +42,4 @@ project/metals.sbt
 !.github/
 !.github/**
 !.dockerignore
+!.gitleaksignore

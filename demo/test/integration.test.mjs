@@ -44,6 +44,13 @@ test('PostgreSQL isolates sessions, serializes reset, preserves expiry and clean
     await assert.rejects(store.withSession(second.cookie, async () => null), { status: 401 });
     await store.cleanup(new Date(Date.now() + 6 * 60000));
     assert.equal((await pool.query('SELECT 1 FROM public.organization WHERE id=$1', [second.session.organization_id])).rowCount, 0);
+    await pool.query("UPDATE demo.session SET expires_at=now()+interval '30 seconds' WHERE id=$1", [reset.session.id]);
+    await assert.rejects(store.withSession(reset.cookie, async () => null), { status: 401 });
+    const renewed = await store.create('integration-near-expiry');
+    sessions.push(renewed.session);
+    assert.notEqual(renewed.session.organization_id, reset.session.organization_id);
+    assert.ok(renewed.session.expires_at.getTime() > Date.now() + 23 * 3600000);
+    assert.equal((await store.withSession(renewed.cookie, async (_db, s) => s)).id, renewed.session.id);
   } catch (error) { failure = error; throw error; } finally {
     try {
       for (const s of sessions) await pool.query('UPDATE demo.session SET expires_at=now()-interval \'10 minutes\' WHERE id=$1', [s.id]);
