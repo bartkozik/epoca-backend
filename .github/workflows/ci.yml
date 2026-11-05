@@ -95,7 +95,7 @@ jobs:
       - name: Verify database compatibility and security fixtures
         run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'Test / flywayMigrate' 'testOnly *PostgresDriverCompatibilitySpec *OAuthClientCredentialsE2ESpec *WorkspacePhotoAuthorizationConcurrencySpec *SendgridWebhookVerifierSpec *ProjectUnarchiveServiceSpec'
       - name: Run the full Scala regression suite
-        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch test
+        run: timeout --signal=QUIT --kill-after=30s 12m sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'set Test / logBuffered := false' test
       - name: Save tested image
         run: docker save epoca-backend:ci -o /tmp/epoca-backend.tar
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
