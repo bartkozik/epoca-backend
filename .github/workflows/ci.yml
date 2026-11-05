@@ -45,7 +45,8 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: sbt
-      - uses: sbt/setup-sbt@c6bd01274abceb9dd5bd9f1a336c2a26c259de69
+      - name: Install verified sbt runner
+        run: bash scripts/setup-sbt-ci.sh
       - name: Create a separate application database
         env:
           PGPASSWORD: disposable-ci-password
