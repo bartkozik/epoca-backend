@@ -1,7 +1,7 @@
 package pl.iterators.epoca.unarchiver.services
 
 import pl.iterators.epoca.client.domain.Client
-import pl.iterators.epoca.client.domain.ClientDomain.ClientModifiedAt
+import pl.iterators.epoca.client.domain.ClientDomain.{ClientId, ClientModifiedAt}
 import pl.iterators.epoca.client.repositories.ClientRepository
 import pl.iterators.epoca.client.repositories.ClientRepository.ClientFilters
 import pl.iterators.epoca.organization.domain.OrganizationDomain.{OrganizationSlug, OrganizationUserId, OrganizationUserRole}
@@ -147,7 +147,7 @@ class ProjectUnarchiveServiceSpec extends ServiceSpec {
       when(organizationRepository.find(any)).thenReturn(Some(organization).asDBIO)
       when(clientRepository.find(clientUnarchivedFilter)).thenReturn(Some(client).asDBIO)
       when(projectRepository.find(projectUnarchivedFilter)).thenReturn(Some(project).asDBIO)
-      when(clientRepository.find(clientUniqueNameFilter)).thenReturn(Some(client).asDBIO)
+      when(clientRepository.find(clientUniqueNameFilter)).thenReturn(Some(client.copy(id = ClientId.random)).asDBIO)
       when(projectRepository.find(projectUniqueNameFilter)).thenReturn(None.asDBIO)
 
       sut.unarchive(authUser, orgSlug, project.id).asserting(_ shouldEqual ProjectUnarchiveResult.ClientNameNotUnique)
@@ -189,7 +189,7 @@ class ProjectUnarchiveServiceSpec extends ServiceSpec {
       verify(projectRepository).find(projectUniqueNameFilter)
     }
 
-    "return Unarchived for user with access to organization with unarchived project" in new TestCase {
+    "restore a project whose existing client is already active" in new TestCase {
       val organization = organizationGenerator.normal.generate.copy(archivedAt = None)
       val orgSlug      = orgSlugGenerator.normal.generate
       val client       = clientGenerator.normal.generate.copy(archivedAt = None)
@@ -209,7 +209,7 @@ class ProjectUnarchiveServiceSpec extends ServiceSpec {
       when(organizationRepository.find(any)).thenReturn(Some(organization).asDBIO)
       when(clientRepository.find(clientUnarchivedFilter)).thenReturn(Some(client).asDBIO)
       when(projectRepository.find(projectUnarchivedFilter)).thenReturn(Some(project).asDBIO)
-      when(clientRepository.find(clientUniqueNameFilter)).thenReturn(None.asDBIO)
+      when(clientRepository.find(clientUniqueNameFilter)).thenReturn(Some(client).asDBIO)
       when(projectRepository.find(projectUniqueNameFilter)).thenReturn(None.asDBIO)
       when(projectRepository.update(any)).thenReturn(Some(projectUpdated).asDBIO)
 

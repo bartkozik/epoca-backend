@@ -1,4 +1,5 @@
 FROM eclipse-temurin:17-jre-jammy@sha256:2a9eb226abb654c9d1f91b53cf638d20cb3abb726d1b18a67909c29515545469
+LABEL org.opencontainers.image.source="https://github.com/bartkozik/epoca-backend"
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY --chown=1001:1001 target/universal/stage/lib/ ./lib/

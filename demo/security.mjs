@@ -44,8 +44,9 @@ export function route(method, path, s) {
   const resource = { clients: 'client', projects: 'project', 'work-units': 'work_unit', users: 'user' }[name];
   if (segments.length === 1 && resource && (method === 'GET' || (method === 'POST' && resource !== 'user'))) return { resource, method, collection: true };
   if (segments.length === 2 && uuid.test(id)) {
-    if ((resource === 'project' && ['GET', 'PATCH', 'DELETE'].includes(method)) || (resource === 'client' && method === 'PATCH') || (resource === 'work_unit' && ['PATCH', 'DELETE'].includes(method))) return { resource, method, id };
+    if ((resource === 'project' && ['GET', 'PATCH', 'DELETE'].includes(method)) || (resource === 'client' && ['PATCH', 'DELETE'].includes(method)) || (resource === 'work_unit' && ['PATCH', 'DELETE'].includes(method))) return { resource, method, id };
   }
+  if (['client', 'project'].includes(resource) && segments.length === 3 && uuid.test(id) && extra === 'unarchive' && method === 'POST') return { resource, method, id, restore: true };
   if (name === 'users' && segments.length === 3 && uuid.test(id) && extra === 'details' && method === 'GET') return { resource: 'user', method, id };
   if (name === 'work-units' && id === 'order' && segments.length === 2 && method === 'PUT') return { resource: 'work_unit', method, order: true };
   if (name === 'pivot-tables' && id === 'work-units' && method === 'POST' && (segments.length === 2 || (segments.length === 3 && extra === 'query'))) return { resource: 'pivot', method };
@@ -74,7 +75,7 @@ export function validateInput(r, url, body) {
   }
   if (body !== null) {
     if (!body || Array.isArray(body) || typeof body !== 'object') blocked('A JSON object is required.');
-    const allowed = r.order ? ['date', 'workUnitIds'] : fields[r.resource] ?? [];
+    const allowed = r.restore ? [] : r.order ? ['date', 'workUnitIds'] : fields[r.resource] ?? [];
     if (Object.keys(body).some(k => !allowed.includes(k))) blocked('This field is unavailable in the demo.');
     for (const key of ['projectId', 'clientId', 'userId']) if (body[key] != null && (typeof body[key] !== 'string' || !uuid.test(body[key]))) blocked('Use a valid demo record.');
     for (const key of ['ownerIds', 'memberIds', 'workUnitIds']) if (body[key] != null && (!Array.isArray(body[key]) || body[key].some(id => typeof id !== 'string' || !uuid.test(id)))) blocked('Use valid demo records.');

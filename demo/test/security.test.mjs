@@ -7,7 +7,7 @@ const base = '/api/v1/organizations/demo-random';
 test('exact allowlist confines organization and global user reads', () => {
   assert.equal(route('GET', base + '/projects', session).resource, 'project');
   assert.equal(route('GET', '/api/v1/users/' + session.user_id, session).resource, 'user');
-  for (const [method, path] of [['POST', '/api/v1/organizations'], ['GET', base + '/invitations'], ['POST', base + '/exports'], ['GET', '/api/v1/organizations/foreign/projects'], ['GET', base + '/projects/../users'], ['GET', base + '/projects%2f'], ['DELETE', base + '/clients/' + session.user_id], ['POST', '/api/v1/auth/refresh']]) {
+  for (const [method, path] of [['POST', '/api/v1/organizations'], ['GET', base + '/invitations'], ['POST', base + '/exports'], ['GET', '/api/v1/organizations/foreign/projects'], ['GET', base + '/projects/../users'], ['GET', base + '/projects%2f'], ['POST', '/api/v1/auth/refresh']]) {
     assert.throws(() => route(method, path, session), { status: 403 });
   }
 });
@@ -71,4 +71,17 @@ test('sessions inside the frontend refresh window require renewal', async () => 
   const nearExpiry = { ...session, expires_at: new Date(Date.now() + 30000), request_window: new Date(), request_count: 0 };
   store.transaction = async fn => fn({ query: async () => ({ rows: [nearExpiry] }) });
   await assert.rejects(store.withSession('a'.repeat(43), async () => 'must not resume'), { status: 401 });
+});
+
+test('client archive and client/project restore remain narrowly allowlisted', () => {
+  const id = session.user_id;
+  assert.equal(route('DELETE', base + '/clients/' + id, session).resource, 'client');
+  for (const resource of ['clients', 'projects']) {
+    const restored = route('POST', base + '/' + resource + '/' + id + '/unarchive', session);
+    assert.equal(restored.id, id);
+    assert.equal(restored.restore, true);
+    assert.throws(() => route('PATCH', base + '/' + resource + '/' + id + '/unarchive', session), { status: 403 });
+    assert.throws(() => route('POST', base + '/' + resource + '/' + id + '/unarchive/extra', session), { status: 403 });
+    assert.throws(() => validateInput(restored, new URL('https://demo.example' + base), { name: 'Unexpected mutation' }), { status: 403 });
+  }
 });
