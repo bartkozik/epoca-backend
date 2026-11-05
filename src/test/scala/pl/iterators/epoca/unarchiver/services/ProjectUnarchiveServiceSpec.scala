@@ -18,6 +18,7 @@ import pl.iterators.epoca.unarchiver.services.ProjectUnarchiveService.ProjectUna
 import pl.iterators.epoca.utils.ServiceSpec
 
 import java.time.Instant
+import java.util.UUID
 
 class ProjectUnarchiveServiceSpec extends ServiceSpec {
   lazy val organizationGenerator: AllGenerators[Organization] = allGenerators[Organization]
@@ -147,7 +148,7 @@ class ProjectUnarchiveServiceSpec extends ServiceSpec {
       when(organizationRepository.find(any)).thenReturn(Some(organization).asDBIO)
       when(clientRepository.find(clientUnarchivedFilter)).thenReturn(Some(client).asDBIO)
       when(projectRepository.find(projectUnarchivedFilter)).thenReturn(Some(project).asDBIO)
-      when(clientRepository.find(clientUniqueNameFilter)).thenReturn(Some(client.copy(id = ClientId.random)).asDBIO)
+      when(clientRepository.find(clientUniqueNameFilter)).thenReturn(Some(client.copy(id = ClientId(UUID.randomUUID()))).asDBIO)
       when(projectRepository.find(projectUniqueNameFilter)).thenReturn(None.asDBIO)
 
       sut.unarchive(authUser, orgSlug, project.id).asserting(_ shouldEqual ProjectUnarchiveResult.ClientNameNotUnique)
