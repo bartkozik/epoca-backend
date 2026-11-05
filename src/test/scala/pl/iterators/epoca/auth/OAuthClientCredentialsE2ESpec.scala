@@ -1311,8 +1311,10 @@ class OAuthClientCredentialsE2ESpec
 
   private def postgresVersion: String = {
     val versionNumber = run(sql"select current_setting('server_version_num')".as[String].head)
-    if (versionNumber != "130004") throw new AssertionError(s"OAuth E2E requires PostgreSQL 13.4, received server_version_num=$versionNumber")
-    "13.4"
+    val expectedVersion = sys.env.getOrElse("TEST_POSTGRES_VERSION_NUM", "130004")
+    if (versionNumber != expectedVersion)
+      throw new AssertionError(s"OAuth E2E requires server_version_num=$expectedVersion, received $versionNumber")
+    s"${versionNumber.toInt / 10000}.${versionNumber.toInt % 10000}"
   }
 
   private def independentDatabase(name: String): Database =

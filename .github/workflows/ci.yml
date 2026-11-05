@@ -31,6 +31,7 @@ jobs:
       DB_USER: epoca
       DB_PASSWORD: disposable-ci-password
       TEST_DB_URL: jdbc:postgresql://localhost:5432/epoca_test
+      TEST_POSTGRES_VERSION_NUM: '160015'
       TEST_DB_USER: epoca
       TEST_DB_PASSWORD: disposable-ci-password
       JWT_SECRET: ephemeral-ci-only-signing-key-not-used-in-any-deployment
@@ -90,8 +91,10 @@ jobs:
           name: gateway-image
           path: /tmp/epoca-demo-gateway.tar
           retention-days: 2
-      - name: Run the Scala regression suite against its own database
-        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'Test / flywayMigrate' test
+      - name: Verify database compatibility and security fixtures
+        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'Test / flywayMigrate' 'testOnly *PostgresDriverCompatibilitySpec *OAuthClientCredentialsE2ESpec *WorkspacePhotoAuthorizationConcurrencySpec *SendgridWebhookVerifierSpec *ProjectUnarchiveServiceSpec'
+      - name: Run the full Scala regression suite
+        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch test
       - name: Save tested image
         run: docker save epoca-backend:ci -o /tmp/epoca-backend.tar
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9

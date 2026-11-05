@@ -116,7 +116,7 @@ class PostgresDriverCompatibilitySpec extends SpecificationLike {
 
   private val expectedIdentityFacts = Seq(
     s"database=$expectedDatabaseName",
-    "server_version_num=130004",
+    s"server_version_num=${sys.env.getOrElse("TEST_POSTGRES_VERSION_NUM", "130004")}",
     "current_schema=public",
     "search_path=public",
     "flyway_total=38",
