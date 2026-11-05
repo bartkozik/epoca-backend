@@ -105,7 +105,7 @@ class ProjectUnarchiveService(
     clientRepository
       .find(ClientFilters(organizationIds = Some(Seq(organization.id)), name = Some(client.name)))
       .ensureF(
-        _.isEmpty,
+        _.forall(_.id == client.id),
         Logger[DBIO].error(s"client ${client.id} can't be unarchived - another client with the same name is active").as(ClientNameNotUnique)
       )
       .void

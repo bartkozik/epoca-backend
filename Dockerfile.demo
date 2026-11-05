@@ -1,0 +1,11 @@
+FROM eclipse-temurin:17-jre-jammy@sha256:2a9eb226abb654c9d1f91b53cf638d20cb3abb726d1b18a67909c29515545469
+LABEL org.opencontainers.image.source="https://github.com/bartkozik/epoca-backend"
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY --chown=1001:1001 target/universal/stage/lib/ ./lib/
+USER 1001:1001
+ENV PORT=9000 KAMON_ENABLED=false OAUTH_ENABLED=false ASSETS_STORAGE=memory
+EXPOSE 9000
+HEALTHCHECK --interval=20s --timeout=4s --start-period=90s --retries=3 CMD curl --fail --silent http://127.0.0.1:9000/api/v1/health-check >/dev/null || exit 1
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=65", "-XX:ActiveProcessorCount=2", "-cp", "/app/lib/*"]
+CMD ["pl.iterators.epoca.main.Main"]

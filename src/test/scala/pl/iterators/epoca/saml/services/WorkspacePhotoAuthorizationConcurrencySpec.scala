@@ -5,7 +5,7 @@ import pl.iterators.epoca.organization.domain.OrganizationDomain._
 import pl.iterators.epoca.organization.domain.{Organization, OrganizationUser}
 import pl.iterators.epoca.organization.repositories.OrganizationUserRepositoryImpl
 import pl.iterators.epoca.organization.repositories.fixtures.OrganizationFixture
-import pl.iterators.epoca.saml.domain.SamlDomain.SamlIsEnabled
+import pl.iterators.epoca.saml.domain.SamlDomain.{SamlIdpEntityId, SamlIsEnabled}
 import pl.iterators.epoca.saml.domain.{SamlBindingKey, SamlConfig, SamlIdentityBinding}
 import pl.iterators.epoca.saml.repositories.{SamlConfigRepositoryImpl, SamlIdentityBindingRepositoryImpl}
 import pl.iterators.epoca.user.domain.User
@@ -33,7 +33,13 @@ class WorkspacePhotoAuthorizationConcurrencySpec extends PgRepositorySpec with U
         db.run((for {
           user   <- withUser(allGenerators[User].normal.generate.copy(archivedAt = None, accountType = UserAccountType.Human))
           org    <- withOrganization(allGenerators[Organization].normal.generate.copy(createdBy = user.id, modifiedBy = user.id, archivedAt = None))
-          config <- configs.upsert(allGenerators[SamlConfig].normal.generate.copy(organizationId = org.id, isEnabled = SamlIsEnabled(true)))
+          config <- configs.upsert(
+                      allGenerators[SamlConfig].normal.generate.copy(
+                        organizationId = org.id,
+                        isEnabled = SamlIsEnabled(true),
+                        idpEntityId = SamlIdpEntityId("https://idp.example.test/entity")
+                      )
+                    )
           epoch  <- configs.trustEpoch(org.id)
           proof = WorkspacePhotoProof(org.id, epoch.get, config.idpEntityId, "subject", "member@example.com")
           _ <- new SamlIdentityBindingRepositoryImpl().insert(

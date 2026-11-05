@@ -55,6 +55,7 @@ Test / scalacOptions --= Seq("-Wnonunit-statement", "-Wnonunit-if")
 // transaction/teardown races internally; separate specifications must not mutate
 // that schema concurrently.
 Test / parallelExecution := false
+Test / testListeners ++= (if (sys.env.get("CI").contains("true")) Seq(CiTestProgress) else Seq.empty)
 
 libraryDependencies ++= {
   val pekkoHttpV             = "1.4.0"
@@ -107,8 +108,8 @@ libraryDependencies ++= {
     "com.softwaremill.sttp.client4" %% "slf4j-backend"              % sttpV,
     "software.amazon.awssdk"         % "s3"                         % awsSdkV,
     ("org.quartz-scheduler"          % "quartz"                     % quartzV).exclude("com.zaxxer", "HikariCP-java7"),
-    "org.flywaydb"                   % "flyway-core"                % flywayV               % Test,
-    "org.flywaydb"                   % "flyway-database-postgresql" % flywayV               % Test,
+    "org.flywaydb"                   % "flyway-core"                % flywayV,
+    "org.flywaydb"                   % "flyway-database-postgresql" % flywayV,
     "com.typesafe"                  %% "ssl-config-core"            % typesafeSslConfigCoreV,
     "com.github.pjfanning"          %% "pekko-http-circe"           % pekkoHttpJsonV,
     "org.postgresql"                 % "postgresql"                 % postgresqlV,

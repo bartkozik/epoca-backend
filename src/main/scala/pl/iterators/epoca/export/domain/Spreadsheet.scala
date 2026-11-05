@@ -14,13 +14,16 @@ import java.util.Date
 case class Spreadsheet(fileName: SpreadsheetName, workbook: Workbook) {
   def toStream(format: SpreadsheetFormat): Stream[IO, Byte] =
     fs2.io.readOutputStream[IO](Spreadsheet.chunkSize) { outputStream =>
-      IO {
+      IO.interruptible {
         format match {
           case SpreadsheetFormat.Csv =>
             workbook
               .convertAsCsv()
               .foreach(v => outputStream.write(v._2.getBytes("UTF-8")))
-          case SpreadsheetFormat.Xlsx => workbook.convertAsXlsx().write(outputStream)
+          case SpreadsheetFormat.Xlsx =>
+            val xlsx = workbook.convertAsXlsx()
+            try xlsx.write(outputStream)
+            finally xlsx.close()
         }
         outputStream.flush()
         outputStream.close()

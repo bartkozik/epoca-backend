@@ -38,3 +38,8 @@ project/project/
 project/metals.sbt
 
 .release-clean.*/
+
+!.github/
+!.github/**
+!.dockerignore
+!.gitleaksignore

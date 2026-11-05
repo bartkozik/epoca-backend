@@ -65,3 +65,17 @@ Docker packaging requires an explicitly supplied runtime base image; private del
 Original Git history, private CI/deployment configuration, environment values and internal task/operational notes are excluded. Non-public endpoint and identity literals were anonymized; the SAML test certificate and key were regenerated for this snapshot. Application modules, route behavior, both migration lineages and the team's tests are retained.
 
 Original source namespaces and attribution remain. In particular, `utils/db/DBIOInstances.scala` retains the Risk Management Solutions copyright and upstream BSD-style license reference. No new project-wide license is added. This source snapshot does not include the original production environment, real accounts or client data.
+
+## Public demo
+
+The `demo/` gateway provisions temporary organizations with fictional people, clients, projects and time entries. It validates a server-side guest session before forwarding requests to the Scala API. Reset replaces the organization and credentials; the original 24-hour expiration remains unchanged. Account registration, SSO, invitations, uploads and external integrations are unavailable through the demo gateway.
+
+The gateway and API share a dedicated PostgreSQL database and a newly generated signing key. Neither the database nor the API is publicly exposed. Runtime configuration and deployment are maintained in [portfolio-infra](https://github.com/bartkozik/portfolio-infra).
+
+```sh
+cd demo
+npm ci
+npm test
+```
+
+Integration tests additionally require `TEST_DATABASE_URL`, `TEST_BACKEND_URL` and `JWT_SECRET` for a disposable, fully migrated database and matching Scala runtime. GitHub Actions runs these checks before publishing immutable API and gateway images.
