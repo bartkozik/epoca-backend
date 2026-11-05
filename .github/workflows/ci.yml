@@ -93,7 +93,7 @@ jobs:
           path: /tmp/epoca-demo-gateway.tar
           retention-days: 2
       - name: Verify database compatibility and security fixtures
-        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'Test / flywayMigrate' 'testOnly *PostgresDriverCompatibilitySpec *OAuthClientCredentialsE2ESpec *WorkspacePhotoAuthorizationConcurrencySpec *SendgridWebhookVerifierSpec *ProjectUnarchiveServiceSpec'
+        run: sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'Test / flywayMigrate' 'testOnly *PostgresDriverCompatibilitySpec *OAuthClientCredentialsE2ESpec *WorkspacePhotoAuthorizationConcurrencySpec *SendgridWebhookVerifierSpec *ProjectUnarchiveServiceSpec *ExportWorkUnitServiceSpec *SpreadsheetSpec'
       - name: Run the full Scala regression suite
         run: timeout --signal=QUIT --kill-after=30s 12m sbt -J-Xms512m -J-Xmx8G -J-Xss4m -J-XX:ActiveProcessorCount=2 -batch 'set Test / logBuffered := false' test
       - name: Save tested image

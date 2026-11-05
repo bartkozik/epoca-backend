@@ -1,5 +1,6 @@
 package pl.iterators.epoca.`export`.domain
 
+import cats.effect.unsafe.implicits.global
 import org.apache.poi.ss.usermodel.CellType
 import org.apache.poi.xssf.usermodel.{XSSFCell, XSSFRow}
 import org.specs2.execute.Result
@@ -10,6 +11,7 @@ import spoiwo.natures.csv.Model2CsvConversions._
 import spoiwo.natures.xlsx.Model2XlsxConversions._
 
 import java.time.Duration
+import scala.concurrent.duration._
 
 class SpreadsheetSpec extends SpecificationLike {
   case class TextRow(description: String)
@@ -65,6 +67,19 @@ class SpreadsheetSpec extends SpecificationLike {
   }
 
   "Spreadsheet" should {
+    "release CSV and XLSX writers when a consumer stops before the buffer is drained" in {
+      val spreadsheet = Spreadsheet.from(
+        SpreadsheetName("report.xlsx"),
+        Seq.fill(200)(TextRow("sample row " * 20)),
+        Map.empty
+      )
+      val sizes = Seq(SpreadsheetFormat.Csv, SpreadsheetFormat.Xlsx).map { format =>
+        spreadsheet.toStream(format).take(1).compile.toVector.timeout(10.seconds).unsafeRunSync().size
+      }
+
+      sizes shouldEqual Seq(1, 1)
+    }
+
     "neutralize formula prefixes in CSV text while preserving ordinary text" in {
       val values   = Seq("=1+1", "+1+1", "-1+1", "@SUM(A1)", "   =1+1", "'already safe", "ordinary note")
       val expected = Seq("'=1+1", "'+1+1", "'-1+1", "'@SUM(A1)", "'   =1+1", "'already safe", "ordinary note")
