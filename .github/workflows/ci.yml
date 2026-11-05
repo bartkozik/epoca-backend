@@ -1,0 +1,67 @@
+name: EPOCA backend
+on:
+  pull_request:
+  push:
+    branches: [main, feat/public-demo]
+permissions:
+  contents: read
+concurrency:
+  group: backend-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+jobs:
+  backend:
+    name: Backend checks and image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: postgres:16-alpine@sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab
+        env:
+          POSTGRES_DB: epoca_test
+          POSTGRES_USER: epoca
+          POSTGRES_PASSWORD: disposable-ci-password
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U epoca -d epoca_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      JVM_OPTS: -Xms512m -Xmx8g -Xss4m -XX:ActiveProcessorCount=2
+      DB_URL: jdbc:postgresql://localhost:5432/epoca_test
+      DB_USER: epoca
+      DB_PASSWORD: disposable-ci-password
+      TEST_DB_URL: jdbc:postgresql://localhost:5432/epoca_test
+      TEST_DB_USER: epoca
+      TEST_DB_PASSWORD: disposable-ci-password
+      JWT_SECRET: ephemeral-ci-only-signing-key-not-used-in-any-deployment
+      KAMON_ENABLED: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: sbt
+      - uses: sbt/setup-sbt@c6bd01274abceb9dd5bd9f1a336c2a26c259de69
+      - name: Compile, migrate and package
+        run: sbt -batch compile 'runMain pl.iterators.epoca.main.MigrateMain' 'Universal / stage'
+      - name: Build runtime image
+        run: docker build -f Dockerfile.demo -t epoca-backend:ci .
+      - name: Verify packaged runtime
+        run: |
+          docker run -d --name epoca-ci --network host --memory 768m --pids-limit 128 --read-only --tmpfs /tmp:rw,noexec,nosuid,size=128m -e DB_URL -e DB_USER -e DB_PASSWORD -e JWT_SECRET -e KAMON_ENABLED epoca-backend:ci
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://localhost:9000/api/v1/health-check >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs --tail 80 epoca-ci
+          exit 1
+      - name: Save tested image
+        run: docker save epoca-backend:ci -o /tmp/epoca-backend.tar
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: backend-image
+          path: /tmp/epoca-backend.tar
+          retention-days: 2
+      - name: Runtime diagnostics
+        if: failure()
+        run: docker logs --tail 80 epoca-ci 2>/dev/null || true
