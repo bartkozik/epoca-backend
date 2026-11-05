@@ -7,13 +7,13 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: backend-${{ github.ref }}
+  group: backend-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 jobs:
   backend:
     name: Backend checks and image
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     services:
       postgres:
         image: postgres:16-alpine@sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab
@@ -45,7 +45,7 @@ jobs:
           cache: sbt
       - uses: sbt/setup-sbt@c6bd01274abceb9dd5bd9f1a336c2a26c259de69
       - name: Compile, migrate and package
-        run: sbt -batch compile 'runMain pl.iterators.epoca.main.MigrateMain' 'Universal / stage'
+        run: sbt -batch compile 'Test / flywayMigrate' test 'runMain pl.iterators.epoca.main.MigrateMain' 'Universal / stage'
       - name: Build runtime image
         run: docker build -f Dockerfile.demo -t epoca-backend:ci .
       - name: Verify packaged runtime
@@ -57,6 +57,34 @@ jobs:
           done
           docker logs --tail 80 epoca-ci
           exit 1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '24.22.2'
+      - name: Test isolated guests against PostgreSQL and Scala
+        working-directory: demo
+        env:
+          TEST_DATABASE_URL: postgres://epoca:disposable-ci-password@localhost:5432/epoca_test
+          TEST_BACKEND_URL: http://localhost:9000
+        run: |
+          npm ci --ignore-scripts
+          npm test
+          npm run test:integration
+      - name: Build and verify gateway image
+        run: |
+          docker build -f demo/Dockerfile -t epoca-demo-gateway:ci .
+          docker run -d --name gateway-ci --network host --memory 128m --read-only --pids-limit 64 -e DATABASE_URL=postgres://epoca:disposable-ci-password@localhost:5432/epoca_test -e JWT_SECRET -e DEMO_ORIGIN=https://demo.example -e BACKEND_URL=http://localhost:9000 epoca-demo-gateway:ci
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent http://localhost:8080/health >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          docker logs --tail 40 gateway-ci
+          exit 1
+      - run: docker save epoca-demo-gateway:ci -o /tmp/epoca-demo-gateway.tar
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: gateway-image
+          path: /tmp/epoca-demo-gateway.tar
+          retention-days: 2
       - name: Save tested image
         run: docker save epoca-backend:ci -o /tmp/epoca-backend.tar
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
@@ -67,3 +95,88 @@ jobs:
       - name: Runtime diagnostics
         if: failure()
         run: docker logs --tail 80 epoca-ci 2>/dev/null || true
+
+  secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Scan Git history for secrets
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/gitleaks_8.30.1_linux_x64.tar.gz"
+          curl --fail --silent --show-error --location --output "$archive" https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          printf '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  %s\n' "$archive" | sha256sum --check
+          tar --extract --gzip --file "$archive" --directory "$RUNNER_TEMP" gitleaks
+          "$RUNNER_TEMP/gitleaks" git . --log-opts='--all --full-history -m' --redact --no-banner
+
+  publish:
+    needs: [backend, secrets]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      api: ${{ steps.push.outputs.api }}
+      gateway: ${{ steps.push.outputs.gateway }}
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: backend-image
+          path: ${{ runner.temp }}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: gateway-image
+          path: ${{ runner.temp }}
+      - id: push
+        env:
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          trap 'docker logout ghcr.io >/dev/null' EXIT
+          printf '%s' "$REGISTRY_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker load -i "$RUNNER_TEMP/epoca-backend.tar"
+          image="ghcr.io/bartkozik/epoca-backend:sha-$GITHUB_SHA"
+          docker tag epoca-backend:ci "$image"
+          docker push "$image"
+          reference=$(docker image inspect --format '{{index .RepoDigests 0}}' "$image")
+          digest=${reference##*@}
+          [[ "$digest" =~ ^sha256:[a-f0-9]{64}$ ]]
+          printf 'api=%s\n' "$digest" >> "$GITHUB_OUTPUT"
+          docker load -i "$RUNNER_TEMP/epoca-demo-gateway.tar"
+          image="ghcr.io/bartkozik/epoca-demo-gateway:sha-$GITHUB_SHA"
+          docker tag epoca-demo-gateway:ci "$image"
+          docker push "$image"
+          reference=$(docker image inspect --format '{{index .RepoDigests 0}}' "$image")
+          digest=${reference##*@}
+          [[ "$digest" =~ ^sha256:[a-f0-9]{64}$ ]]
+          printf 'gateway=%s\n' "$digest" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: publish
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.PRODUCTION_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    environment:
+      name: production
+      url: https://epoca.kozikowski.it
+    concurrency:
+      group: epoca-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Deploy tested images
+        env:
+          API_DIGEST: ${{ needs.publish.outputs.api }}
+          GATEWAY_DIGEST: ${{ needs.publish.outputs.gateway }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: bash scripts/deploy-demo.sh
