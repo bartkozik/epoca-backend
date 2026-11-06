@@ -52,7 +52,6 @@ trait Fs2PekkoStreamConverter {
     for {
       promise <- Deferred[IO, Either[Throwable, M]]
       fs2Sink <- akkaSinkToFs2PipeMat[A, Future[M]](akkaSink).flatMap { case (stream, mat) =>
-                   // This callback tells the akka materialized future to store its result status into the Promise
                    val callback = Async[IO].delay(mat.onComplete {
                      case Failure(ex)    => promise.complete(ex.asLeft).unsafeRunSync()
                      case Success(value) => promise.complete(value.asRight).unsafeRunSync()
@@ -60,11 +59,9 @@ trait Fs2PekkoStreamConverter {
                    callback.map(_ => stream)
                  }
     } yield { (in: Stream[IO, A]) =>
-      // Async wait on the promise to be completed
       val materializedResultStream    = Stream.eval(promise.get)
       val fs2Stream: Stream[IO, Unit] = fs2Sink.apply(in)
 
-      // Run the akka sink for its effects and then run stream containing the effect of getting the Promise results
       fs2Stream.drain ++ materializedResultStream
     }
 
@@ -89,9 +86,7 @@ trait Fs2PekkoStreamConverter {
 
   def fs2StreamToAkkaSource[A](stream: Stream[IO, A]): Graph[SourceShape[A], NotUsed] = {
     val source = AkkaSource.queue[A](0, OverflowStrategy.backpressure)
-    // A sink that runs an FS2 publisherStream when consuming the publisher actor (= materialized value) of source
     val sink = AkkaSink.foreach[SourceQueueWithComplete[A]] { p =>
-      // Fire and forget Future so it runs in the background
       import cats.effect.unsafe.implicits.global
 
       publisherStream[A](p, stream).compile.drain.unsafeToFuture(): Unit
@@ -109,15 +104,10 @@ trait Fs2PekkoStreamConverter {
 
   def fs2PipeToAkkaSink[A](sink: Pipe[IO, A, Unit]): Graph[SinkShape[A], Future[Done]] = {
     val sink1: AkkaSink[A, SinkQueueWithCancel[A]] = AkkaSink.queue[A]()
-    // A sink that runs an FS2 subscriberStream when consuming the subscriber actor (= materialized value) of sink1.
-    // The future returned from unsafeToFuture() completes when the subscriber stream completes and is made
-    // available as materialized value of this sink.
     val sink2: AkkaSink[SinkQueueWithCancel[A], Future[Done]] = AkkaFlow[SinkQueueWithCancel[A]]
       .map(s => subscriberStream[A](s).through(sink).compile.drain.as(Done: Done).unsafeToFuture())
       .toMat(AkkaSink.head)(Keep.right)
       .mapMaterializedValue(ffd => ffd.flatten)
-    // fromFuture dance above is because scala 2.11 lacks Future#flatten. `pure` instead of `delay`
-    // because the future value is already strict by the time we get it.
 
     AkkaSink
       .fromGraph(GraphDSL.createGraph(sink1, sink2)(Keep.both) { implicit builder => (sink1, sink2) =>
@@ -131,10 +121,7 @@ trait Fs2PekkoStreamConverter {
   def fs2PipeToAkkaFlow[A, B](pipe: Pipe[IO, A, B]): Graph[FlowShape[A, B], NotUsed] = {
     val source                                     = AkkaSource.queue[B](0, OverflowStrategy.backpressure)
     val sink1: AkkaSink[A, SinkQueueWithCancel[A]] = AkkaSink.queue[A]()
-    // A sink that runs an FS2 transformerStream when consuming the publisher actor (= materialized value) of source
-    // and the subscriber actor (= materialized value) of sink1
     val sink2 = AkkaSink.foreach[(SourceQueueWithComplete[B], SinkQueueWithCancel[A])] { ps =>
-      // Fire and forget Future so it runs in the background
       transformerStream(ps._2, ps._1, pipe).compile.drain.unsafeToFuture(): Unit
       ()
     }
@@ -214,7 +201,7 @@ trait Fs2PekkoStreamConverterDsl extends Fs2PekkoStreamConverter {
       ) ev: M <:< NotUsed
     ): Stream[IO, A] = {
       val _ =
-        ev // to suppress 'never used' warning. The warning fires on 2.12 but not on 2.13, so I can't use `nowarn`
+        ev
       akkaSourceToFs2Stream(source.asInstanceOf[Graph[SourceShape[A], NotUsed]])
     }
 
@@ -244,7 +231,7 @@ trait Fs2PekkoStreamConverterDsl extends Fs2PekkoStreamConverter {
       ) ev: M <:< NotUsed
     ): Pipe[IO, A, Unit] = {
       val _ =
-        ev // to suppress 'never used' warning. The warning fires on 2.12 but not on 2.13, so I can't use `nowarn`
+        ev
       akkaSinkToFs2Pipe(sink.asInstanceOf[Graph[SinkShape[A], NotUsed]])
     }
 
@@ -264,7 +251,7 @@ trait Fs2PekkoStreamConverterDsl extends Fs2PekkoStreamConverter {
       ) ev: M <:< NotUsed
     ): Pipe[IO, A, B] = {
       val _ =
-        ev // to suppress 'never used' warning. The warning fires on 2.12 but not on 2.13, so I can't use `nowarn`
+        ev
       akkaFlowToFs2Pipe(flow.asInstanceOf[Graph[FlowShape[A, B], NotUsed]])
     }
 
@@ -277,21 +264,18 @@ trait Fs2PekkoStreamConverterDsl extends Fs2PekkoStreamConverter {
 
   implicit class FS2StreamIODsl[A](stream: Stream[IO, A]) {
 
-    /** @see [[Fs2PekkoStreamConverter#fs2StreamToAkkaSource]] */
     def toSource: Graph[SourceShape[A], NotUsed] =
       fs2StreamToAkkaSource(stream)
   }
 
   implicit class FS2SinkIODsl[A](sink: Pipe[IO, A, Unit]) {
 
-    /** @see [[Fs2PekkoStreamConverter#fs2PipeToAkkaSink]] */
     def toSink: Graph[SinkShape[A], Future[Done]] =
       fs2PipeToAkkaSink(sink)
   }
 
   implicit class FS2PipeIODsl[A, B](pipe: Pipe[IO, A, B]) {
 
-    /** @see [[Fs2PekkoStreamConverter#fs2PipeToAkkaFlow]] */
     def toFlow: Graph[FlowShape[A, B], NotUsed] =
       fs2PipeToAkkaFlow(pipe)
   }

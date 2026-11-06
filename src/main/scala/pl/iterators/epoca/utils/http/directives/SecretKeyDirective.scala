@@ -15,9 +15,6 @@ trait SecretKeyDirective extends HeaderDirectives {
       None
   }
 
-  /** Protects a route with the configured secret header. When no secret is configured the route is disabled and every request is rejected, so the
-    * route is never reachable with a public default value.
-    */
   def secretKeyProtection(config: SecretKeyConfig): Directive1[Done] =
     config.value match {
       case Some(value) => headerValue(extractSecretKeyHeader(config.name, value))

@@ -18,7 +18,6 @@ class InvitationRetentionRepository {
     ) { p => bind(p, now, batchSize); p.executeUpdate() }
   }.transactionally
 
-  /** Limits both access and SAML deletions to batchSize. A large SAML history drains over multiple runs. */
   def deleteExpiredAccess(now: Instant, batchSize: Int): DBIO[Int] = SimpleDBIO { ctx =>
     require(batchSize > 0, "Cleanup batch size must be positive")
     val connection = ctx.connection
@@ -56,7 +55,6 @@ class InvitationRetentionRepository {
         "DELETE FROM invitation_access a WHERE a.id=? AND NOT EXISTS (SELECT 1 FROM saml_request r WHERE r.invitation_access_id=a.id)"
       ) { p => bind(p, id); p.executeUpdate() }
     }
-    // Partial SAML-history cleanup is still useful work even if its access context needs another run.
     deleted + batchSize - requestBudget
   }.transactionally
 }

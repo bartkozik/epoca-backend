@@ -4,7 +4,6 @@ import com.typesafe.config.{Config => TsConfig}
 
 import scala.util.Try
 
-/** Chooses the [[FileStorage]] implementation from `assets.storage` (`memory` | `s3`). */
 object FileStorageFactory {
 
   def apply(config: TsConfig): FileStorage = {

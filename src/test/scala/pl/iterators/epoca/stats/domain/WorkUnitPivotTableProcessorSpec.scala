@@ -81,9 +81,6 @@ class WorkUnitPivotTableProcessorSpec extends SpecificationLike with Generators 
       testCase(Seq(WorkUnitPivotTableKey.ClientKey), Seq(WorkUnitPivotTableValue.EntriesCount), units, rows)
     }
     "TaskKey" in {
-      // first.taskId is pinned (rather than left to the generator, as in the analogous ProjectKey/ClientKey/UserKey
-      // tests below) because taskId is itself an Option: a randomly-generated None here would collide with third's
-      // explicit None group, collapsing two expected groups into one and making this test flaky.
       val first  = worklog().copy(taskId = Some(WorkUnitTaskId("CT-TASK-1")))
       val second = worklog().copy(taskId = first.taskId)
       val third  = worklog().copy(taskId = None)

@@ -5,8 +5,6 @@ fail() { printf 'Migration configuration error: %s\n' "$1" >&2; exit 2; }
 [[ "${DB_URL:-}" == jdbc:postgresql:* ]] || fail 'DB_URL must be a PostgreSQL JDBC URL'
 : "${DB_USER:?DB_USER is required}" "${DB_PASSWORD:?DB_PASSWORD is required}"
 
-# Deliberately accept only literal parameter names/schema identifiers. Match
-# sbt and the application: no encoded schema aliases or duplicate parameters.
 schema=public
 schema_seen=false
 if [[ "$DB_URL" == *\?* ]]; then
@@ -39,9 +37,6 @@ locations="filesystem:$location"
 if [[ "$bootstrap" == true ]]; then locations+=,filesystem:/sql-bootstrap; fi
 [[ -z "${FLYWAY_LOCATIONS:-}" || "$FLYWAY_LOCATIONS" == "$locations" ]] || fail 'FLYWAY_LOCATIONS conflicts with the selected schema lineage'
 
-# Preserve command/option splitting used by the original image, without eval
-# or pathname expansion. Connection checks use Flyway's bounded connection
-# retry, never an infinite retry of checksum/validation failures.
 read -r -a command <<<"${FLYWAY_CMD:-migrate}"
 for argument in "${command[@]}"; do
   case "$argument" in

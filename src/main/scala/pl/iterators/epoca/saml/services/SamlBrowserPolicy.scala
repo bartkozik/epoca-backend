@@ -6,7 +6,6 @@ import pl.iterators.epoca.invitation.services.{InvitationBrowserSecurity, Invita
 import java.net.URI
 import scala.util.Try
 
-/** Browser policy is independent of invitation rollout. Invalid policy disables SAML browser routes only. */
 final case class SamlBrowserPolicy(security: InvitationBrowserSecurity, callback: String) {
   def nonceCookie(nonce: String): String = security.cookie(nonce, 900L)
   def clearNonceCookie: String           = security.clearCookie

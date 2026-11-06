@@ -32,7 +32,6 @@ import java.time.Instant
 import java.util.UUID
 import scala.concurrent.ExecutionContext
 
-/** Test classpath only. Real API/authentication, synthetic mail captured only in this process. */
 object InvitationBrowserTestMain extends ApplicationRuntime {
   private def required(name: String): String = sys.env.getOrElse(name, throw new IllegalArgumentException(s"Missing $name"))
   private lazy val databaseName              = required("INVITATION_BROWSER_DATABASE")

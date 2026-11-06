@@ -19,9 +19,6 @@ import scala.util.{Failure, Success}
 
 object DBIOInstances extends DBIOInstances
 
-/** Instances are only provided for `DBIO[A]` and not for `DBIOAction[A, NoStream, Effect.All]` or any other DBIOAction. An implicit
-  * `ExecutionContext` must be in scope for the type class conversion to occur. It will otherwise fail with rather unhelpful errors.
-  */
 trait DBIOInstances extends DBIOInstances0 {
   implicit def dbioInstance(implicit ec: ExecutionContext)
     : MonadError[DBIO, Throwable] with CoflatMap[DBIO] with Sync[DBIO] with TracingContextSource[DBIO] =
@@ -62,15 +59,15 @@ trait DBIOInstances extends DBIOInstances0 {
           case Failure(t) => f(t)
         }
 
-      override def get: DBIO[Option[TracingContext]] = DBIO.successful(None) // noop, no slick support for tracing
+      override def get: DBIO[Option[TracingContext]] = DBIO.successful(None)
 
-      override def map[T](f: Option[TracingContext] => T): DBIO[T] = DBIO.successful(f(None)) // noop, no slick support for tracing
+      override def map[T](f: Option[TracingContext] => T): DBIO[T] = DBIO.successful(f(None))
 
-      override def update(updater: TracingContext => TracingContext): DBIO[Unit] = DBIO.successful(()) // noop, no slick support for tracing
+      override def update(updater: TracingContext => TracingContext): DBIO[Unit] = DBIO.successful(())
 
-      override def set(ctx: TracingContext): DBIO[Unit] = DBIO.successful(()) // noop, no slick support for tracing
+      override def set(ctx: TracingContext): DBIO[Unit] = DBIO.successful(())
 
-      override def unset(): DBIO[Unit] = DBIO.successful(()) // noop, no slick support for tracing
+      override def unset(): DBIO[Unit] = DBIO.successful(())
 
       override def tailRecM[A, B](a: A)(f: A => DBIO[Either[A, B]]): DBIO[B] =
         f(a).flatMap {

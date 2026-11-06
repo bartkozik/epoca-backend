@@ -15,7 +15,6 @@ object TransactorCall {
   final case class ExecuteTransactionallyAt(level: IsolationLevel) extends TransactorCall
 }
 
-/** Mix into a transactor to record which execution methods (and isolation levels) were used. */
 trait RecordingTransactor extends PostgresIOTransactor {
   private val recorded = new ConcurrentLinkedQueue[TransactorCall]()
 

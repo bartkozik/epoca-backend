@@ -5,7 +5,6 @@ import cats.effect.IO
 import java.util.concurrent.ConcurrentHashMap
 import scala.jdk.CollectionConverters._
 
-/** Non-persistent storage for local development and tests. Objects are lost on restart and are not served over HTTP. */
 class InMemoryFileStorage(publicBaseUrl: String) extends FileStorage {
   private val objects = new ConcurrentHashMap[String, (Array[Byte], String)]()
 

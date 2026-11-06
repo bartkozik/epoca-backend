@@ -195,7 +195,6 @@ class ProjectRepositoryImplSpec
     }
 
     "userId" in withDatabase {
-      // 2 users, 2 organizations per user, 2 projects per organization
       val u1 = userGenerator.generate
       val u2 = userGenerator.generate
 
@@ -247,7 +246,6 @@ class ProjectRepositoryImplSpec
     }
 
     "archivedConnectionsUserId" in withDatabase {
-      // 2 users, 2 organizations per user, 2 projects per organization
       val u1 = userGenerator.generate
       val u2 = userGenerator.generate
 
@@ -299,7 +297,6 @@ class ProjectRepositoryImplSpec
     }
 
     "organizationIds" in withDatabase {
-      // 2 users, 2 organizations per user, 2 projects per organization
       val u1 = userGenerator.generate
       val u2 = userGenerator.generate
 

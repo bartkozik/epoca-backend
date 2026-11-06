@@ -13,7 +13,6 @@ final class InvitationSecretService {
     Base64.getUrlEncoder.withoutPadding().encodeToString(bytes)
   }
 
-  /** Stable for one browser context; distinct from the cookie digest stored in the database. */
   def csrfToken(cookie: String): String =
     Base64.getUrlEncoder.withoutPadding().encodeToString(hash("invitation-csrf:v1:" + cookie))
 

@@ -39,7 +39,6 @@ class WorkUnitTaskIdLimitMigrationSpec extends SpecificationLike {
           s"INSERT INTO work_unit_override_history (id,work_unit_id,version,operation,actor_id,actor_display_name,changed_at,provenance,before_snapshot,after_snapshot) VALUES ('${UUID
               .randomUUID()}','${changed.head}',1,'Replace','$actor','Historical Actor','2026-09-25T10:00:00Z','WorkUnitOverride','{\"taskId\":\"snapshot-before\"}','{\"taskId\":\"snapshot-after\"}')"
         )
-        // V19 must not reconcile these deliberately stale client IDs during cleanup.
         execute(url, schema, s"UPDATE project SET client_id='$nextClient' WHERE id='$project'")
         val originals       = query(url, schema, "SELECT to_jsonb(w)::text FROM work_unit w ORDER BY id")
         val unchangedFields = query(url, schema, "SELECT (to_jsonb(w)-'task_id'-'revision')::text FROM work_unit w ORDER BY id")
@@ -104,7 +103,6 @@ class WorkUnitTaskIdLimitMigrationSpec extends SpecificationLike {
         query(url, schema, "SELECT to_jsonb(w)::text FROM work_unit w ORDER BY id") shouldEqual after
         query(url, schema, s"SELECT to_jsonb(a)::text FROM $auditTable a ORDER BY work_unit_id") shouldEqual audit
         historicalChecksums(url, schema) shouldEqual checksums
-        // The audit intentionally outlives a source row, with no blocking foreign key.
         execute(url, schema, s"DELETE FROM work_unit WHERE id='${changed.last}'")
         query(url, schema, s"SELECT count(*)::text FROM $auditTable WHERE work_unit_id='${changed.last}'") shouldEqual Seq(Seq("1"))
         if (schema != "public") query(url, schema, "SELECT task_id FROM public.work_unit") shouldEqual Seq(Seq("hostile-public"))

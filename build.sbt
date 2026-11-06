@@ -11,39 +11,39 @@ scalacOptions ++= Seq(
   "-release:17",
   "-Ymacro-annotations",
   "-Ywarn-macros:after",
-  "-deprecation", // Emit warning and location for usages of deprecated APIs.
+  "-deprecation",
   "-encoding",
-  "utf-8", // Specify character encoding used by source files.
-  "-explaintypes", // Explain type errors in more detail.
-  "-feature", // Emit warning and location for usages of features that should be imported explicitly.
-  "-language:existentials", // Existential types (besides wildcard types) can be written and inferred
-  "-language:experimental.macros", // Allow macro definition (besides implementation and application)
-  "-language:higherKinds", // Allow higher-kinded types
-  "-language:implicitConversions", // Allow definition of implicit functions called views
-  "-unchecked", // Enable additional warnings where generated code depends on assumptions.
-  "-Xcheckinit", // Wrap field accessors to throw an exception on uninitialized access.
-  "-Xlint:constant", // Evaluation of a constant arithmetic expression results in an error.
-  "-Xlint:delayedinit-select", // Selecting member of DelayedInit.
-  "-Xlint:doc-detached", // A Scaladoc comment appears to be detached from its element.
-  "-Xlint:inaccessible", // Warn about inaccessible types in method signatures.
-  "-Xlint:infer-any", // Warn when a type argument is inferred to be `Any`.
-  "-Xlint:missing-interpolator", // A string literal appears to be missing an interpolator id.
-  "-Xlint:nullary-unit", // Warn when nullary methods return Unit.
-  "-Xlint:option-implicit", // Option.apply used implicit view.
-  "-Xlint:package-object-classes", // Class or object defined in package object.
-  "-Xlint:poly-implicit-overload", // Parameterized overloaded implicit methods are not visible as view bounds.
-  "-Xlint:private-shadow", // A private field (or class parameter) shadows a superclass field.
-  "-Xlint:stars-align", // Pattern sequence wildcard must align with sequence component.
-  "-Xlint:type-parameter-shadow", // A local type parameter shadows a type already in scope.
-  "-Ywarn-extra-implicit", // Warn when more than one implicit parameter section is defined.
-  "-Ywarn-numeric-widen", // Warn when numerics are widened.
-  "-Ywarn-unused:implicits", // Warn if an implicit parameter is unused.
-  "-Ywarn-unused:imports", // Warn if an import selector is not referenced.
-  "-Ywarn-unused:locals", // Warn if a local definition is unused.
-  "-Ywarn-unused:params", // Warn if a value parameter is unused.
-  "-Ywarn-unused:patvars", // Warn if a variable bound in a pattern is unused.
-  "-Ywarn-unused:privates", // Warn if a private member is unused.
-  "-Ywarn-value-discard", // Warn when non-Unit expression results are unused.
+  "utf-8",
+  "-explaintypes",
+  "-feature",
+  "-language:existentials",
+  "-language:experimental.macros",
+  "-language:higherKinds",
+  "-language:implicitConversions",
+  "-unchecked",
+  "-Xcheckinit",
+  "-Xlint:constant",
+  "-Xlint:delayedinit-select",
+  "-Xlint:doc-detached",
+  "-Xlint:inaccessible",
+  "-Xlint:infer-any",
+  "-Xlint:missing-interpolator",
+  "-Xlint:nullary-unit",
+  "-Xlint:option-implicit",
+  "-Xlint:package-object-classes",
+  "-Xlint:poly-implicit-overload",
+  "-Xlint:private-shadow",
+  "-Xlint:stars-align",
+  "-Xlint:type-parameter-shadow",
+  "-Ywarn-extra-implicit",
+  "-Ywarn-numeric-widen",
+  "-Ywarn-unused:implicits",
+  "-Ywarn-unused:imports",
+  "-Ywarn-unused:locals",
+  "-Ywarn-unused:params",
+  "-Ywarn-unused:patvars",
+  "-Ywarn-unused:privates",
+  "-Ywarn-value-discard",
   "-Wnonunit-statement",
   "-Wnonunit-if",
   if (insideCI.value || !sys.env.get("SBT_NO_FATAL_WARNING").contains("true")) "-Wconf:any:error" else "-Wconf:any:warning"
@@ -51,9 +51,7 @@ scalacOptions ++= Seq(
 
 Test / scalacOptions --= Seq("-Wnonunit-statement", "-Wnonunit-if")
 
-// Integration specifications share one disposable PostgreSQL schema and exercise
-// transaction/teardown races internally; separate specifications must not mutate
-// that schema concurrently.
+// Integration specs share one disposable PostgreSQL schema and must not mutate it concurrently.
 Test / parallelExecution := false
 Test / testListeners ++= (if (sys.env.get("CI").contains("true")) Seq(CiTestProgress) else Seq.empty)
 
@@ -156,8 +154,6 @@ libraryDependencies ++= {
 enablePlugins(JavaServerAppPackaging)
 dockerRepository := sys.env.get("DOCKER_REPO")
 packageName := "epoca-backend"
-// The runtime image is required only when a Docker image is actually staged or published. Checking it in a task instead of the
-// setting keeps `sbt compile`, `sbt test` and `sbt run` working without it, while CI packaging still fails when it is unset.
 lazy val requireRuntimeImage = taskKey[String]("Fails unless EPOCA_RUNTIME_IMAGE names the Docker base image")
 requireRuntimeImage := sys.env
   .get("EPOCA_RUNTIME_IMAGE")
@@ -173,9 +169,9 @@ dockerCommands += Cmd("ARG", "BUILD_VERSION")
 dockerCommands += Cmd("ENV", "APP_VERSION=$BUILD_VERSION")
 dockerCommands += Cmd("ADD", "--chown=root:root", "baklava", "/baklava")
 dockerEnvVars += ("BAKLAVA_ROUTES_FILESYSTEM_PATH", "/baklava")
-dockerCommands += Cmd("ARG", "PORT=80") // default port...
-dockerCommands += Cmd("ENV", "PORT ${PORT}") // ...overwrite with docker run env if defined
-dockerCommands += Cmd("USER", "root") // temporarily switch to root to access chmod /bin
+dockerCommands += Cmd("ARG", "PORT=80")
+dockerCommands += Cmd("ENV", "PORT ${PORT}")
+dockerCommands += Cmd("USER", "root")
 dockerCommands += Cmd("RUN", "chmod 755", "/opt/docker/bin/epoca-backend")
 dockerCommands += Cmd("ADD", "https://github.com/moparisthebest/static-curl/releases/latest/download/curl-amd64", "/bin/curl")
 dockerCommands += Cmd("RUN", "chmod 755", "/bin/curl")
@@ -258,7 +254,6 @@ Test / verifyAll := {
 
 BackendVerification.settings
 
-// The production project never depends on this disposable test application.
 lazy val root = project.in(file("."))
 Compile / mainClass := Some("pl.iterators.epoca.main.Main")
 lazy val oauthE2e = project

@@ -67,7 +67,6 @@ class InvitationAccessRouter(
 
   private def classify(result: InvitationAccessService.Result, auth: Option[AuthContext]): IO[InvitationAccessService.Result] = result match {
     case grant: InvitationAccessService.Granted =>
-      // Each classifier owns and releases its canonical parent locks before the next transaction starts.
       activation.nextAction(grant.cookie, auth).flatMap { human =>
         transactor.executeTransactionally(saml.classifyContinuationAction(grant.cookie)).map { continuation =>
           grant.copy(dto = grant.dto.copy(nextAction = human.orElse(continuation).getOrElse(grant.dto.nextAction)))

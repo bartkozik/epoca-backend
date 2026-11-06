@@ -7,7 +7,6 @@ import java.util.Properties
 
 object DatabaseSchemaConfiguration {
 
-  /** Both Slick and Quartz receive this URL, including an explicit public default. */
   def apply(config: Config): Config = {
     val url        = config.getString("db.url")
     val properties = Driver.parseURL(url, new Properties())

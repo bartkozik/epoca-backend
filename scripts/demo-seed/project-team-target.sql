@@ -1,5 +1,3 @@
--- Shared deterministic project-team materialization used by apply and standalone verification.
--- Requires demo_seed_target_member and the user/client/project/project-user catalogs.
 CREATE TEMP TABLE demo_seed_target_project_user
 (
     project_user_id UUID PRIMARY KEY,

@@ -101,7 +101,6 @@ final class InvitationAccessRepositoryImpl extends InvitationAccessRepository {
   override def findByCookieHash(hash: Digest): DBIO[Option[Access]] = select(hash, false)
   override def lockByCookieHash(hash: Digest): DBIO[Option[Access]] = select(hash, true)
   override def update(a: Access, expectedGeneration: Long): DBIO[Boolean] = SimpleDBIO { ctx =>
-    // Generation is immutable; invitation rotation requires a newly validated access context.
     a.generation == expectedGeneration && statement(
       ctx.connection,
       "UPDATE invitation_access SET csrf_hash=?,proof=?,verified_user_id=?,saml_request_id=?,expires_at=?,completed_at=? WHERE id=? AND invitation_id=? AND generation=? AND completed_at IS NULL"

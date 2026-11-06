@@ -837,8 +837,6 @@ class WorkUnitPivotQueryRepositoryImplSpec
     "accept SQL-rounded integral nanos but reject fractional, negative, null, and negative counts" in {
       import WorkUnitPivotQueryRepositoryImpl.RawAggregateRow
 
-      // PostgreSQL intervals cannot persist nanosecond-scale 1ns/2ns fixtures. Task 3 asserts ROUND in SQL;
-      // this boundary accepts its integral 2 result and rejects an unrounded 1.5 decoder input.
       WorkUnitPivotQueryRepositoryImpl.decodeNanos("durationAvgNanos", new java.math.BigDecimal("2")) shouldEqual BigInt(2)
       WorkUnitPivotQueryRepositoryImpl.decodeNanos("durationAvgNanos", new java.math.BigDecimal("1.5")) must throwA[IllegalStateException]
       WorkUnitPivotQueryRepositoryImpl.decodeNanos("durationSumNanos", new java.math.BigDecimal("-1")) must throwA[IllegalStateException]

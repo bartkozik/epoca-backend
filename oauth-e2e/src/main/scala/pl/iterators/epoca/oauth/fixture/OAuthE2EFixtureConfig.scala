@@ -63,7 +63,6 @@ object OAuthE2EFixtureConfig {
   }
 
   object ControllerLeaseObservationGuard {
-    // Task 1 only validates a Task 3 observation; atomic claim/exclusivity and no-takeover remain real-PostgreSQL responsibilities.
     case object RequireObservedUnclaimed extends ControllerLeaseObservationGuard {
       override def validateObserved(observation: ControllerLeaseObservation): Either[OAuthE2EFixtureConfigError, Unit] =
         observation match {
@@ -262,7 +261,6 @@ object OAuthE2EFixtureConfig {
         .map(_.toVector)
     }
 
-  // These are closed fail-fast checks for obvious generator/configuration failures, not a mathematical entropy estimate.
   private def passesObviousWeakMaterialChecks(bytes: Vector[Byte]): Boolean = {
     val hasEnoughDiversity = bytes.distinct.size >= MinimumDistinctTokenBytes
     val hasSmallPeriod = (1 to MaximumRejectedPeriod).exists { period =>

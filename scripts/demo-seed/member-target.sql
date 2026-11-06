@@ -1,5 +1,3 @@
--- Shared deterministic organization-member materialization used by apply and standalone verification.
--- Requires demo_seed_nonseed_active_member and demo_seed_user_catalog.
 CREATE TEMP TABLE demo_seed_target_member
 (
     profile_order INTEGER PRIMARY KEY,

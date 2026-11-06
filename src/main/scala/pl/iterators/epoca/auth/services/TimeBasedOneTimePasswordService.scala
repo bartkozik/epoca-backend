@@ -19,9 +19,6 @@ class TimeBasedOneTimePasswordService(config: TimeBasedOneTimePasswordService.Co
   def generateDBIO(secretKey: TimeBasedOneTimePasswordSecret): DBIO[TimeBasedOneTimePasswordValue] =
     Sync[DBIO].delay(generate(secretKey))
 
-  /*
-   * Reference: https://datatracker.ietf.org/doc/html/rfc4226
-   */
   private def generate(secretKey: TimeBasedOneTimePasswordSecret): TimeBasedOneTimePasswordValue = {
     val decodedKey        = Base32.decode(secretKey).getBytes
     val timeIntervalBytes = new Array[Byte](8)

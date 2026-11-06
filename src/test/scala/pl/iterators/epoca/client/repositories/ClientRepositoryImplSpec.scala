@@ -272,7 +272,6 @@ class ClientRepositoryImplSpec extends PgRepositorySpec with OrganizationFixture
     }
 
     "userId" in withDatabase {
-      // 2 users, 2 organizations per user, 2 clients per organization
       val u1 = userGenerator.generate
       val u2 = userGenerator.generate
 
@@ -311,7 +310,6 @@ class ClientRepositoryImplSpec extends PgRepositorySpec with OrganizationFixture
     }
 
     "organizationIds" in withDatabase {
-      // 2 users, 2 organizations per user, 2 clients per organization
       val u1 = userGenerator.generate
       val u2 = userGenerator.generate
 

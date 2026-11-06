@@ -1,5 +1,4 @@
 #!/bin/sh
-# Prints the highest versioned migration number, e.g. 37 for V37__*.sql.
 set -eu
 
 repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)

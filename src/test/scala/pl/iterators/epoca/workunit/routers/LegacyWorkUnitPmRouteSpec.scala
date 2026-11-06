@@ -10,8 +10,6 @@ import pl.iterators.epoca.workunit.services.WorkUnitOverrideService
 
 import java.util.UUID
 
-// Baklava instantiates every RouteDocSpec subtype with a no-argument constructor.
-// Share cases through a self-typed helper, not an abstract RouteDocSpec subtype.
 trait LegacyWorkUnitPmRouteCases { self: RouteDocSpec =>
   protected def retiredRoute(httpMethodName: String, suffix: String): RouteRepresentation[Unit, Unit] =
     RouteRepresentation[Unit, Unit](

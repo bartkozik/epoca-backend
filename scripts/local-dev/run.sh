@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Local Época stack without Docker: a native PostgreSQL, the backend through sbt and the
-# frontend through Vite. See README.md in this directory.
 set -euo pipefail
 
 HERE=$(cd "$(dirname "$0")" && pwd)
@@ -30,7 +28,6 @@ java17
 export PATH="$JAVA_HOME/bin:$PATH"
 export DB_URL="jdbc:postgresql://127.0.0.1:5432/$DB" DB_USER="${DB_USER:-$USER}" DB_PASSWORD="${DB_PASSWORD:-local}"
 export TEST_DB_URL="$DB_URL" TEST_DB_USER="$DB_USER" TEST_DB_PASSWORD="$DB_PASSWORD"
-# Local-only values: application.conf has no defaults for these secrets.
 export JWT_SECRET="${JWT_SECRET:-local-only-jwt-secret}" SECRET_KEY="${SECRET_KEY:-local-only-health-secret}"
 export KAMON_ENABLED=false PORT="$BACKEND_PORT"
 mkdir -p "$STATE"
@@ -72,7 +69,6 @@ up() {
   fi
   [ -d "$FE" ] || { echo "frontend not found at $FE; set EPOCA_FRONTEND_DIR"; return; }
   if ! curl -s -o /dev/null --max-time 2 "http://127.0.0.1:$FRONTEND_PORT/"; then
-    # A stale CRA-era .env (REACT_APP_*) is ignored by Vite and leaves the API base URL empty.
     [ -f "$FE/.env.local" ] || printf 'VITE_API_BASE_URL=/api/v1\nVITE_PUBLIC_URL=\n' > "$FE/.env.local"
     (
       cd "$FE"

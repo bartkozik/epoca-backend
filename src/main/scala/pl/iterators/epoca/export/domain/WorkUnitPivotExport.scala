@@ -59,12 +59,7 @@ object WorkUnitPivotExport {
   }
 
   object Limits {
-    // Whenever this changes (e.g. adding a new pivot dimension), canonicalBodyBudget(the real
-    // stats.pivot.maxDisplayValueCellCount from application.conf) must stay <= requestEntityMaxBytes,
-    // or ExportModule.PivotConfig's require() crashes application wiring at startup. Re-check
-    // both this value and stats.pivot.maxDisplayValueCellCount together; see
-    // ExportModule.PivotConfig and the "load the application defaults..." spec in
-    // PostPivotTableWorkUnitExportRouteSpec for the guarded invariant.
+    // Keep canonicalBodyBudget(maxDisplayValueCellCount) within requestEntityMaxBytes or application startup fails.
     final val supportedDimensionCount: Int      = 8
     final val maxLabelCodePoints: Int           = 140
     final val maxLabelUtf8Bytes: Int            = 560

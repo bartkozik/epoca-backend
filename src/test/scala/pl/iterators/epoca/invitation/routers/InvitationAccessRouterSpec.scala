@@ -41,7 +41,6 @@ class InvitationAccessRouterSpec extends RouteSpec {
     )
   )
 
-  // Route tests control transaction outcomes; the services' state transitions and lock order have real PostgreSQL coverage.
   private class OutcomeTx(result: Any) extends PostgresIOTransactor(null) {
     override def executeTransactionally[A](action: => DBIO[A]): IO[A] = IO.pure(result.asInstanceOf[A])
   }

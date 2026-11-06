@@ -23,9 +23,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
-/** Reproduces the list/count race against real PostgreSQL: a concurrent writer commits on an independent connection between the list read and the
-  * count read of ClientListService.
-  */
 class ClientListServiceRaceSpec extends PgRepositorySpec {
   private implicit val ioRuntime: IORuntime = IORuntime.global
 
@@ -40,7 +37,6 @@ class ClientListServiceRaceSpec extends PgRepositorySpec {
   private val organizationGenerator: Generator[Organization] = allGenerators[Organization].normal
   private val clientGenerator: Generator[Client]             = allGenerators[Client].normal
 
-  /** Independent pool, so the concurrent write is never queued behind (or part of) the service's pinned transaction connection. */
   private lazy val writerDb = Database.forURL(
     url = sys.env.getOrElse("TEST_DB_URL", "epoca"),
     user = sys.env.getOrElse("TEST_DB_USER", "postgres"),
@@ -52,13 +48,11 @@ class ClientListServiceRaceSpec extends PgRepositorySpec {
 
   private def runOn[A](database: Database, action: DBIO[A]): A = Await.result(database.run(action), Duration.Inf)
 
-  /** Real transactor that ignores the requested isolation level and always uses READ COMMITTED (negative control). */
   private class ReadCommittedTransactor extends PostgresIOTransactor(db) {
     override def executeTransactionally[T](level: IsolationLevel)(f: => DBIO[T]): cats.effect.IO[T] =
       super.executeTransactionally(IsolationLevel.ReadCommitted)(f)
   }
 
-  /** Delegates to the real repository; the first `count` first commits `onBetween` on the writer connection, i.e. strictly after list. */
   private class RacingClientRepository(onBetween: => Client) extends ClientRepository {
     private val fired                                         = new AtomicBoolean(false)
     override def insert(client: Client): DBIO[Client]         = realClientRepository.insert(client)
@@ -112,7 +106,6 @@ class ClientListServiceRaceSpec extends PgRepositorySpec {
       val sut = service(new PostgresIOTransactor(db), new RacingClientRepository(f.racing))
 
       val page = listOk(sut, f)
-      // concurrent write really committed: visible to a fresh read
       val afterwards = listOk(service(new PostgresIOTransactor(db), realClientRepository), f)
 
       (page.results.map(_.id).toSet shouldEqual f.seeded.map(_.id).toSet) and

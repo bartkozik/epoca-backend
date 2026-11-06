@@ -415,7 +415,6 @@ class PivotXlsxEncoderSpec extends SpecificationLike {
     val path = Files.createTempFile("pivot-xlsx-spec-", ".xlsx")
     try {
       Using.resource(Files.newOutputStream(path))(PivotXlsxEncoder.write(table, labels, _))
-      // File-backed reading avoids POI's large buffers for ZIP entries with unknown sizes.
       Using.resource(new XSSFWorkbook(path.toFile))(read)
     } finally Files.delete(path)
   }

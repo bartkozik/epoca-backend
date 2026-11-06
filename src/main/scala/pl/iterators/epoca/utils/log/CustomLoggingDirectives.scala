@@ -22,7 +22,6 @@ trait CustomLoggingDirectives {
   private def headersToString(headers: Seq[HttpHeader]): String =
     headers
       .map { h =>
-        // Browser credentials accompany ordinary API calls too, including streamed responses.
         val value = if (h.is("cookie") || h.is("set-cookie")) "***" else h.value
         s"${h.name()}: $value"
       }

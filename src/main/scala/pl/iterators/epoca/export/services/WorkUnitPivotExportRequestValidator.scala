@@ -112,11 +112,7 @@ class WorkUnitPivotExportRequestValidator(queryValidator: WorkUnitPivotQueryRequ
         None
     }
 
-  // TaskKey was added after presentation.noTaskLabel/fieldLabels.TaskKey already shipped as unconditionally
-  // required fields for every other dimension. Requiring them unconditionally here too would break every
-  // existing export request the moment this backend deploys, ahead of frontend support for TaskKey (CT-541).
-  // So they're only required when the query actually groups by TaskKey (the only case where they're ever read,
-  // see PivotExportProjection.fallbackLabel/rowFieldLabels) - otherwise they're accepted but optional.
+  // TaskKey labels are required only when grouping by TaskKey, preserving older frontend export requests.
   private def usesTaskKey(query: Request): Boolean =
     query.rows.contains(WorkUnitPivotTableKey.TaskKey) || query.columns.contains(WorkUnitPivotTableKey.TaskKey)
 
@@ -301,8 +297,6 @@ class WorkUnitPivotExportRequestValidator(queryValidator: WorkUnitPivotQueryRequ
           case Some(rawLabel) => parseLabel(rawLabel, s"$path.label", violations)
         }
 
-        // Defense in depth: current valid label limits keep canonical entries below this bound,
-        // including maximum-length labels whose quotes and backslashes require JSON escaping.
         (key, value, normalizedLabel) match {
           case (Some(parsedKey), Some(parsedValue), Some(normalized))
               if canonicalMemberEntrySize(parsedKey, parsedValue, normalized) > Limits.maxMemberEntryBytes =>

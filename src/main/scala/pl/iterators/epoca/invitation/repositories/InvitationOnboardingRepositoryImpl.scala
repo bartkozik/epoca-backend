@@ -12,7 +12,6 @@ import pl.iterators.epoca.utils.db.{EmailCanonicalization, PageSizeAndNumber}
 import java.sql.ResultSet
 import java.time.Instant
 
-/** Prepared JDBC; the service owns transaction boundaries and recovers conflicts after rollback. */
 final class InvitationOnboardingRepositoryImpl extends InvitationOnboardingRepository {
   private val canonicalValueSql     = EmailCanonicalization.sql("identity_value")
   private val canonicalParameterSql = EmailCanonicalization.sql("?")
@@ -87,7 +86,6 @@ final class InvitationOnboardingRepositoryImpl extends InvitationOnboardingRepos
     expectedGeneration: Long
   ): DBIO[Boolean] = SimpleDBIO { ctx =>
     val i = record.invitation
-    // Only a v1 -> v2 upgrade may canonicalize the stored address; recipients never change.
     statement(
       ctx.connection,
       s"UPDATE invitation SET identity_value=CASE WHEN protocol_version=1 AND ?=2 THEN $canonicalValueSql ELSE identity_value END,protocol_version=?,roles=?,expire_at=?,accept_at=?,reject_at=?,modified_at=?,modified_by=?,archived_at=?,first_name=?,last_name=?,revision=revision+1,generation=?,token_hash=?,accepted_user_id=?,locale=? WHERE id=? AND revision=? AND generation=? AND (?=protocol_version OR (protocol_version=1 AND ?=2)) AND identity_type=? AND ((identity_type='MailAddress' AND canonical_email=$canonicalParameterSql) OR (identity_type<>'MailAddress' AND identity_value=?)) AND ? >= generation"

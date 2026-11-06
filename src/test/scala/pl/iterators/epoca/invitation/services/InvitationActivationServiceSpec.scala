@@ -395,7 +395,6 @@ class InvitationActivationServiceSpec extends PgRepositorySpec with Organization
     }
   }
 
-  /** Hold the first transaction's actual email reservation until PostgreSQL reports the competing writer blocked. */
   private def orderedRace[A, B](email: String)(first: DBIO[A], second: DBIO[B]): (A, B) = {
     import java.util.concurrent.{CountDownLatch, TimeUnit}
     import java.util.concurrent.atomic.AtomicInteger
@@ -654,7 +653,6 @@ class InvitationActivationServiceSpec extends PgRepositorySpec with Organization
       run(passwords.find(matching.head.id)).map(_.password) mustEqual (if (joined) Some(PasswordHash("invitation-password")) else None)
     } finally {
       parallel.close()
-      // Remove the unrelated alias account after removing its newly reserved identity, if it won.
       run(
         DBIO.seq(
           sqlu"DELETE FROM user_identity WHERE user_id=${owner.id.toString}::uuid",

@@ -278,10 +278,7 @@ private[domain] object EffectiveUserId {
 
   def current: Long = resolve(ProcessStatus, Paths.get(System.getProperty("java.io.tmpdir")))
 
-  /** Linux reports the filesystem UID, which decides the owner of created files, in `/proc/self/status`. Systems without procfs, such as macOS for
-    * local development, have no separate filesystem UID; there the owner the kernel assigns to a newly created probe file is the UID that will own
-    * the pivot export artifacts.
-    */
+  /** Use the filesystem UID for ownership checks; on systems without procfs, derive it from a newly created probe file. */
   private[domain] def resolve(processStatus: Path, probeDirectory: Path): Long =
     if (Files.exists(processStatus)) fromLinuxProcessStatus(processStatus)
     else NewFileOwnerId.read(probeDirectory)

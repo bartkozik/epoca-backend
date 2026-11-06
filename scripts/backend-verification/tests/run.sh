@@ -155,7 +155,6 @@ install_fake_psql() {
   cp /dev/null "$fake_bin/psql"
   chmod +x "$fake_bin/psql"
   apply_fake_psql="$fake_bin/psql"
-  # The fixture executable is generated at runtime so every fixture remains below TMP_ROOT.
   printf '%s\n' \
     '#!/usr/bin/env bash' \
     'set -euo pipefail' \

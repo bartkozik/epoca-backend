@@ -70,7 +70,6 @@ object PivotXlsxEncoder {
       case DurationMinutes(minutes) =>
         require(minutes >= 0, s"duration minutes must be non-negative: $minutes")
         require(minutes <= MaximumExactInteger, s"duration minutes exceed exact XLSX numeric range: $minutes")
-        // The bound makes minutes.toDouble exact; this additionally proves the emitted day fraction recovers that same integer.
         require(toExcelDays(minutes) * MinutesPerDay == minutes.toDouble, s"duration minutes lose precision in XLSX day fraction: $minutes")
       case Count(count) =>
         require(count >= 0L, s"count must be non-negative: $count")

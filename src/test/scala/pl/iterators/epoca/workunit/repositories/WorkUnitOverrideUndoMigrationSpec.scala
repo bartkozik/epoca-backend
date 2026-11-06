@@ -100,7 +100,6 @@ class WorkUnitOverrideUndoMigrationSpec extends SpecificationLike {
       rejected(history(url, id, 5, operation = "Undo", reverts = Some(undo))) shouldEqual "23514"
       rejected(history(url, id, 5, parent = Some(undo))) shouldEqual "23514"
       history(url, id, 5, operation = "Undo", reverts = Some(a))
-      // Existing deletion is a state transition; audit links must not prevent it.
       execute(url, s"UPDATE work_unit SET state='Archived', archived_at=now() WHERE id='$id'")
       execute(url, s"UPDATE work_unit SET state='Deleted' WHERE id='$id'")
       query(url, s"SELECT count(*)::text FROM work_unit_override_history WHERE work_unit_id='$id'") shouldEqual Seq(Seq("6"))

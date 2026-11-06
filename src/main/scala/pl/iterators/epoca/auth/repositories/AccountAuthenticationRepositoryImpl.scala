@@ -6,7 +6,6 @@ import pl.iterators.epoca.utils.db.BaseRepository.driver.api._
 
 import scala.concurrent.ExecutionContext
 
-/** Bounded reads of V32 trust state; establishing SAML bindings belongs to the SAML flow. */
 class AccountAuthenticationRepositoryImpl(implicit ec: ExecutionContext) extends AccountAuthenticationRepository {
   override def activeHumanForShare(userId: UserId): DBIO[Boolean] =
     sql"""SELECT 1 FROM "user" WHERE id = ${userId.toString}::uuid

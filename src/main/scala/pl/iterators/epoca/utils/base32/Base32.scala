@@ -3,9 +3,6 @@ package pl.iterators.epoca.utils.base32
 import scala.collection.mutable.ArrayBuffer
 
 object Base32 {
-  /*
-   * Reference: https://datatracker.ietf.org/doc/html/rfc4648
-   */
   private val BASE32_CHARS: Array[Char] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".toCharArray
   private val BITS_LOOKUP: Array[Char] = {
     val array: Array[Char] = new Array[Char](128)

@@ -960,7 +960,6 @@ object OpenApiContractPostProcessor {
     Yaml.pretty().writeValueAsString(root)
   }
 
-  // Optional metadata preserves responses produced without a per-row undo lookup, including cached report DTOs.
   val WorkUnitOverrideComponentSchemasJson: String = {
     val uuid         = """{"type":"string","format":"uuid"}"""
     val nullableUuid = """{"type":"string","format":"uuid","nullable":true}"""
