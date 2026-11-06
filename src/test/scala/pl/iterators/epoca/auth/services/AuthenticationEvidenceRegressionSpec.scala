@@ -19,11 +19,13 @@ import scala.concurrent.duration._
 class AuthenticationEvidenceRegressionSpec extends ServiceSpec with JsonProtocol {
   "authentication evidence" should {
     "preserve original database proof through refresh" in new FixedTimeBaseScope {
-      val exchange = allGenerators[RefreshTokenExchange].normal.generate
+      val generated = allGenerators[RefreshTokenExchange].normal.generate
+      val identity  = allGenerators[UserIdentity].normal.generate.copy(userId = generated.user.id)
+      val exchange  = generated.copy(user = generated.user.copy(identities = Seq(identity)))
       val proof = Json.obj(
         "authenticatedAt" -> now.minusSeconds(240).asJson,
         "evidence" -> Json.obj(
-          "Credential" -> Json.obj("method" -> Json.fromString("Password"), "identityId" -> exchange.user.identities.head.id.asJson)
+          "Credential" -> Json.obj("method" -> Json.fromString("Password"), "identityId" -> identity.id.asJson)
         )
       )
       val token = exchange.refreshToken
