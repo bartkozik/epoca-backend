@@ -1,3 +1,4 @@
+import { previewResponse } from './previews.mjs';
 import { createServer } from 'node:http';
 import { isIP } from 'node:net';
 import { DemoError, blocked, checkOrigin, cookieValue, equalToken, route, tokenFor, validateInput, validateReferences, uuid } from './security.mjs';
@@ -106,6 +107,7 @@ export function gateway(store, config) {
           idempotencyKey = value;
         }
         validateInput(allowed, url, body);
+        if (allowed.preview) return { status: 200, type: 'application/json; charset=utf-8', body: JSON.stringify(previewResponse(session, allowed, url)) };
         await validateReferences(db, session, allowed, url, body);
         await store.checkCapacity(db, session, allowed, idempotencyKey);
         return proxy(config, url, req.method, body, token, idempotencyKey);
