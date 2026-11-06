@@ -135,8 +135,9 @@ test('authenticated HTTP previews never reach the backend and all external actio
       assert.equal((await request(path, 'GET', undefined, {})).status, 401);
       assert.equal((await request(path, 'GET', undefined, { ...headers, authorization: 'Bearer stale' })).status, 401);
     }
-    const blockedActions = [['POST', '/saml/configs'], ['POST', '/saml/login'], ['GET', '/saml/auth-check'], ['POST', '/invitations'], ['PATCH', '/invitations/' + member], ['DELETE', '/invitations/' + member], ['POST', '/invitations/' + member + '/resend'], ['POST', '/oauth-clients'], ['PATCH', '/oauth-clients/' + clientId], ['POST', '/oauth-clients/' + clientId + '/rotate-secret'], ['POST', '/oauth-clients/' + clientId + '/revoke']];
+    const blockedActions = [['POST', '/saml/configs'], ['POST', '/saml/login'], ['GET', '/saml/authn'], ['POST', '/saml/authn'], ['POST', '/invitations'], ['PATCH', '/invitations/' + member], ['DELETE', '/invitations/' + member], ['POST', '/invitations/' + member + '/resend'], ['POST', '/oauth-clients'], ['PATCH', '/oauth-clients/' + clientId], ['POST', '/oauth-clients/' + clientId + '/rotate-secret'], ['POST', '/oauth-clients/' + clientId + '/revoke']];
     for (const [method, path] of blockedActions) assert.equal((await request(path, method)).status, 403, path);
+    assert.equal((await fetch(base + '/api/v1/oauth/token', { method: 'POST', headers, body: JSON.stringify({ grant_type: 'client_credentials', client_id: clientId, client_secret: 'demo-preview' }) })).status, 403);
     assert.equal(forwarded.length, 0);
     for (const action of ['assign', 'deassign']) {
       const body = { userId: member, ...(action === 'assign' ? { roles: ['Manager'] } : {}) };
