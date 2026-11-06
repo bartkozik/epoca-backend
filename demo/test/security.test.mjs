@@ -7,7 +7,7 @@ const base = '/api/v1/organizations/demo-random';
 test('exact allowlist confines organization and global user reads', () => {
   assert.equal(route('GET', base + '/projects', session).resource, 'project');
   assert.equal(route('GET', '/api/v1/users/' + session.user_id, session).resource, 'user');
-  for (const [method, path] of [['POST', '/api/v1/organizations'], ['GET', base + '/invitations'], ['POST', base + '/exports'], ['GET', '/api/v1/organizations/foreign/projects'], ['GET', base + '/projects/../users'], ['GET', base + '/projects%2f'], ['POST', '/api/v1/auth/refresh']]) {
+  for (const [method, path] of [['POST', '/api/v1/organizations'], ['POST', base + '/invitations'], ['POST', base + '/exports'], ['GET', '/api/v1/organizations/foreign/projects'], ['GET', base + '/projects/../users'], ['GET', base + '/projects%2f'], ['POST', '/api/v1/auth/refresh']]) {
     assert.throws(() => route(method, path, session), { status: 403 });
   }
 });

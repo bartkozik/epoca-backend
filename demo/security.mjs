@@ -41,6 +41,12 @@ export function route(method, path, s) {
   if (!path.startsWith(prefix + '/')) blocked();
   const segments = path.slice(prefix.length + 1).split('/');
   const [name, id, extra] = segments;
+  if (method === 'GET') {
+    if (segments.join('/') === 'saml/configs') return { resource: 'preview', preview: 'saml', method };
+    if (name === 'invitations' && segments.length === 1) return { resource: 'preview', preview: 'invitations', method };
+    if (name === 'oauth-clients' && (segments.length === 1 || (uuid.test(id) && (segments.length === 2 || (segments.length === 3 && extra === 'audit-events'))))) return { resource: 'preview', preview: 'oauth', method, id, audit: extra === 'audit-events' };
+  }
+  if (method === 'POST' && name === 'users' && segments.length === 2 && ['assign', 'deassign'].includes(id)) return { resource: 'membership', method, action: id };
   const resource = { clients: 'client', projects: 'project', 'work-units': 'work_unit', users: 'user' }[name];
   if (segments.length === 1 && resource && (method === 'GET' || (method === 'POST' && resource !== 'user'))) return { resource, method, collection: true };
   if (segments.length === 2 && uuid.test(id)) {
@@ -61,9 +67,14 @@ const fields = {
 const queryFields = new Set(['id', 'dateFrom', 'dateTo', 'projectId', 'userId', 'clientId', 'state', 'includeArchived', 'includeArchivedConnections', 'includeArchivedMembers', 'sortBy', 'shouldReturnDraftIds', 'type', 'pageSize', 'pageNumber', 'search', 'role']);
 export function validateInput(r, url, body) {
   if (url.search.length > 6000 || [...url.searchParams].length > 100) blocked('The demo query is too large.');
+  if (r.resource === 'membership' && url.search) blocked();
+  const previewQueries = r.preview === 'invitations' ? ['pageSize', 'pageNumber', 'version'] : r.preview === 'oauth' ? (r.id ? (r.audit ? ['pageSize', 'pageNumber'] : []) : ['pageSize', 'pageNumber', 'status']) : [];
   for (const [key, value] of url.searchParams) {
-    if (!queryFields.has(key) || value.length > 255) blocked('This query is unavailable in the demo.');
-    if (['pageSize', 'pageNumber'].includes(key) && (!/^\d+$/.test(value) || +value < 1 || +value > 100)) blocked('Use page sizes and page numbers between 1 and 100.');
+    if (!(r.preview ? previewQueries.includes(key) : queryFields.has(key)) || value.length > 255) blocked('This query is unavailable in the demo.');
+    if (['pageSize', 'pageNumber'].includes(key) && (!/^\d+$/.test(value) || +value < 1 || +value > (r.preview === 'invitations' && key === 'pageSize' ? 200 : 100))) blocked('Use a supported demo page size and number.');
+    if (r.preview && url.searchParams.getAll(key).length !== 1) blocked();
+    if (r.preview && key === 'version' && value !== '2') blocked();
+    if (r.preview && key === 'status' && !['Active', 'Expired', 'Revoked'].includes(value)) blocked();
   }
   if (r.resource === 'pivot' || r.resource === 'work_unit') {
     const today = new Date().toISOString().slice(0, 10);
@@ -73,9 +84,14 @@ export function validateInput(r, url, body) {
     if (Date.parse(to) < Date.parse(from) || Date.parse(to) - Date.parse(from) > 366 * 86400000) blocked('Demo reports support a maximum of one year.');
     if (r.method === 'GET' || r.resource === 'pivot') { url.searchParams.set('dateFrom', from); url.searchParams.set('dateTo', to); }
   }
+  if (r.resource === 'membership') {
+    const required = r.action === 'assign' ? ['userId', 'roles'] : ['userId'];
+    if (!body || Array.isArray(body) || typeof body !== 'object' || Object.keys(body).length !== required.length || required.some(key => !Object.hasOwn(body, key)) || typeof body.userId !== 'string' || !uuid.test(body.userId)) blocked('Use a valid demo member.');
+    if (r.action === 'assign' && (!Array.isArray(body.roles) || body.roles.length !== 1 || !['Owner', 'Manager', 'Employee', 'External'].includes(body.roles[0]))) blocked('Choose one supported member role.');
+  }
   if (body !== null) {
     if (!body || Array.isArray(body) || typeof body !== 'object') blocked('A JSON object is required.');
-    const allowed = r.restore ? [] : r.order ? ['date', 'workUnitIds'] : fields[r.resource] ?? [];
+    const allowed = r.resource === 'membership' ? (r.action === 'assign' ? ['userId', 'roles'] : ['userId']) : r.restore ? [] : r.order ? ['date', 'workUnitIds'] : fields[r.resource] ?? [];
     if (Object.keys(body).some(k => !allowed.includes(k))) blocked('This field is unavailable in the demo.');
     for (const key of ['projectId', 'clientId', 'userId']) if (body[key] != null && (typeof body[key] !== 'string' || !uuid.test(body[key]))) blocked('Use a valid demo record.');
     for (const key of ['ownerIds', 'memberIds', 'workUnitIds']) if (body[key] != null && (!Array.isArray(body[key]) || body[key].some(id => typeof id !== 'string' || !uuid.test(id)))) blocked('Use valid demo records.');
@@ -91,6 +107,12 @@ export function walk(value, visit, depth = 0) {
   if (value && typeof value === 'object') for (const child of Object.values(value)) walk(child, visit, depth + 1);
 }
 export async function validateReferences(db, s, r, url, body) {
+  if (r.resource === 'membership') {
+    const id = body.userId.toLowerCase();
+    if (id === s.user_id.toLowerCase() || !s.user_ids.some(userId => userId.toLowerCase() === id)) blocked('The guest Owner and other sessions cannot be changed.');
+    const member = await db.query(`SELECT membership.user_id AS id FROM public.organization_user membership JOIN public."user" member ON member.id=membership.user_id WHERE membership.organization_id=$1 AND membership.user_id=$2 AND membership.archived_at IS NULL AND member.archived_at IS NULL AND member.account_type='Human'`, [s.organization_id, id]);
+    if (member.rows.length !== 1 || member.rows[0].id.toLowerCase() !== id) blocked('Choose an active member of this demo team.');
+  }
   const ids = new Set();
   if (r.id) ids.add(r.id.toLowerCase());
   for (const [key, value] of url.searchParams) if (key === 'id' || key.endsWith('Id')) { if (!uuid.test(value)) blocked('Use a valid demo record.'); ids.add(value.toLowerCase()); }
