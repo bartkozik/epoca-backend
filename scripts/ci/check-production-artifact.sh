@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Check the complete staged runtime classpath, not only the application JAR.
 set -euo pipefail
 stage=${1:?usage: check-production-artifact.sh STAGE_DIRECTORY}
 [[ -d "$stage" ]] || { echo 'stage directory is missing' >&2; exit 1; }

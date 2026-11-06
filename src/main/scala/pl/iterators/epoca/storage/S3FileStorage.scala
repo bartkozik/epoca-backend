@@ -12,7 +12,6 @@ import java.net.URI
 import java.time.Duration
 import java.util.concurrent.atomic.AtomicBoolean
 
-/** S3 compatible storage (AWS S3, MinIO, "silo", ...). Set `endpoint` for non-AWS services, usually together with `pathStyle`. */
 class S3FileStorage(config: S3FileStorage.Config) extends FileStorage with AutoCloseable {
 
   private val clientCreated = new AtomicBoolean(false)
@@ -60,7 +59,6 @@ class S3FileStorage(config: S3FileStorage.Config) extends FileStorage with AutoC
 
   override def publicUrl(key: String): String = S3FileStorage.publicUrl(config, key)
 
-  /** Releases the HTTP connections; a client that was never used is not created just to be closed. */
   override def close(): Unit = if (clientCreated.get) client.close()
 }
 
@@ -73,7 +71,6 @@ object S3FileStorage {
     cdnDomain: Option[String],
     credentials: Option[(String, String)])
 
-  /** Accepts a CDN domain with or without scheme (https is assumed, an explicit http:// is preserved) and with or without trailing slash. */
   private[storage] def cdnBaseUrl(cdnDomain: String): String = {
     val trimmed = cdnDomain.trim.stripSuffix("/")
     if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) trimmed else s"https://$trimmed"

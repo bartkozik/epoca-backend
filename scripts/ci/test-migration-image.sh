@@ -63,7 +63,6 @@ CREATE ROLE schema_restricted LOGIN PASSWORD 'test-only';
 GRANT CREATE ON DATABASE schema_fresh TO schema_restricted;
 REVOKE CREATE ON SCHEMA public FROM PUBLIC;
 SQL
-# Exercise the real image CMD, not a test-only direct Flyway invocation.
 run schema_fresh application migrate -e DB_USER=schema_restricted -e DB_PASSWORD=test-only
 run schema_fresh application validate -e DB_USER=schema_restricted -e DB_PASSWORD=test-only
 run schema_fresh application migrate -e DB_USER=schema_restricted -e DB_PASSWORD=test-only
@@ -82,8 +81,6 @@ echo 'PASS: explicit public baseline remains valid on subsequent runs'
 for schema in public application; do
   database="schema_upgrade_$schema"
   sql postgres -c "CREATE DATABASE $database" >/dev/null
-  # Reproduce the actual historical source SQL through V17 using the pinned
-  # engine shipped with the candidate, before selecting the new upgrade path.
   docker run --rm --network "$network" \
     -e DB_URL="jdbc:postgresql://$postgres:5432/$database?currentSchema=$schema" \
     -e DB_USER=postgres -e DB_PASSWORD="$password" \
@@ -116,7 +113,6 @@ for schema in public application; do
   echo "PASS: $schema V17 upgrade retains data and checksums"
 done
 
-# An unknown existing nonpublic V18 checksum must never be silently repaired.
 legacy_checksum=$(sql schema_upgrade_public -c "SELECT checksum FROM public.flyway_schema_history WHERE version='18'")
 sql schema_upgrade_application -c "UPDATE application.flyway_schema_history SET checksum=$legacy_checksum WHERE version='18'" >/dev/null
 sql schema_upgrade_application -c 'TABLE application.flyway_schema_history' >"$work/incompatible-before"
@@ -129,7 +125,6 @@ diff -u "$work/incompatible-before" "$work/incompatible-after"
 assert_sql schema_upgrade_application 'SELECT count(*) FROM application.work_unit' 2
 echo 'PASS: incompatible history fails validation without repair or connection-check loop'
 
-# The existing deployments may use schema_version instead of Flyway's default.
 sql postgres -c 'CREATE DATABASE schema_history_name' >/dev/null
 run schema_history_name public migrate -e FLYWAY_TABLE=schema_version
 run schema_history_name public validate -e FLYWAY_TABLE=schema_version

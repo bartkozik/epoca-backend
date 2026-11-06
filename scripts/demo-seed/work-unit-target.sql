@@ -1,5 +1,3 @@
--- Shared deterministic activity materialization used by apply and standalone verification.
--- Requires parameters, organization/catalog context, target members and target project teams.
 CREATE TEMP TABLE demo_seed_reporting_dates
 (
     date_order INTEGER PRIMARY KEY,

@@ -1,4 +1,3 @@
--- psql variables are quoted as identifiers. Run only on the disposable fixture.
 CREATE SCHEMA hostile;
 CREATE TABLE hostile.project(id uuid PRIMARY KEY, client_id uuid);
 INSERT INTO hostile.project VALUES ('00000000-0000-0000-0000-000000000005','00000000-0000-0000-0000-000000000004');

@@ -56,7 +56,6 @@ class WorkspaceDirectoryPhotoProvider(config: WorkspaceDirectoryPhotoProvider.Co
                 bytes   <- Try(Base64.getUrlDecoder.decode(encoded.replace('+', '-').replace('/', '_').replace('*', '=').replace('.', '='))).toOption
                 if bytes.nonEmpty && bytes.length <= config.maxBytes
               } yield {
-                // Include the immutable tenant and SAML principal in provenance, without persisting their raw values.
                 val principal = io.circe.Json
                   .arr(
                     io.circe.Json.fromString(proof.organizationId.toString),

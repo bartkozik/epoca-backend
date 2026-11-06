@@ -656,8 +656,6 @@ class WorkUnitRepositoryImplSpec
         val actorId                    = UUID.randomUUID()
         val sourceProjectId            = UUID.randomUUID()
         val sourceClientId             = UUID.randomUUID()
-        // Clone the real schema/indexes into this session. Temporary-table statistics
-        // make the plan deterministic without changing the shared suite's data or stats.
         execute("CREATE TEMPORARY TABLE \"user\" (LIKE public.\"user\" INCLUDING ALL) ON COMMIT DROP")
         execute("CREATE TEMPORARY TABLE work_unit (LIKE public.work_unit INCLUDING ALL) ON COMMIT DROP")
         execute(s"""INSERT INTO pg_temp."user" (id,first_name,last_name,is_super_admin,account_type,created_at,modified_at)

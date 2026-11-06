@@ -26,7 +26,6 @@ class UserCreateServiceSpec extends ServiceSpec {
 
   private val superAdminKey = "proper-admin-key-0123456789-abcdefgh"
 
-  // Generated requests may carry a random super admin key; ordinary sign-up requests send none.
   private def plainRequest: UserCreateRequest = requestGenerator.normal.generate.copy(superAdminKey = None)
 
   trait TestCase extends BaseScope {

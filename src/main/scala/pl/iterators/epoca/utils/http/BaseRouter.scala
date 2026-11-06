@@ -60,7 +60,7 @@ trait BaseRouter
       Option(cls.runtimeClass.getEnclosingClass)
         .map(_.getSimpleName.filterNot(_ == '$').replace("Result", "").replaceAll("([a-z])([A-Z])", "$1-$2").toLowerCase + ":")
     leading.getOrElse("") +
-      cls.runtimeClass.getSimpleName.filterNot(_ == '$').replaceAll("([a-z])([A-Z])", "$1-$2").toLowerCase // kebabify
+      cls.runtimeClass.getSimpleName.filterNot(_ == '$').replaceAll("([a-z])([A-Z])", "$1-$2").toLowerCase
   }
 
   def toSpreadsheetResponse(

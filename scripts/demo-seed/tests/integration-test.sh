@@ -352,7 +352,6 @@ wait_for_background_bounded() {
     fi
   fi
 
-  # The child is no longer running, so this reap cannot block.
   if wait "$process_id"; then
     process_status=0
   else
@@ -384,8 +383,6 @@ wait_for_background_success() {
 apply_migrations() {
   database=$1
   for migration in $MIGRATION_LIST; do
-    # This psql-only harness uses public; substitute Flyway's schema placeholder
-    # in the input stream while keeping the immutable migration files untouched.
     sed 's/${flyway:defaultSchema}/public/g' "$migration" |
       psql_case "$database" --single-transaction --file - >/dev/null
   done
@@ -1853,7 +1850,6 @@ case_project_cleanup() {
   CURRENT_CASE_CHILD_PIDS=
   CURRENT_CASE_UNREAPED_CHILD_PIDS=
 
-  # Local permits an empty cleanup subset, and independent verification must preserve the catalog.
   new_database
   local_baseline_database=$NEW_DATABASE
   apply_migrations "$local_baseline_database"
@@ -1873,7 +1869,6 @@ case_project_cleanup() {
   fixture_user_id=$(query_value "$local_baseline_database" \
     "SELECT user_id FROM public.organization_user WHERE organization_id = '$local_organization_id' AND archived_at IS NULL ORDER BY id LIMIT 1;")
 
-  # Both approved representations of a blank old description are exact cleanup inputs.
   clone_database "$local_baseline_database"
   blank_database=$NEW_DATABASE
   insert_project_cleanup_catalog_rows "$blank_database" "$local_organization_id" "$fixture_client_id" \
@@ -1937,7 +1932,6 @@ case_project_cleanup() {
   assert_summary_field_eq "$rerun_output" cleaned_project_count 2 \
     'placeholder project cleanup rerun verification summary'
 
-  # Exact-description drift is rejected independently of every other cleanup guard.
   clone_database "$local_baseline_database"
   exact_description_drift_database=$NEW_DATABASE
   insert_project_cleanup_catalog_rows "$exact_description_drift_database" "$local_organization_id" \
@@ -1954,7 +1948,6 @@ case_project_cleanup() {
     'project cleanup row outside the exact target state' \
     'cleanup exact-description drift'
 
-  # A mixed old-name/new-description state is rejected independently of exact-description drift.
   clone_database "$local_baseline_database"
   mixed_state_database=$NEW_DATABASE
   insert_project_cleanup_catalog_rows "$mixed_state_database" "$local_organization_id" "$fixture_client_id" \
@@ -1988,7 +1981,6 @@ case_project_cleanup() {
     'project cleanup row outside the exact target state' \
     'cleanup mixed old-name/new-description state'
 
-  # A cleanup identifier is never adopted from another organization.
   clone_database "$local_baseline_database"
   foreign_database=$NEW_DATABASE
   foreign_organization_id='72300000-0000-4000-8000-000000000099'
@@ -2008,7 +2000,6 @@ case_project_cleanup() {
     'project cleanup id belongs to another organization' \
     'cleanup id owned by another organization'
 
-  # A different project may not already own a cleanup target name in the target organization.
   clone_database "$local_baseline_database"
   collision_database=$NEW_DATABASE
   insert_project_cleanup_catalog_rows "$collision_database" "$local_organization_id" "$fixture_client_id" \
@@ -2030,7 +2021,6 @@ case_project_cleanup() {
     'project cleanup target name is already in use' \
     'cleanup target-name collision'
 
-  # Staging is fail-closed unless all twelve physical cleanup identifiers are present.
   new_database
   staging_database=$NEW_DATABASE
   apply_migrations "$staging_database"
@@ -2075,7 +2065,6 @@ case_project_cleanup() {
   [ "$staging_verify_before" = "$(snapshot_rows "$staging_database")" ] || \
     fail 'staging standalone verify with eleven cleanup ids changed persistent rows'
 
-  # A cleanup-row SELECT FOR UPDATE wins first; seed waits at EXCLUSIVE, then rejects committed drift.
   clone_database "$local_baseline_database"
   writer_first_database=$NEW_DATABASE
   writer_first_project_id='b3c577d9-bede-458e-a523-ca094f79cf11'
@@ -2150,7 +2139,6 @@ case_project_cleanup() {
   [ "$writer_committed_snapshot" = "$(snapshot_rows "$writer_first_database")" ] || \
     fail 'seed left a partial commit after the row-first cleanup writer committed drift'
 
-  # The application-shaped project-to-client order wins first; seed waits, then reconciles project drift.
   clone_database "$local_baseline_database"
   main_row_first_database=$NEW_DATABASE
   main_row_first_project_id=$(query_value "$main_row_first_database" \
@@ -2272,7 +2260,6 @@ case_project_cleanup() {
     'seed records the exact reconciliation modified_at after application-first drift'
   assert_project_seed_state "$main_row_first_database"
 
-  # When seed owns EXCLUSIVE first, application project-to-client locking waits at project ROW SHARE.
   clone_database "$local_baseline_database"
   seed_first_database=$NEW_DATABASE
   seed_first_before=$(snapshot_rows "$seed_first_database")
@@ -2406,7 +2393,6 @@ case_project_cleanup() {
     fail 'seed-first project-to-client serialization changed final client, project, or audit state'
   assert_project_seed_state "$seed_first_database"
 
-  # A direct UPDATE also waits when seed owns EXCLUSIVE, using ROW EXCLUSIVE rather than ROW SHARE.
   clone_database "$local_baseline_database"
   direct_update_database=$NEW_DATABASE
   direct_update_before=$(snapshot_rows "$direct_update_database")

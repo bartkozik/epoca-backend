@@ -51,7 +51,7 @@ class InvitationDeliveryService(
                   record.locale.getOrElse("en")
                 )
                 sender.send(event).attempt.timeoutTo(30.seconds, IO.pure(Left(ProviderDeadline))).flatMap {
-                  case Left(ProviderDeadline)                       => IO.unit // Uncertain provider outcome remains Started; DTO ages it to Unknown.
+                  case Left(ProviderDeadline)                       => IO.unit
                   case Left(_)                                      => finish(delivery, DeliveryResult.Failed, Some("MAIL_EXCEPTION"))
                   case Right(InvitationMailResult.Sent)             => finish(delivery, DeliveryResult.Succeeded, None)
                   case Right(InvitationMailResult.Skipped)          => finish(delivery, DeliveryResult.Failed, Some("MAIL_SKIPPED"))

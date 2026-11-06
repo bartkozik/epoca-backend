@@ -209,7 +209,6 @@ final class OAuthE2EFixtureOneTimeCredentials private[fixture] (values: Map[Fixt
       discard()
     }
 
-  /** Transfers the exact closed credential map into the one-time loopback setup response and removes every retained backend reference. */
   private[fixture] def releaseForControlResponse(): IO[Vector[(FixtureAlias, OAuthE2EFixtureCredential)]] =
     IO.delay {
       @tailrec

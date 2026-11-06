@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.{Files, Paths}
 import scala.concurrent.duration._
 
-/** Fixed Google endpoints, no redirects or retries. The token exchange is bounded too, not only the photo GET. */
 final class GoogleWorkspacePhotoTransport(maxBytes: Int) extends Transport {
   import GoogleWorkspacePhotoTransport._
 
@@ -103,7 +102,6 @@ private[services] object GoogleWorkspacePhotoTransport {
     } finally connection.disconnect()
   }
 
-  /** The Google SDK uses this transport for signed JWT exchange; endpoint and response allocation stay under our control. */
   private final class TokenTransport(deadline: Long) extends HttpTransport {
     override protected def buildRequest(method: String, url: String): LowLevelHttpRequest = {
       if (method != "POST" || url != TokenEndpoint) throw new IOException("Unexpected Workspace token endpoint")

@@ -78,7 +78,7 @@ class LoginByFirebaseService(
   private def createUserIfMissing(userOpt: Option[User], firebaseToken: FirebaseToken): StepIO[User] = {
     lazy val userCreateRequest = UserCreateRequest(
       firstName = UserFirstName(firebaseToken.getName),
-      lastName = UserLastName(firebaseToken.getName), // TODO figure out how to split it
+      lastName = UserLastName(firebaseToken.getName),
       avatar = None,
       color = None,
       email = Some(MailAddress(firebaseToken.getEmail.toLowerCase)),
@@ -98,7 +98,6 @@ class LoginByFirebaseService(
     }(user => IO.pure(user).seal)
   }
 
-  /** Best effort, started only once the login is accepted: runs in a background fiber, so it neither delays nor can fail the login. */
   private def syncAvatarInBackground(user: User, firebaseToken: FirebaseToken): StepIO[Unit] =
     LoginByFirebaseService.googlePictureUrl(firebaseToken) match {
       case Some(pictureUrl) =>
@@ -145,7 +144,6 @@ class LoginByFirebaseService(
 
 object LoginByFirebaseService {
 
-  /** The profile picture to sync, only for tokens issued for a Google sign-in (`firebase.sign_in_provider` = `google.com`). */
   private[services] def googlePictureUrl(token: FirebaseToken): Option[String] = googlePictureUrl(token.getClaims, token.getPicture)
 
   private[services] def googlePictureUrl(claims: java.util.Map[String, AnyRef], picture: String): Option[String] = {

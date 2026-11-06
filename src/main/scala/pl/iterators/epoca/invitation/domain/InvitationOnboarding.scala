@@ -17,7 +17,6 @@ object InvitationOnboarding {
     role: pl.iterators.epoca.organization.domain.OrganizationDomain.OrganizationUserRole,
     locale: String)
 
-  /** Allowlisted public projection. Persistence records must never be encoded directly. */
   final case class InvitationAdminDto(
     id: InvitationId,
     email: String,
@@ -81,7 +80,6 @@ object InvitationOnboarding {
     result: Option[DeliveryResult],
     safeErrorCode: Option[String])
 
-  /** Caller supplies allowlisted projections, never a serialized Record/Access. */
   case class Audit(
     id: InvitationAuditId,
     invitationId: InvitationId,

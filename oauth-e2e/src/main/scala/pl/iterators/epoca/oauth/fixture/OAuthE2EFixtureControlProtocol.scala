@@ -62,7 +62,6 @@ object OAuthE2EFixtureControlProtocol {
     }
   }
 
-  /** One cancellation generation shared by request parsing, preparation and persistence. */
   final class ControlRequestContext private[fixture] (
     val deadline: ControlDeadline,
     invalidated: AtomicBoolean = new AtomicBoolean(false),

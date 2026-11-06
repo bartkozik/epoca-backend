@@ -19,7 +19,6 @@ trait OAuthE2EFixtureControllerSupervisor {
     */
   def stopControllerAndDestroyRun: IO[Unit]
 
-  /** Quarantines the controller and emits the exact marked PostgreSQL session to the external disposable supervisor. */
   def stopControllerAndDestroyRun(sessionMarker: String): IO[Unit] =
     if (sessionMarker.nonEmpty) stopControllerAndDestroyRun
     else IO.raiseError(new IllegalArgumentException("Fixture termination session marker is empty"))
@@ -247,10 +246,6 @@ final class OAuthE2EFixturePinnedTransaction private[fixture] (
         }
       })
 
-  /** Runs the existing production management DBIO under the pinned transaction's outer cancellation/PID lifecycle. The initial PostgreSQL timeouts
-    * bound every contained statement, while the executor's absolute active deadline cancels the exact backend PID and awaits definitive transaction
-    * settlement. This seam is intentionally package-private and only used for the fixed OAuth fixture management programs.
-    */
   private[fixture] def preparedManagement[A](action: DBIO[A]): OAuthE2EFixtureCommandProgram[A] =
     OAuthE2EFixtureCommandProgram.composed(SimpleDBIO[StatementTimeouts] { _ =>
       val remaining = context.remainingActiveNanos(nanoTime())

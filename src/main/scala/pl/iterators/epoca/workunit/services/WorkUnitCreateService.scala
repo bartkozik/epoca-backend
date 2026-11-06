@@ -301,8 +301,6 @@ case class WorkUnitCreateService(
 }
 
 object WorkUnitCreateService {
-  // Preserve the historical import path while allowing schema derivation to evaluate
-  // request defaults independently of this service companion.
   type WorkUnitCreateRequest = _root_.pl.iterators.epoca.workunit.services.WorkUnitCreateRequest
   val WorkUnitCreateRequest: _root_.pl.iterators.epoca.workunit.services.WorkUnitCreateRequest.type =
     _root_.pl.iterators.epoca.workunit.services.WorkUnitCreateRequest

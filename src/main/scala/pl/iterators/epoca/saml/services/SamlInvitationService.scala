@@ -49,7 +49,6 @@ class SamlInvitationService(
 )(implicit ec: ExecutionContext) {
   import SamlInvitationService._
 
-  /** Both public POST adapters delegate here; the context service checks Origin/CSRF before changing its request link. */
   private[epoca] def startAction(
     request: SamlRequest,
     parsedConfig: SamlConfig,
@@ -201,7 +200,6 @@ class SamlInvitationService(
     if (confirmedContact) DBIO.successful(true)
     else
       proof.evidence match {
-        // priorAccount already revalidated this original proof against current organization/config/binding state.
         case b: BoundSaml if b.organizationId == record.invitation.organizationId && record.invitation.identityType == IdentityType.MailAddress =>
           sql"SELECT 1 FROM saml_identity_binding WHERE organization_id=${b.organizationId.toString}::uuid AND trust_epoch=${b.trustEpoch} AND issuer=${b.issuer} AND subject=${b.subject} AND user_id=${userId.toString}::uuid AND canonical_email=${EmailCanonicalization
               .canonical(record.invitation.identityValue)} FOR SHARE".as[Int].map(_.nonEmpty)

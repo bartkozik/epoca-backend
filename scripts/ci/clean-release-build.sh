@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Source in each CI job. A fresh private directory defeats inherited image caches.
 case "${EPOCA_CLEAN_RELEASE_BUILD:-false}" in
   false) export RELEASE_DOCKER_BUILD_FLAGS= ;;
   true)

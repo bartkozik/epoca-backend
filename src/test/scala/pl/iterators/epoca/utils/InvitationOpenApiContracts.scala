@@ -6,7 +6,6 @@ import io.swagger.v3.core.util.Yaml
 
 import scala.jdk.CollectionConverters._
 
-/** Versioned contracts supplement Baklava's single request/response type per method and path. */
 object InvitationOpenApiContracts {
   def publish(input: String): String = {
     val root       = Yaml.mapper().readTree(input).asInstanceOf[ObjectNode]

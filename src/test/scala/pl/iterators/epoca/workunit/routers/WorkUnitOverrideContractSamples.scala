@@ -14,7 +14,6 @@ import java.nio.file.{Files, Path}
 import java.time.Instant
 import java.util.UUID
 
-/** Deterministic typed fixtures; capture is called with actual HTTP response JSON by route tests. */
 object WorkUnitOverrideContractSamples {
   val correctionId: UUID = UUID.fromString("55555555-5555-4555-8555-555555555555")
   val undoId: UUID       = UUID.fromString("66666666-6666-4666-8666-666666666666")

@@ -51,7 +51,6 @@ trait SamlModule extends AuthRouteProvider with RouteProvider {
     new pl.iterators.epoca.invitation.services.InvitationSecretService
   lazy val samlBrowserPolicy: Option[SamlBrowserPolicy] = SamlBrowserPolicy.fromConfig(config, samlSecrets)
 
-  /** Task10 overrides this only after invitation browser/rate configuration has been validated. */
   def samlInvitationAccess: Option[pl.iterators.epoca.invitation.services.InvitationAccessService] = None
   lazy val samlInvitationService: SamlInvitationService = new SamlInvitationService(
     samlRequestRepository,

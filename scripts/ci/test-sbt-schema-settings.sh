@@ -15,7 +15,6 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# These commands inspect settings only; they never connect to a database.
 export DB_URL='jdbc:postgresql:epoca?currentSchema=settings_probe'
 export TEST_DB_URL="$DB_URL"
 export DB_MIGRATION_BOOTSTRAP=true TEST_DB_MIGRATION_BOOTSTRAP=true

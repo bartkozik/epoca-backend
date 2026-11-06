@@ -5,7 +5,6 @@ import pl.iterators.epoca.user.domain.UserDomain.UserId
 import scala.collection.mutable
 import scala.concurrent.duration.FiniteDuration
 
-/** No waiting queue. At capacity, new keys are dropped instead of evicting another user's live cooldown. */
 private[epoca] final class AvatarSyncAdmission(
   maxActive: Int,
   maxUsers: Int,

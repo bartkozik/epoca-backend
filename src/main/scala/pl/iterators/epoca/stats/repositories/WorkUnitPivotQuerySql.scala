@@ -113,9 +113,6 @@ private[stats] object WorkUnitPivotQuerySql {
     builder(sql)
   }
 
-  /** A missing builder means that no facets were requested. The repository implementation can return an empty map without executing SQL; importantly,
-    * no invalid empty `UNION ALL` statement is created.
-    */
   def availableFilterMembers(
     organizationId: OrganizationId,
     request: Request,

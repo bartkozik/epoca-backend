@@ -20,8 +20,6 @@ if (EPOCA_CLEAN_RELEASE_BUILD=invalid source "$root/clean-release-build.sh"); th
 fi
 echo 'PASS: clean release dependency and Docker cache contracts'
 
-# Execute the real branch image-job script against a fresh Docker CLI boundary.
-# Builds model private FROM resolution; no daemon, registry or real credentials.
 awk '
   /^test_backend_images:/ { job = 1; next }
   job && /^[^ ]/ { exit }

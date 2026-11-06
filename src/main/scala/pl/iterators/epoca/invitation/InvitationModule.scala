@@ -96,7 +96,6 @@ trait InvitationModule extends AuthRouteProvider with RouteProvider {
   val samlIdentityBindingRepository: pl.iterators.epoca.saml.repositories.SamlIdentityBindingRepository
   lazy val invitationActivationActions: InvitationActivationActions = wire[InvitationActivationActions]
 
-  /** Task10 supplies validated public-origin/rate configuration; no insecure configuration defaults here. */
   def invitationActivationService(
     access: InvitationAccessService,
     browser: InvitationBrowserSecurity,

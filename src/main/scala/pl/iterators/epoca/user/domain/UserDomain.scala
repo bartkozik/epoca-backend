@@ -79,13 +79,10 @@ import scala.collection.immutable
         case IdentityType.TimeBasedOneTimePassword => value.matches(timeBasedOneTimePasswordRegex)
       }
 
-    // https://www.twilio.com/docs/glossary/what-e164
     private val phoneRegex = """^\+[1-9]\d{1,14}$"""
 
-    // Regex for RFC-5322 Validation
     private val emailRegex = """^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"""
 
-    // Valid base32 string
     private val timeBasedOneTimePasswordRegex = """^[A-Z2-7]+$"""
   }
 

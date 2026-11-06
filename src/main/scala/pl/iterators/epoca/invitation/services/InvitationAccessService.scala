@@ -158,7 +158,6 @@ final class InvitationAccessService(
     previous match {
       case Some((cookie, access)) =>
         val csrf = secrets.csrfToken(cookie)
-        // Preserve context identity and saml_request linkage while enriching evidence. Never extend its TTL.
         val enriched = access.copy(proof = proof, csrfHash = hash(csrf))
         accesses
           .update(enriched, record.generation)
@@ -276,7 +275,6 @@ final class InvitationAccessService(
         recipient
       ) =>
         val csrf = secrets.csrfToken(cookie)
-        // Old random-CSRF contexts must be exchanged again; a GET never changes authorization state.
         DBIO.successful(
           if (secrets.matches(csrf, access.csrfHash.toArray)) Granted(cookie, dto(record, recipient, access, csrf)) else InvalidInvitation
         )
@@ -296,7 +294,6 @@ final class InvitationAccessService(
         else accesses.revoke(access.id, clock.instant()).map(_ => Revoked)
     }
 
-  /** ACS owns address/users/organization/membership/invitation/context/request locks. No raw cookie is retained or returned here. */
   private[epoca] def trustedSamlContextLocked(
     record: Record,
     proof: VerifiedSamlProof,
@@ -350,7 +347,6 @@ final class InvitationAccessService(
         }
   }
 
-  /** Final nonce-authenticated callback only; caller already revalidated the linked pending context and current SAML trust. */
   private[epoca] def rotateSamlCookieLocked(
     record: Record,
     context: Access,

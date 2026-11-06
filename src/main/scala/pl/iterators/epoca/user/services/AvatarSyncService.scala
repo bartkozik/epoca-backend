@@ -30,13 +30,6 @@ import scala.jdk.CollectionConverters._
 import scala.util.Try
 import scala.util.control.NonFatal
 
-/** Copies a user's external (Google) profile picture into our own [[pl.iterators.epoca.storage.FileStorage]] and points `User.avatar` at the copy.
-  *
-  * Two objects are stored per picture: the untouched original (`avatars/{userId}/{sha256}.{ext}`) and a web version, a square PNG of at most 512x512
-  * (`avatars/{userId}/{sha256}-512.png`, same hash of the original bytes). `User.avatar` points at the web version.
-  *
-  * Best effort: [[sync]] never fails, every problem is reported as a `AvatarSyncResult`. A manually set avatar is never overwritten.
-  */
 class AvatarSyncService(
   config: AvatarSyncService.Config,
   transactor: PostgresIOTransactor,
@@ -50,7 +43,6 @@ class AvatarSyncService(
 
   private[epoca] val admission = new AvatarSyncAdmission(4, 4096, 5.minutes)
 
-  /** Shared bounded admission with Workspace synchronization; failure never affects login. */
   def schedule(user: User, pictureUrl: String): IO[Unit] = IO
     .defer {
       if (!config.enabled) IO.unit
@@ -107,7 +99,6 @@ class AvatarSyncService(
         .as(AvatarSyncResult.Failed("image synchronization failed"))
     )
 
-  /** Directory responses already contain image bytes. The snapshot must be captured before fetching them. */
   def syncImage(
     user: User,
     sourceRevision: String,
@@ -163,7 +154,7 @@ class AvatarSyncService(
       case None if user.avatar.isDefined => Decision.Skip(AvatarSyncResult.ManualAvatar)
       case None                          => Decision.Download
       case Some(s) if s.source == Source.Manual || !user.avatar.contains(UserAvatar(s.avatarUrl)) =>
-        Decision.Skip(AvatarSyncResult.ManualAvatar) // avatar was changed by the user since we synced it
+        Decision.Skip(AvatarSyncResult.ManualAvatar)
       case Some(s) if skipUnchanged && s.sourceUrl.contains(pictureUrl) => Decision.Skip(AvatarSyncResult.Unchanged)
       case Some(_)                                                      => Decision.Download
     }
@@ -225,7 +216,6 @@ class AvatarSyncService(
         } yield updated
     }
 
-  /** Re-checks under a row lock that nothing changed in the meantime and reports what actually happened. */
   private def updateUser(
     user: User,
     pictureUrl: String,
@@ -247,7 +237,7 @@ class AvatarSyncService(
                   case Some(_) if !authorized => DBIO.successful(AvatarSyncResult.Rejected("identity is no longer authorized"))
                   case Some(u) =>
                     decide(u, stored, pictureUrl) match {
-                      case Decision.Skip(skipped) => DBIO.successful(skipped) // e.g. a concurrent sync already stored this picture
+                      case Decision.Skip(skipped) => DBIO.successful(skipped)
                       case Decision.Download if stored != expectedSource || u.avatar != user.avatar =>
                         DBIO.successful(AvatarSyncResult.Rejected("avatar changed during synchronization"))
                       case Decision.Download =>
@@ -302,9 +292,6 @@ object AvatarSyncService {
   private val MaxDimension = 8000
   private val MaxPixels    = 25000000L
 
-  /** Square PNG of at most [[WebSize]] px: centre-cropped, scaled down (never up), opaque RGB unless the source has transparency. Nothing from the
-    * original (EXIF, ICC, text chunks) is carried over, the output is drawn on a fresh image. EXIF orientation is not applied.
-    */
   private def createWebVersion(bytes: Array[Byte]): Either[String, Array[Byte]] =
     decode(bytes).map { source =>
       val side    = math.min(source.getWidth, source.getHeight)
@@ -334,7 +321,6 @@ object AvatarSyncService {
     } finally stream.close()
   }
 
-  /** Halves while the reduction is big (a single bicubic pass over a huge reduction aliases), then draws the final size. */
   @tailrec
   private def scaleDown(
     image: BufferedImage,
@@ -365,13 +351,13 @@ object AvatarSyncService {
     val param  = writer.getDefaultWriteParam
     if (param.canWriteCompressed) {
       param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT)
-      param.setCompressionQuality(0f) // for the PNG writer 0 is the best (slowest) deflate level
+      param.setCompressionQuality(0f)
     }
     val out = new ByteArrayOutputStream()
     val ios = ImageIO.createImageOutputStream(out)
     try {
       writer.setOutput(ios)
-      writer.write(null, new IIOImage(image, null, null), param) // no metadata
+      writer.write(null, new IIOImage(image, null, null), param)
     } finally {
       ios.close()
       writer.dispose()
@@ -379,7 +365,6 @@ object AvatarSyncService {
     out.toByteArray
   }
 
-  /** Content type and extension derived from the leading magic bytes. */
   private def sniff(bytes: Array[Byte]): Option[(String, String)] = {
     def startsWith(prefix: Int*): Boolean = bytes.length >= prefix.length && prefix.zipWithIndex.forall { case (b, i) => (bytes(i) & 0xff) == b }
     def ascii(offset: Int, text: String): Boolean =

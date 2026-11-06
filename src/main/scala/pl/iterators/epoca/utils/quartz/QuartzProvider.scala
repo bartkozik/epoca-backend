@@ -56,7 +56,6 @@ class QuartzProvider(config: QuartzProvider.Config)(implicit val ioRuntime: IORu
     }
 
   def start(): IO[Unit] =
-    // that method should be executed after register all jobs
     for {
       _ <- Logger[IO].info("Starting quartz")
       _ <- IO.blocking(scheduler.start())

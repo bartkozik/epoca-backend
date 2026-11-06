@@ -31,7 +31,6 @@ class SendgridWebhookVerifierSpec extends Specification {
 
   "SendGrid signature verifier" should {
     "accept SendGrid's published Java SDK interoperability fixture including trailing CRLF" in {
-      // Fixture: https://github.com/sendgrid/sendgrid-java/blob/main/src/test/java/com/sendgrid/helpers/eventwebhook/EventWebhookTest.java
       val fixtureKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE83T4O/n84iotIvIW4mdBgQ/7dAfSmpqIM8kF9mN1flpVKS3GRqe62gw+2fNNRaINXvVpiglSI8eNEc6wEA3F+g=="
       val fixtureSignature = "MEUCIGHQVtGj+Y3LkG9fLcxf3qfI10QysgDWmMOVmxG0u6ZUAiEAyBiXDWzM+uOe5W0JuG+luQAbPIqHh89M15TluLtEZtM="
       val fixtureBody =

@@ -45,7 +45,7 @@ trait Handlers extends LoggingSupport {
   }
 
   private def typeFromRejection[T <: Rejection](implicit cls: ClassTag[T]): String =
-    cls.runtimeClass.getSimpleName.replace("Rejection", "").filterNot(_ == '$').replaceAll("([a-z])([A-Z])", "$1-$2").toLowerCase // kebabify
+    cls.runtimeClass.getSimpleName.replace("Rejection", "").filterNot(_ == '$').replaceAll("([a-z])([A-Z])", "$1-$2").toLowerCase
 
   def exceptionHandler(tracingContext: Option[TracingContext], loggingDirective: Directive0): ExceptionHandler = ExceptionHandler {
     case e: IllegalArgumentException =>
@@ -84,7 +84,6 @@ trait Handlers extends LoggingSupport {
     override def apply(rejections: Seq[Rejection]): Option[Route] = {
       RejectionHandler
         .newBuilder()
-        // custom rejections
         .handleAll[SchemeRejection] { rejections =>
           val schemes = rejections.map(_.supported)
           handlerComplete(

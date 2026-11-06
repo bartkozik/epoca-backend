@@ -12,7 +12,6 @@ import slick.dbio.DBIO
 
 import scala.concurrent.ExecutionContext
 
-/** Revalidate the IdP trust and live membership before every scoped API request. */
 class SamlSessionService(
   transactor: PostgresIOTransactor,
   authentication: AccountAuthenticationRepository,

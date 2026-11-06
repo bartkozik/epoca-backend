@@ -7,7 +7,6 @@ import pl.iterators.epoca.user.domain.UserDomain.UserId
 import java.time.Instant
 import scala.collection.immutable
 
-/** Provenance of `User.avatar`. Users without a row have an avatar of unknown origin, which is treated as manual. */
 final case class UserAvatarSource(
   userId: UserId,
   source: UserAvatarSource.Source,

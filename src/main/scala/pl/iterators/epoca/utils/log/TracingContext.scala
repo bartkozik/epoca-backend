@@ -48,11 +48,11 @@ object TracingContextSource {
   }
 
   implicit val dbioTracingContextSource: TracingContextSource[DBIO] = new TracingContextSource[DBIO] {
-    override def get: DBIO[Option[TracingContext]]                             = DBIO.successful(None) // noop, no slick support for tracing
-    override def map[T](f: Option[TracingContext] => T): DBIO[T]               = DBIO.successful(f(None)) // noop, no slick support for tracing
-    override def update(updater: TracingContext => TracingContext): DBIO[Unit] = DBIO.successful(()) // noop, no slick support for tracing
-    override def set(ctx: TracingContext): DBIO[Unit]                          = DBIO.successful(()) // noop, no slick support for tracing
-    override def unset(): DBIO[Unit]                                           = DBIO.successful(()) // noop, no slick support for tracing
+    override def get: DBIO[Option[TracingContext]]                             = DBIO.successful(None)
+    override def map[T](f: Option[TracingContext] => T): DBIO[T]               = DBIO.successful(f(None))
+    override def update(updater: TracingContext => TracingContext): DBIO[Unit] = DBIO.successful(())
+    override def set(ctx: TracingContext): DBIO[Unit]                          = DBIO.successful(())
+    override def unset(): DBIO[Unit]                                           = DBIO.successful(())
   }
 
   def apply[F[_]: TracingContextSource]: TracingContextSource[F] = implicitly[TracingContextSource[F]]

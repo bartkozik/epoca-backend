@@ -36,7 +36,6 @@ trait ApplicationRuntime extends IOApp.Simple with LoggingSupport {
   override def run: IO[Unit] =
     (for {
       config <- Resource.eval(IO.delay(DatabaseSchemaConfiguration(loadConfig())))
-      // Fail before opening any resources when the JWT signing secret is missing or a placeholder.
       _ <- Resource.eval(IO.delay(JwtService.Config(config)))
       _ = if (config.getBoolean("kamon.enabled")) Kamon.init(config)
 
@@ -67,7 +66,6 @@ trait ApplicationRuntime extends IOApp.Simple with LoggingSupport {
       invitationSupervisor <- cats.effect.std.Supervisor[IO](await = false)
       loader = createLoader(config, dbCtx._2, httpClient, quartzCtx._3, invitationSupervisor)
 
-      // created eagerly so that a misconfigured storage fails the startup; closed on shutdown
       _ <- Resource.make(IO.delay(loader.fileStorage))(storage =>
              storage match {
                case closeable: AutoCloseable => IO.blocking(closeable.close())
@@ -78,9 +76,9 @@ trait ApplicationRuntime extends IOApp.Simple with LoggingSupport {
       _ <- additionalResources(loader, actorSystem)
       _ <- Resource.eval(initializeClientModule(loader))
       _ <- Resource.eval(initializeExportModule(loader))
-      _ <- Resource.eval(loader.startupJobsSequence) // blocking
-      _ <- Resource.eval(loader.setupCronJobs(quartzCtx._2)) // blocking
-      _ <- Resource.eval(loader.setupTriggeredJobs(quartzCtx._4)) // blocking
+      _ <- Resource.eval(loader.startupJobsSequence)
+      _ <- Resource.eval(loader.setupCronJobs(quartzCtx._2))
+      _ <- Resource.eval(loader.setupTriggeredJobs(quartzCtx._4))
       _ <- Resource.eval(quartzCtx._1.start())
 
       _ <- loader.schedulableJobSequence.background

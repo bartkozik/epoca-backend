@@ -13,7 +13,6 @@ import pl.iterators.epoca.utils.log.LoggingSupport
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
-/** Best effort, detached after successful login. Limits are per application process; database CAS protects concurrent processes. */
 class WorkspaceAvatarSyncService(
   provider: WorkspaceDirectoryPhotoProvider,
   avatars: AvatarSyncService,

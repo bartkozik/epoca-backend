@@ -22,10 +22,8 @@ trait InvitationAccessRepository {
   /** Caller holds canonical recipient/organization/invitation locks, then the access lock; stale generation and completed rows cannot be changed. */
   def update(access: Access, expectedGeneration: Long): DBIO[Boolean]
 
-  /** Caller holds parent and context locks. Does not reopen proofs or alter generation/expiry/completion. */
   def rotateCsrf(id: InvitationAccessId, hash: Digest): DBIO[Unit]
 
-  /** Retain FK-referenced rows, including completed contexts. */
   def revoke(id: InvitationAccessId, now: Instant): DBIO[Unit]
   def consumeRateBucket(
     dimension: String,

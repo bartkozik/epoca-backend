@@ -12,7 +12,6 @@ import java.time.Instant
 trait InvitationRepository {
   import InvitationRepository._
 
-  /** Legacy phone reservations never share the canonical email namespace. */
   def lockPhone(value: UserIdentityValue): DBIO[Unit]
   def phoneCandidates(value: UserIdentityValue): DBIO[Vector[UserId]]
   def pendingPhone(organizationId: OrganizationId, value: UserIdentityValue): DBIO[Boolean]

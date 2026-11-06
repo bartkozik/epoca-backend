@@ -31,7 +31,6 @@ final class InvitationAccessGuard {
   ): DBIO[Option[InvitationAccessGuard.Access]] = SimpleDBIO { ctx =>
     val connection = ctx.connection
     val userIds    = (Vector(actorId) ++ candidates).distinct.sortBy(_.toString)
-    // Lock even archived/non-Human candidates, then inspect current state under the locks.
     val users = userIds.flatMap { id =>
       query(connection, "SELECT id,archived_at,account_type,is_super_admin FROM \"user\" WHERE id = ? FOR SHARE")(_.setObject(1, id)) { r =>
         (
@@ -44,7 +43,6 @@ final class InvitationAccessGuard {
     }
     if (!users.exists { case (id, active, human, _) => id == actorId && active && human }) None
     else {
-      // This also serializes command replay for different emails in one organization.
       query(connection, "SELECT id FROM organization WHERE slug = ? AND archived_at IS NULL FOR UPDATE")(_.setString(1, slug))(r =>
         OrganizationId(r.getObject("id", classOf[UUID]))
       ).headOption.flatMap { organizationId =>

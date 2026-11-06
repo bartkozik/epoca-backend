@@ -41,8 +41,6 @@ trait Generators extends GeneratorVariants with KebsJsonSchemaPredefs with KebsA
   implicit val arbitraryWorkUnitTaskOverride: Arbitrary[pl.iterators.epoca.workunit.domain.WorkUnitTaskOverride] =
     Arbitrary(Gen.const(pl.iterators.epoca.workunit.domain.WorkUnitTaskOverride("Inherit")))
 
-  // Generated source fixtures start without manager state or a persistence revision.
-  // Override scenarios seed those fields explicitly, with valid actor/project references.
   implicit lazy val arbitraryWorkUnit: Arbitrary[pl.iterators.epoca.workunit.domain.WorkUnit] = Arbitrary {
     import pl.iterators.epoca.workunit.domain.WorkUnitDomain._
     for {
@@ -196,7 +194,6 @@ trait Generators extends GeneratorVariants with KebsJsonSchemaPredefs with KebsA
 
   implicit val arbOrganizationSlug: Arbitrary[OrganizationSlug] =
     Arbitrary {
-      // Repository fixtures insert several organizations into the same unique slug index.
       Gen.uuid.map(id => OrganizationSlug(id.toString))
     }
 

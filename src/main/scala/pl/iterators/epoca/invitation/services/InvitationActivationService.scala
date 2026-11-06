@@ -60,8 +60,6 @@ object InvitationActivationService {
   }
 }
 
-/** IO owns password work, independently committed throttling and post-commit sessions. The action is independently composable for trusted adapters.
-  */
 final class InvitationActivationService(
   transactor: PostgresIOTransactor,
   access: InvitationAccessService,

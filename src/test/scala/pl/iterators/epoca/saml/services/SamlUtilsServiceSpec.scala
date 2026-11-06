@@ -14,7 +14,6 @@ import pl.iterators.epoca.utils.Generators
 import java.time.Instant
 import scala.io.Source
 
-/** Only synthetic test keys are loaded here. No external IdP or network is used. */
 class SamlUtilsServiceSpec extends Specification with Generators with CatsEffect {
   private def resource(name: String): String = {
     val source = Source.fromResource(s"saml/$name")

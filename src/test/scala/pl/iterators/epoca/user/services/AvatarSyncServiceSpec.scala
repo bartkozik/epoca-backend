@@ -33,7 +33,6 @@ class AvatarSyncServiceSpec extends ServiceSpec {
   private def withMagic(magic: Array[Byte]): Array[Byte] = magic ++ Array.tabulate[Byte](100)(_.toByte)
   private val png                                        = withMagic(Array(0x89, 0x50, 0x4e, 0x47).map(_.toByte))
 
-  // real images: flat colours keep them tiny; a red band on both sides of a blue centre shows what the centre crop keeps
   private def image(
     width: Int,
     height: Int,
@@ -62,7 +61,7 @@ class AvatarSyncServiceSpec extends ServiceSpec {
   private val smallPng   = encode(image(100, 60), "png")
   private val smallGif   = encode(image(40, 40), "gif")
   private val hugePng    = encode(image(9000, 10), "png")
-  private val undecoding = png // valid magic bytes, but not a decodable image
+  private val undecoding = png
 
   private def sha256(bytes: Array[Byte]): String = MessageDigest.getInstance("SHA-256").digest(bytes).map("%02x".format(_)).mkString
 
@@ -194,7 +193,7 @@ class AvatarSyncServiceSpec extends ServiceSpec {
 
       avatarSyncService
         .sync(userWithoutAvatar, "https://LH3.GoogleUserContent.COM/a/abc")
-        .asserting(_ shouldEqual AvatarSyncResult.Rejected("unsupported content type 'text/html'")) // got past host validation
+        .asserting(_ shouldEqual AvatarSyncResult.Rejected("unsupported content type 'text/html'"))
 
       verify(userAvatarSourceRepository).find(userWithoutAvatar.id)
       verifyDownloaded()
@@ -288,7 +287,7 @@ class AvatarSyncServiceSpec extends ServiceSpec {
       avatarSyncService.sync(userWithoutAvatar, pictureUrl).asserting(_ shouldEqual AvatarSyncResult.Failed("download returned HTTP 302"))
 
       verify(userAvatarSourceRepository).find(userWithoutAvatar.id)
-      verifyDownloaded() // exactly one request, the redirect target is never requested
+      verifyDownloaded()
       expectNothingStored()
     }
 
@@ -342,7 +341,6 @@ class AvatarSyncServiceSpec extends ServiceSpec {
     "report the loser of a concurrent sync as Unchanged instead of Synced" in new TestCase {
       val avatar = UserAvatar("https://cdn.test/avatars/winner.png")
       val winner = userWithoutAvatar.copy(avatar = Some(avatar))
-      // first read (before download): nothing synced yet; second read (under lock): a concurrent sync stored this very picture
       val synced: Option[UserAvatarSource] =
         Some(UserAvatarSource(userWithoutAvatar.id, Source.Google, Some(pictureUrl + "#sha256=" + sha256(smallPng)), avatar, Instant.now()))
       when(userAvatarSourceRepository.find(userWithoutAvatar.id)).thenReturn(Option.empty[UserAvatarSource].asDBIO, synced.asDBIO)
@@ -449,7 +447,7 @@ class AvatarSyncServiceSpec extends ServiceSpec {
 
       val web = decoded(fileStorage.get(webKey).get._1)
       (web.getWidth, web.getHeight) shouldEqual ((60, 60))
-      (web.getRGB(0, 0) & 0xffffff, web.getRGB(59, 59) & 0xffffff) shouldEqual ((0x0000ff, 0x0000ff)) // the red side bands are cropped away
+      (web.getRGB(0, 0) & 0xffffff, web.getRGB(59, 59) & 0xffffff) shouldEqual ((0x0000ff, 0x0000ff))
       verifyDownloaded()
       verifyUpdated(userWithoutAvatar)
     }

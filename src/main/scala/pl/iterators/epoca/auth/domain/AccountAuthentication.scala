@@ -6,7 +6,6 @@ import pl.iterators.epoca.user.domain.UserDomain.UserIdentityId
 
 import java.time.Instant
 
-/** Server-issued evidence of account authentication, independent of invitation recipient proof. */
 final case class AccountAuthentication(authenticatedAt: Instant, evidence: AccountAuthentication.Evidence)
 
 object AccountAuthentication {

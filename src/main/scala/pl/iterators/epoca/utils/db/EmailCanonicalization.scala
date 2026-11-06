@@ -2,7 +2,6 @@ package pl.iterators.epoca.utils.db
 
 import pl.iterators.epoca.utils.db.BaseTable.driver.api._
 
-/** One email key contract for JVM values, persisted identities and generated invitation keys. */
 object EmailCanonicalization {
   // Supported email syntax folds ASCII only; legacy non-ASCII code points remain distinct.
   def canonical(value: String): String = value.trim.map { character =>

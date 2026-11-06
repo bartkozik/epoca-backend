@@ -55,7 +55,6 @@ class RefreshTokenConcurrencySpec extends SpecificationLike with Generators {
       )
       await(db.run((users.insert(user) >> tokens.upsert(token)).transactionally))
       try {
-        // Both requests carry the same trusted snapshot, as when both HTTP requests finish the initial lookup before rotation.
         val request  = RefreshTokenExchange(context, UserWithIdentities(user, Seq(identity)), Nil, token)
         val start    = new CountDownLatch(1)
         def exchange = (IO.blocking(start.await()) *> resolver.resolve(request)).attempt.unsafeToFuture()

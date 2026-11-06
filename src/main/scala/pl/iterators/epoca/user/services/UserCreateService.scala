@@ -73,9 +73,6 @@ class UserCreateService(
       )
       .ensureF(identity, Logger[IO].warning(s"User with provided credentials already exists").as(UserCreateResult.InvalidRequest))
 
-  /** A super admin is created only when a key of sufficient length is configured and the request supplies exactly that key. A request that supplies a
-    * key which does not match, or any key while the feature is disabled, is rejected instead of silently creating a regular account.
-    */
   private def validateSuperAdminKey(request: UserCreateRequest): StepIO[Boolean] =
     request.superAdminKey.filter(_.nonEmpty) match {
       case None => Sync[IO].pure(false).seal
@@ -146,7 +143,7 @@ class UserCreateService(
           id = UserIdentityId(UUID.randomUUID),
           userId = user.id,
           `type` = if (request.email.isDefined) IdentityType.MailAddress else IdentityType.Phone,
-          value = UserIdentityValue(request.email.orElse(request.phoneNumber).getOrElse("")), // email or phone exist
+          value = UserIdentityValue(request.email.orElse(request.phoneNumber).getOrElse("")),
           deviceId = None,
           main = UserIdentityMain(true),
           confirmed = UserIdentityConfirmed(user.isSuperAdmin),
@@ -196,9 +193,6 @@ class UserCreateService(
 
 object UserCreateService {
 
-  /** @param superAdminSecretKey
-    *   the key that allows `POST /users` to create a super admin; `None` disables super admin creation
-    */
   final case class Config(superAdminSecretKey: Option[String], recoveryCount: Int)
 
   final case class UserCreateRequest(
@@ -224,7 +218,6 @@ object UserCreateService {
     def apply(config: TsConfig): Config =
       Config(superAdminSecretKey = superAdminKey(config), recoveryCount = config.getInt("user.loginToken.recoveryCount"))
 
-    /** An unset, blank or short key disables super admin creation, so no deployment can fall back to a guessable value. */
     private def superAdminKey(config: TsConfig): Option[String] =
       if (config.hasPath(SuperAdminKeyPath)) Some(config.getString(SuperAdminKeyPath)).filter(_.trim.length >= MinimumSuperAdminKeyLength)
       else None

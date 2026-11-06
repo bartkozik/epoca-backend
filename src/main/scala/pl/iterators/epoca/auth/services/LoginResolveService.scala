@@ -80,7 +80,6 @@ class LoginResolveService(
     request: LoginResolveRequest,
     now: Instant
   ): IO[RefreshToken] = request match {
-    // Keep the API response shape, but the signed refresh token is deliberately not redeemable.
     case _: AdminImpersonate => IO.pure(refreshToken)
     case exchange: RefreshTokenExchange =>
       transactor.execute(refreshTokenRepository.rotate(exchange.refreshToken, refreshToken, now)).flatMap { rotated =>
@@ -201,7 +200,6 @@ object LoginResolveService {
       )
   }
 
-  /** Server-only invitation grant issuance: membership changes are not a new authentication event. */
   private[epoca] final case class InvitationLogin(
     requestContext: LoginHttpRequestContext,
     user: UserWithIdentities,

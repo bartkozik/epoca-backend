@@ -6,8 +6,6 @@ REPO_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/../.." && pwd -P)
 PATTERN='(^|[^[:alnum:]])ct[-_]?[0-9]+'
 failed=false
 
-# Historical accepted evidence and Markdown keep their original provenance.
-# Check migrated tooling and the separately packaged OAuth fixture; active feature tests are audited separately.
 while IFS= read -r -d '' file; do
   if printf '%s\n' "${file#"$REPO_ROOT/"}" | grep -Eiq "$PATTERN"; then
     printf 'Ticket-derived tooling filename: %s\n' "$file" >&2

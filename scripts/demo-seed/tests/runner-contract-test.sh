@@ -331,7 +331,6 @@ unset FAKE_ADD_TRAILING_FIELD
 
 assert_eq 13 "$IDENTITY_CONTRACT_CASES" 'identity preflight contract coverage'
 
-# Core CLI rejection table.
 assert_failed_with 'Usage'
 assert_failed_with 'Unsupported target' production --dry-run
 assert_failed_with 'Unsupported target' verify production
@@ -353,7 +352,6 @@ fi
 assert_contains "$LAST_OUTPUT" 'authentication environment mismatch' \
   'fake psql wrong-password diagnostic'
 
-# Every known option rejects duplicate and missing values deterministically.
 assert_failed_with 'Duplicate option' local --apply \
   --confirm-local-database epoca_ct532 --confirm-local-database epoca_ct532
 assert_staging_failure 'Duplicate option' staging --dry-run \
@@ -368,7 +366,6 @@ assert_staging_failure 'Missing value' staging --dry-run --confirm-organization
 assert_staging_failure 'Missing value' staging --dry-run --demo-viewer-email
 assert_failed_with 'Missing value' local --dry-run --today
 
-# The mode/option matrix must cover four known options across six base modes.
 OPTION_MATRIX_CASES=0
 
 OPTION_BUNDLE="$TMP_DIR/option-matrix-demo-seed"
@@ -399,7 +396,6 @@ assert_option_case() {
   fi
 }
 
-# local dry-run: local confirmation invalid; staging options invalid; today valid.
 assert_option_case 'not valid for dry-run' 'local dry-run / local confirmation' \
   local --dry-run --confirm-local-database epoca_ct532
 assert_option_case 'not valid for local' 'local dry-run / organization confirmation' \
@@ -409,7 +405,6 @@ assert_option_case 'not valid for local' 'local dry-run / demo viewer' \
 assert_option_case SUCCESS 'local dry-run / today' \
   local --dry-run --today 2026-05-18
 
-# local apply: local confirmation and today valid; staging options invalid.
 assert_option_case SUCCESS 'local apply / local confirmation' \
   local --apply --confirm-local-database epoca_ct532
 assert_option_case 'not valid for local' 'local apply / organization confirmation' \
@@ -419,7 +414,6 @@ assert_option_case 'not valid for local' 'local apply / demo viewer' \
 assert_option_case SUCCESS 'local apply / today' \
   local --apply --confirm-local-database epoca_ct532 --today 2026-05-18
 
-# local verify: local confirmation and staging options invalid; today valid.
 assert_option_case 'not valid for verify' 'local verify / local confirmation' \
   verify local --confirm-local-database epoca_ct532
 assert_option_case 'not valid for local' 'local verify / organization confirmation' \
@@ -429,7 +423,6 @@ assert_option_case 'not valid for local' 'local verify / demo viewer' \
 assert_option_case SUCCESS 'local verify / today' \
   verify local --today 2026-05-18
 
-# Local apply and verify also reject both staging-only options together.
 run_runner local --apply --confirm-local-database epoca_ct532 \
   --confirm-organization iteratorstesting --demo-viewer-email viewer@example.com
 assert_status 2 "$LAST_STATUS" 'local apply rejects both staging-only options'
@@ -442,7 +435,6 @@ assert_contains "$LAST_OUTPUT" 'not valid for local' 'local verify staging-only 
 ACTIVE_RUNNER="$OPTION_BUNDLE/run.sh"
 TEST_DB_URL='jdbc:postgresql://staging.db.internal:55432/epoca_ct532'
 
-# staging dry-run: local confirmation and today invalid; staging options valid.
 assert_option_case 'not valid for staging' 'staging dry-run / local confirmation' \
   staging --dry-run --confirm-local-database epoca_ct532 \
   --confirm-organization iteratorstesting --demo-viewer-email viewer@example.com
@@ -454,7 +446,6 @@ assert_option_case 'staging rejects today' 'staging dry-run / today' \
   staging --dry-run --confirm-organization iteratorstesting \
   --demo-viewer-email viewer@example.com --today 2026-05-18
 
-# staging apply: local confirmation and today invalid; staging options valid.
 assert_option_case 'not valid for staging' 'staging apply / local confirmation' \
   staging --apply --confirm-local-database epoca_ct532 \
   --confirm-organization iteratorstesting --demo-viewer-email viewer@example.com
@@ -466,7 +457,6 @@ assert_option_case 'staging rejects today' 'staging apply / today' \
   staging --apply --confirm-organization iteratorstesting \
   --demo-viewer-email viewer@example.com --today 2026-05-18
 
-# staging verify: local confirmation and today invalid; staging options valid.
 assert_option_case 'not valid for staging' 'staging verify / local confirmation' \
   verify staging --confirm-local-database epoca_ct532 \
   --confirm-organization iteratorstesting --demo-viewer-email viewer@example.com
@@ -482,17 +472,14 @@ unset TEST_DB_URL
 ACTIVE_RUNNER="$BUNDLE_DIR/run.sh"
 assert_eq 24 "$OPTION_MATRIX_CASES" 'mode/option matrix coverage'
 
-# Date validation must distinguish strict-shape rejection from safe SQL casting.
 DATE_VALIDATION_CASES=0
 
-# Local confirmation and loopback guard failures.
 assert_failed_with '--confirm-local-database' local --apply
 assert_failed_with 'confirmation mismatch' local --apply --confirm-local-database wrong
 TEST_DB_URL='jdbc:postgresql://db.example.internal:55432/epoca_ct532'
 assert_failed_with 'loopback' local --dry-run
 unset TEST_DB_URL
 
-# Successful local dry-run, apply, verify, and verify with a validated date override.
 run_runner local --dry-run --today 2026-05-18
 assert_status 0 "$LAST_STATUS" 'local dry-run should succeed'
 assert_contains "$LAST_OUTPUT" 'seed_today=2026-05-18' 'local dry-run should report override date'
@@ -546,7 +533,6 @@ assert_status 74 "$LAST_STATUS" 'runner must propagate date-cast psql status exa
 assert_status 2 "$LAST_CALL_COUNT" 'date-cast failure must stop before final SQL'
 assert_eq 4 "$DATE_VALIDATION_CASES" 'date validation contract coverage'
 
-# Every staging mode requires exact confirmation and a viewer, and rejects today.
 assert_staging_failure '--confirm-organization' staging --dry-run --demo-viewer-email viewer@example.com
 assert_staging_failure '--confirm-organization' staging --dry-run \
   --confirm-organization wrong --demo-viewer-email viewer@example.com
@@ -568,13 +554,11 @@ assert_staging_failure '--demo-viewer-email' verify staging --confirm-organizati
 assert_staging_failure 'staging rejects today' verify staging \
   --confirm-organization iteratorstesting --demo-viewer-email viewer@example.com --today 2026-05-18
 
-# Final SQL status propagation.
 FAKE_FINAL_EXIT=73
 run_runner local --dry-run
 assert_status 73 "$LAST_STATUS" 'runner must propagate final psql status'
 unset FAKE_FINAL_EXIT
 
-# Narrow JDBC grammar, numeric port safety, and local database allow-list.
 assert_bad_url() {
   TEST_DB_URL=$1
   assert_failed_with "$2" local --dry-run
@@ -630,7 +614,6 @@ assert_bad_url 'jdbc:postgresql://127.0.0.1:55432/epoca_ct532_case_1_x' 'not app
 assert_bad_url 'jdbc:postgresql://127.0.0.1:55432/epoca_ct532_case_1_2_extra' 'not approved for local seeding'
 assert_bad_url 'jdbc:postgresql://127.0.0.1:55432/epoca_unapproved' 'not approved for local seeding'
 
-# Work only against a copied bundle when replacing the staging fingerprint.
 COPIED_BUNDLE="$TMP_DIR/copied-demo-seed"
 cp -R "$BUNDLE_DIR" "$COPIED_BUNDLE"
 COPIED_BUNDLE=$(CDPATH= cd -- "$COPIED_BUNDLE" && pwd -P)
@@ -742,8 +725,6 @@ assert_staging_fingerprint_failure 'fingerprint mismatch: SERVER_PORT'
 unset TEST_DB_URL
 ACTIVE_RUNNER="$BUNDLE_DIR/run.sh"
 
-# Standalone verification owns the seed advisory key across its committed target-materialization
-# boundary and its locked repeatable-read assertion transaction, then treats a failed explicit unlock as an error.
 VERIFY_SQL=$(cat "$BUNDLE_DIR/verify.sql")
 assert_contains "$VERIFY_SQL" \
   "pg_catalog.pg_advisory_lock(" \
@@ -761,7 +742,6 @@ assert_contains "$VERIFY_SQL" \
   'IF lock_released IS DISTINCT FROM true THEN' \
   'standalone verify must reject a failed explicit advisory unlock'
 
-# The aggregate dispatcher keeps the two integration modes independent.
 DISPATCH_ROOT="$TMP_DIR/dispatch-repo"
 DISPATCH_TEST_DIR="$DISPATCH_ROOT/scripts/demo-seed/tests"
 DISPATCH_LOG="$TMP_DIR/dispatch.log"

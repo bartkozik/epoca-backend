@@ -88,8 +88,6 @@ class OrganizationUserListService(
     res.seal
   }
 
-  // Archived memberships are listed only on request (reports keep showing people who left); the second
-  // set says which members are active now, using the repository's own definition of an archived membership.
   private def listOrgUsers(
     organization: Organization,
     requesterOrgUser: Option[OrganizationUser],

@@ -5,7 +5,6 @@ import org.apache.pekko.http.scaladsl.model.StatusCode
 
 import java.net.URI
 
-// https://www.rfc-editor.org/rfc/rfc9457.html
 case class Error[T](
   `type`: Option[URI] = Some(URI.create("about:blank")),
   status: Option[StatusCode] = None,

@@ -57,7 +57,6 @@ class WorkUnitRepositoryImpl(implicit e: ExecutionContext)
       .filterOpt(params.dateTo)(_.date <= _)
       .filterOpt(params.states)(_.state inSet _)
       .filterIf(!params.includeArchived)(_.notDeletedNow)
-      // Authorization is independent of user-selected filters and precedes count/pagination.
       .filterOpt(params.reportAuthorizedProjectIds)((row, ids) => (row.projectId inSet ids) && (row.effectiveProjectId inSet ids))
       .filterOpt(params.projectIds)((row, ids) => row.effectiveProjectId inSet ids)
       .filterOpt(params.clientIds)((row, ids) => row.effectiveProjectId in projects.filter(_.clientId inSet ids).map(_.id))

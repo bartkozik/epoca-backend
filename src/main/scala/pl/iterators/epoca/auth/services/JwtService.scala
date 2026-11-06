@@ -47,12 +47,8 @@ object JwtService {
 
   object Config {
     private val SecretPath = "login.jwtSecret"
-    // The former application.conf default and common placeholder values; a deployment must never sign tokens with them.
     private val KnownPlaceholders = Set("youneedtooverrideit", "changeme", "change-me", "placeholder", "secret")
 
-    /** Reads the human-session signing secret and fails when it is missing, blank or a known placeholder, so that a misconfigured deployment refuses
-      * to start instead of issuing tokens signed with a public value.
-      */
     def apply(tsConfig: TsConfig): Config = {
       if (!tsConfig.hasPath(SecretPath))
         throw new IllegalStateException(s"$SecretPath is not configured; set JWT_SECRET")
